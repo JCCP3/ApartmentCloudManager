@@ -52,4 +52,4 @@ SPEC CHECKSUMS:
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   TTTAttributedLabel: 2f39c9f6f3b1127202c83a16a7aae8b7f4f03c4b
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
