@@ -1,0 +1,872 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ABB6875629579397F9209BA6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E22CCFA7811654A775F916F /* libPods.a */; };
+		FEB556EE1C3E505600FCFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556ED1C3E505600FCFA43 /* main.m */; };
+		FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556F01C3E505600FCFA43 /* AppDelegate.m */; };
+		FEB556F91C3E505600FCFA43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEB556F81C3E505600FCFA43 /* Assets.xcassets */; };
+		FEB557071C3E505600FCFA43 /* ApartmentCloudTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557061C3E505600FCFA43 /* ApartmentCloudTests.m */; };
+		FEB557121C3E505600FCFA43 /* ApartmentCloudUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557111C3E505600FCFA43 /* ApartmentCloudUITests.m */; };
+		FEB5573E1C3E553F00FCFA43 /* CustomAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557271C3E553F00FCFA43 /* CustomAlertView.m */; };
+		FEB5573F1C3E553F00FCFA43 /* CustomImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557291C3E553F00FCFA43 /* CustomImageUtils.m */; };
+		FEB557411C3E553F00FCFA43 /* CustomRequestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5572D1C3E553F00FCFA43 /* CustomRequestUtils.m */; };
+		FEB557421C3E553F00FCFA43 /* CustomSizeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5572F1C3E553F00FCFA43 /* CustomSizeUtils.m */; };
+		FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557311C3E553F00FCFA43 /* CustomStringUtils.m */; };
+		FEB557441C3E553F00FCFA43 /* CustomTimeUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557331C3E553F00FCFA43 /* CustomTimeUtils.m */; };
+		FEB557451C3E553F00FCFA43 /* CustomUrlUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557351C3E553F00FCFA43 /* CustomUrlUtils.m */; };
+		FEB557461C3E553F00FCFA43 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557381C3E553F00FCFA43 /* MBProgressHUD.m */; };
+		FEB557471C3E553F00FCFA43 /* MJRefreshDIYFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5573B1C3E553F00FCFA43 /* MJRefreshDIYFooter.m */; };
+		FEB557481C3E553F00FCFA43 /* MJRefreshDIYHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5573D1C3E553F00FCFA43 /* MJRefreshDIYHeader.m */; };
+		FEB5574F1C3E563700FCFA43 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5574C1C3E563700FCFA43 /* BaseNavController.m */; };
+		FEB557501C3E563700FCFA43 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5574E1C3E563700FCFA43 /* BaseViewController.m */; };
+		FEB557541C3E56C800FCFA43 /* DateFormatUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557531C3E56C800FCFA43 /* DateFormatUtils.m */; };
+		FEB5575B1C3E596A00FCFA43 /* GlobalUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5575A1C3E596A00FCFA43 /* GlobalUtils.m */; };
+		FEB5576F1C3E5B1A00FCFA43 /* EGOCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5575F1C3E5B1A00FCFA43 /* EGOCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557621C3E5B1A00FCFA43 /* CrashManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB557711C3E5B1A00FCFA43 /* EGOImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557641C3E5B1A00FCFA43 /* EGOImageButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB557721C3E5B1A00FCFA43 /* EGOImageLoadConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557671C3E5B1A00FCFA43 /* EGOImageLoadConnection.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB557731C3E5B1A00FCFA43 /* EGOImageLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557691C3E5B1A00FCFA43 /* EGOImageLoader.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB557741C3E5B1A00FCFA43 /* EGOImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5576C1C3E5B1A00FCFA43 /* EGOImageView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB557751C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5576E1C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB5577B1C3E5DE000FCFA43 /* NSObject+CustomCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557781C3E5DE000FCFA43 /* NSObject+CustomCategory.m */; };
+		FEB5577C1C3E5DE000FCFA43 /* UIView+MultipleConstraints.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5577A1C3E5DE000FCFA43 /* UIView+MultipleConstraints.m */; };
+		FEB557801C3E5FAB00FCFA43 /* SvGifView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5577F1C3E5FAB00FCFA43 /* SvGifView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		FEB557841C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557831C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m */; };
+		FEB557891C3E60C600FCFA43 /* OBCConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557871C3E60C600FCFA43 /* OBCConvertor.m */; };
+		FEB5578A1C3E60C600FCFA43 /* ts.tab in Resources */ = {isa = PBXBuildFile; fileRef = FEB557881C3E60C600FCFA43 /* ts.tab */; };
+		FEB5578D1C3E625800FCFA43 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5578C1C3E625800FCFA43 /* Constants.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FEB557031C3E505600FCFA43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FEB556E11C3E505600FCFA43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEB556E81C3E505600FCFA43;
+			remoteInfo = ApartmentCloud;
+		};
+		FEB5570E1C3E505600FCFA43 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FEB556E11C3E505600FCFA43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FEB556E81C3E505600FCFA43;
+			remoteInfo = ApartmentCloud;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7E22CCFA7811654A775F916F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A41F761C482EF0B164551491 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		FEB556E91C3E505600FCFA43 /* ApartmentCloud.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ApartmentCloud.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEB556ED1C3E505600FCFA43 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FEB556EF1C3E505600FCFA43 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FEB556F01C3E505600FCFA43 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FEB556F81C3E505600FCFA43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FEB556FD1C3E505600FCFA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEB557021C3E505600FCFA43 /* ApartmentCloudTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApartmentCloudTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEB557061C3E505600FCFA43 /* ApartmentCloudTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApartmentCloudTests.m; sourceTree = "<group>"; };
+		FEB557081C3E505600FCFA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEB5570D1C3E505600FCFA43 /* ApartmentCloudUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ApartmentCloudUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEB557111C3E505600FCFA43 /* ApartmentCloudUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ApartmentCloudUITests.m; sourceTree = "<group>"; };
+		FEB557131C3E505600FCFA43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEB557261C3E553F00FCFA43 /* CustomAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomAlertView.h; sourceTree = "<group>"; };
+		FEB557271C3E553F00FCFA43 /* CustomAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAlertView.m; sourceTree = "<group>"; };
+		FEB557281C3E553F00FCFA43 /* CustomImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImageUtils.h; sourceTree = "<group>"; };
+		FEB557291C3E553F00FCFA43 /* CustomImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageUtils.m; sourceTree = "<group>"; };
+		FEB5572C1C3E553F00FCFA43 /* CustomRequestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomRequestUtils.h; sourceTree = "<group>"; };
+		FEB5572D1C3E553F00FCFA43 /* CustomRequestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomRequestUtils.m; sourceTree = "<group>"; };
+		FEB5572E1C3E553F00FCFA43 /* CustomSizeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomSizeUtils.h; sourceTree = "<group>"; };
+		FEB5572F1C3E553F00FCFA43 /* CustomSizeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomSizeUtils.m; sourceTree = "<group>"; };
+		FEB557301C3E553F00FCFA43 /* CustomStringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomStringUtils.h; sourceTree = "<group>"; };
+		FEB557311C3E553F00FCFA43 /* CustomStringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomStringUtils.m; sourceTree = "<group>"; };
+		FEB557321C3E553F00FCFA43 /* CustomTimeUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTimeUtils.h; sourceTree = "<group>"; };
+		FEB557331C3E553F00FCFA43 /* CustomTimeUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTimeUtils.m; sourceTree = "<group>"; };
+		FEB557341C3E553F00FCFA43 /* CustomUrlUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUrlUtils.h; sourceTree = "<group>"; };
+		FEB557351C3E553F00FCFA43 /* CustomUrlUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUrlUtils.m; sourceTree = "<group>"; };
+		FEB557371C3E553F00FCFA43 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		FEB557381C3E553F00FCFA43 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		FEB5573A1C3E553F00FCFA43 /* MJRefreshDIYFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshDIYFooter.h; sourceTree = "<group>"; };
+		FEB5573B1C3E553F00FCFA43 /* MJRefreshDIYFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshDIYFooter.m; sourceTree = "<group>"; };
+		FEB5573C1C3E553F00FCFA43 /* MJRefreshDIYHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshDIYHeader.h; sourceTree = "<group>"; };
+		FEB5573D1C3E553F00FCFA43 /* MJRefreshDIYHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshDIYHeader.m; sourceTree = "<group>"; };
+		FEB557491C3E55C300FCFA43 /* ApartmentCloud-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ApartmentCloud-Prefix.pch"; sourceTree = "<group>"; };
+		FEB5574B1C3E563700FCFA43 /* BaseNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavController.h; sourceTree = "<group>"; };
+		FEB5574C1C3E563700FCFA43 /* BaseNavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavController.m; sourceTree = "<group>"; };
+		FEB5574D1C3E563700FCFA43 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		FEB5574E1C3E563700FCFA43 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		FEB557521C3E56C800FCFA43 /* DateFormatUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatUtils.h; sourceTree = "<group>"; };
+		FEB557531C3E56C800FCFA43 /* DateFormatUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatUtils.m; sourceTree = "<group>"; };
+		FEB557591C3E596A00FCFA43 /* GlobalUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalUtils.h; sourceTree = "<group>"; };
+		FEB5575A1C3E596A00FCFA43 /* GlobalUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalUtils.m; sourceTree = "<group>"; };
+		FEB5575E1C3E5B1A00FCFA43 /* EGOCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOCache.h; sourceTree = "<group>"; };
+		FEB5575F1C3E5B1A00FCFA43 /* EGOCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOCache.m; sourceTree = "<group>"; };
+		FEB557611C3E5B1A00FCFA43 /* CrashManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashManager.h; sourceTree = "<group>"; };
+		FEB557621C3E5B1A00FCFA43 /* CrashManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashManager.m; sourceTree = "<group>"; };
+		FEB557631C3E5B1A00FCFA43 /* EGOImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageButton.h; sourceTree = "<group>"; };
+		FEB557641C3E5B1A00FCFA43 /* EGOImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageButton.m; sourceTree = "<group>"; };
+		FEB557661C3E5B1A00FCFA43 /* EGOImageLoadConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoadConnection.h; sourceTree = "<group>"; };
+		FEB557671C3E5B1A00FCFA43 /* EGOImageLoadConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoadConnection.m; sourceTree = "<group>"; };
+		FEB557681C3E5B1A00FCFA43 /* EGOImageLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageLoader.h; sourceTree = "<group>"; };
+		FEB557691C3E5B1A00FCFA43 /* EGOImageLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageLoader.m; sourceTree = "<group>"; };
+		FEB5576B1C3E5B1A00FCFA43 /* EGOImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGOImageView.h; sourceTree = "<group>"; };
+		FEB5576C1C3E5B1A00FCFA43 /* EGOImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGOImageView.m; sourceTree = "<group>"; };
+		FEB5576D1C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		FEB5576E1C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		FEB557771C3E5DE000FCFA43 /* NSObject+CustomCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CustomCategory.h"; sourceTree = "<group>"; };
+		FEB557781C3E5DE000FCFA43 /* NSObject+CustomCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CustomCategory.m"; sourceTree = "<group>"; };
+		FEB557791C3E5DE000FCFA43 /* UIView+MultipleConstraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MultipleConstraints.h"; sourceTree = "<group>"; };
+		FEB5577A1C3E5DE000FCFA43 /* UIView+MultipleConstraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MultipleConstraints.m"; sourceTree = "<group>"; };
+		FEB5577E1C3E5FAB00FCFA43 /* SvGifView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SvGifView.h; sourceTree = "<group>"; };
+		FEB5577F1C3E5FAB00FCFA43 /* SvGifView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SvGifView.m; sourceTree = "<group>"; };
+		FEB557821C3E60A700FCFA43 /* UIDevice+IdentifierAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+IdentifierAddition.h"; sourceTree = "<group>"; };
+		FEB557831C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+IdentifierAddition.m"; sourceTree = "<group>"; };
+		FEB557861C3E60C600FCFA43 /* OBCConvertor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OBCConvertor.h; sourceTree = "<group>"; };
+		FEB557871C3E60C600FCFA43 /* OBCConvertor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OBCConvertor.m; sourceTree = "<group>"; };
+		FEB557881C3E60C600FCFA43 /* ts.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ts.tab; sourceTree = "<group>"; };
+		FEB5578B1C3E625800FCFA43 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		FEB5578C1C3E625800FCFA43 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FEB556E61C3E505600FCFA43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABB6875629579397F9209BA6 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEB556FF1C3E505600FCFA43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEB5570A1C3E505600FCFA43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7A572611C470B4D9D6D85C46 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7E22CCFA7811654A775F916F /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A823397D6C2EDB53552BED23 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A41F761C482EF0B164551491 /* Pods.debug.xcconfig */,
+				EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FEB556E01C3E505600FCFA43 = {
+			isa = PBXGroup;
+			children = (
+				FEB556EB1C3E505600FCFA43 /* ApartmentCloud */,
+				FEB557051C3E505600FCFA43 /* ApartmentCloudTests */,
+				FEB557101C3E505600FCFA43 /* ApartmentCloudUITests */,
+				FEB556EA1C3E505600FCFA43 /* Products */,
+				A823397D6C2EDB53552BED23 /* Pods */,
+				7A572611C470B4D9D6D85C46 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FEB556EA1C3E505600FCFA43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FEB556E91C3E505600FCFA43 /* ApartmentCloud.app */,
+				FEB557021C3E505600FCFA43 /* ApartmentCloudTests.xctest */,
+				FEB5570D1C3E505600FCFA43 /* ApartmentCloudUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FEB556EB1C3E505600FCFA43 /* ApartmentCloud */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557761C3E5DE000FCFA43 /* Categories */,
+				FEB557241C3E553F00FCFA43 /* Utils */,
+				FEB5571F1C3E508500FCFA43 /* Controller */,
+				FEB557201C3E508500FCFA43 /* Model */,
+				FEB557211C3E508500FCFA43 /* View */,
+				FEB556EF1C3E505600FCFA43 /* AppDelegate.h */,
+				FEB556F01C3E505600FCFA43 /* AppDelegate.m */,
+				FEB556F81C3E505600FCFA43 /* Assets.xcassets */,
+				FEB556FD1C3E505600FCFA43 /* Info.plist */,
+				FEB556EC1C3E505600FCFA43 /* Supporting Files */,
+			);
+			path = ApartmentCloud;
+			sourceTree = "<group>";
+		};
+		FEB556EC1C3E505600FCFA43 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FEB556ED1C3E505600FCFA43 /* main.m */,
+				FEB557491C3E55C300FCFA43 /* ApartmentCloud-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FEB557051C3E505600FCFA43 /* ApartmentCloudTests */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557061C3E505600FCFA43 /* ApartmentCloudTests.m */,
+				FEB557081C3E505600FCFA43 /* Info.plist */,
+			);
+			path = ApartmentCloudTests;
+			sourceTree = "<group>";
+		};
+		FEB557101C3E505600FCFA43 /* ApartmentCloudUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557111C3E505600FCFA43 /* ApartmentCloudUITests.m */,
+				FEB557131C3E505600FCFA43 /* Info.plist */,
+			);
+			path = ApartmentCloudUITests;
+			sourceTree = "<group>";
+		};
+		FEB5571F1C3E508500FCFA43 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5574A1C3E563700FCFA43 /* BaseController */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		FEB557201C3E508500FCFA43 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FEB557211C3E508500FCFA43 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FEB557241C3E553F00FCFA43 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5578B1C3E625800FCFA43 /* Constants.h */,
+				FEB5578C1C3E625800FCFA43 /* Constants.m */,
+				FEB557851C3E60C600FCFA43 /* OBCConvertor */,
+				FEB557811C3E60A700FCFA43 /* UniqueIdentifier */,
+				FEB5577D1C3E5FAB00FCFA43 /* SvGifView */,
+				FEB5575C1C3E5B1A00FCFA43 /* EGO */,
+				FEB557581C3E596A00FCFA43 /* GlobalUtils */,
+				FEB557511C3E56C800FCFA43 /* DateFormat */,
+				FEB557251C3E553F00FCFA43 /* CustomUtils */,
+				FEB557361C3E553F00FCFA43 /* MBHud */,
+				FEB557391C3E553F00FCFA43 /* MJRefreshDIY */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FEB557251C3E553F00FCFA43 /* CustomUtils */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557261C3E553F00FCFA43 /* CustomAlertView.h */,
+				FEB557271C3E553F00FCFA43 /* CustomAlertView.m */,
+				FEB557281C3E553F00FCFA43 /* CustomImageUtils.h */,
+				FEB557291C3E553F00FCFA43 /* CustomImageUtils.m */,
+				FEB5572C1C3E553F00FCFA43 /* CustomRequestUtils.h */,
+				FEB5572D1C3E553F00FCFA43 /* CustomRequestUtils.m */,
+				FEB5572E1C3E553F00FCFA43 /* CustomSizeUtils.h */,
+				FEB5572F1C3E553F00FCFA43 /* CustomSizeUtils.m */,
+				FEB557301C3E553F00FCFA43 /* CustomStringUtils.h */,
+				FEB557311C3E553F00FCFA43 /* CustomStringUtils.m */,
+				FEB557321C3E553F00FCFA43 /* CustomTimeUtils.h */,
+				FEB557331C3E553F00FCFA43 /* CustomTimeUtils.m */,
+				FEB557341C3E553F00FCFA43 /* CustomUrlUtils.h */,
+				FEB557351C3E553F00FCFA43 /* CustomUrlUtils.m */,
+			);
+			path = CustomUtils;
+			sourceTree = "<group>";
+		};
+		FEB557361C3E553F00FCFA43 /* MBHud */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557371C3E553F00FCFA43 /* MBProgressHUD.h */,
+				FEB557381C3E553F00FCFA43 /* MBProgressHUD.m */,
+			);
+			path = MBHud;
+			sourceTree = "<group>";
+		};
+		FEB557391C3E553F00FCFA43 /* MJRefreshDIY */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5573A1C3E553F00FCFA43 /* MJRefreshDIYFooter.h */,
+				FEB5573B1C3E553F00FCFA43 /* MJRefreshDIYFooter.m */,
+				FEB5573C1C3E553F00FCFA43 /* MJRefreshDIYHeader.h */,
+				FEB5573D1C3E553F00FCFA43 /* MJRefreshDIYHeader.m */,
+			);
+			path = MJRefreshDIY;
+			sourceTree = "<group>";
+		};
+		FEB5574A1C3E563700FCFA43 /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5574B1C3E563700FCFA43 /* BaseNavController.h */,
+				FEB5574C1C3E563700FCFA43 /* BaseNavController.m */,
+				FEB5574D1C3E563700FCFA43 /* BaseViewController.h */,
+				FEB5574E1C3E563700FCFA43 /* BaseViewController.m */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		FEB557511C3E56C800FCFA43 /* DateFormat */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557521C3E56C800FCFA43 /* DateFormatUtils.h */,
+				FEB557531C3E56C800FCFA43 /* DateFormatUtils.m */,
+			);
+			path = DateFormat;
+			sourceTree = "<group>";
+		};
+		FEB557581C3E596A00FCFA43 /* GlobalUtils */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557591C3E596A00FCFA43 /* GlobalUtils.h */,
+				FEB5575A1C3E596A00FCFA43 /* GlobalUtils.m */,
+			);
+			path = GlobalUtils;
+			sourceTree = "<group>";
+		};
+		FEB5575C1C3E5B1A00FCFA43 /* EGO */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5575D1C3E5B1A00FCFA43 /* EGOCache */,
+				FEB557601C3E5B1A00FCFA43 /* EGOImageButton */,
+				FEB557651C3E5B1A00FCFA43 /* EGOImageLoader */,
+				FEB5576A1C3E5B1A00FCFA43 /* EGOImageView */,
+				FEB5576D1C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.h */,
+				FEB5576E1C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m */,
+			);
+			path = EGO;
+			sourceTree = "<group>";
+		};
+		FEB5575D1C3E5B1A00FCFA43 /* EGOCache */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5575E1C3E5B1A00FCFA43 /* EGOCache.h */,
+				FEB5575F1C3E5B1A00FCFA43 /* EGOCache.m */,
+			);
+			path = EGOCache;
+			sourceTree = "<group>";
+		};
+		FEB557601C3E5B1A00FCFA43 /* EGOImageButton */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557611C3E5B1A00FCFA43 /* CrashManager.h */,
+				FEB557621C3E5B1A00FCFA43 /* CrashManager.m */,
+				FEB557631C3E5B1A00FCFA43 /* EGOImageButton.h */,
+				FEB557641C3E5B1A00FCFA43 /* EGOImageButton.m */,
+			);
+			path = EGOImageButton;
+			sourceTree = "<group>";
+		};
+		FEB557651C3E5B1A00FCFA43 /* EGOImageLoader */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557661C3E5B1A00FCFA43 /* EGOImageLoadConnection.h */,
+				FEB557671C3E5B1A00FCFA43 /* EGOImageLoadConnection.m */,
+				FEB557681C3E5B1A00FCFA43 /* EGOImageLoader.h */,
+				FEB557691C3E5B1A00FCFA43 /* EGOImageLoader.m */,
+			);
+			path = EGOImageLoader;
+			sourceTree = "<group>";
+		};
+		FEB5576A1C3E5B1A00FCFA43 /* EGOImageView */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5576B1C3E5B1A00FCFA43 /* EGOImageView.h */,
+				FEB5576C1C3E5B1A00FCFA43 /* EGOImageView.m */,
+			);
+			path = EGOImageView;
+			sourceTree = "<group>";
+		};
+		FEB557761C3E5DE000FCFA43 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557771C3E5DE000FCFA43 /* NSObject+CustomCategory.h */,
+				FEB557781C3E5DE000FCFA43 /* NSObject+CustomCategory.m */,
+				FEB557791C3E5DE000FCFA43 /* UIView+MultipleConstraints.h */,
+				FEB5577A1C3E5DE000FCFA43 /* UIView+MultipleConstraints.m */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		FEB5577D1C3E5FAB00FCFA43 /* SvGifView */ = {
+			isa = PBXGroup;
+			children = (
+				FEB5577E1C3E5FAB00FCFA43 /* SvGifView.h */,
+				FEB5577F1C3E5FAB00FCFA43 /* SvGifView.m */,
+			);
+			path = SvGifView;
+			sourceTree = "<group>";
+		};
+		FEB557811C3E60A700FCFA43 /* UniqueIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557821C3E60A700FCFA43 /* UIDevice+IdentifierAddition.h */,
+				FEB557831C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m */,
+			);
+			path = UniqueIdentifier;
+			sourceTree = "<group>";
+		};
+		FEB557851C3E60C600FCFA43 /* OBCConvertor */ = {
+			isa = PBXGroup;
+			children = (
+				FEB557861C3E60C600FCFA43 /* OBCConvertor.h */,
+				FEB557871C3E60C600FCFA43 /* OBCConvertor.m */,
+				FEB557881C3E60C600FCFA43 /* ts.tab */,
+			);
+			path = OBCConvertor;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FEB556E81C3E505600FCFA43 /* ApartmentCloud */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEB557161C3E505600FCFA43 /* Build configuration list for PBXNativeTarget "ApartmentCloud" */;
+			buildPhases = (
+				7FB21EDC102310B05143E3C3 /* Check Pods Manifest.lock */,
+				FEB556E51C3E505600FCFA43 /* Sources */,
+				FEB556E61C3E505600FCFA43 /* Frameworks */,
+				FEB556E71C3E505600FCFA43 /* Resources */,
+				90487D7AF83BD706C4EA8FBB /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ApartmentCloud;
+			productName = ApartmentCloud;
+			productReference = FEB556E91C3E505600FCFA43 /* ApartmentCloud.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FEB557011C3E505600FCFA43 /* ApartmentCloudTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEB557191C3E505600FCFA43 /* Build configuration list for PBXNativeTarget "ApartmentCloudTests" */;
+			buildPhases = (
+				FEB556FE1C3E505600FCFA43 /* Sources */,
+				FEB556FF1C3E505600FCFA43 /* Frameworks */,
+				FEB557001C3E505600FCFA43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FEB557041C3E505600FCFA43 /* PBXTargetDependency */,
+			);
+			name = ApartmentCloudTests;
+			productName = ApartmentCloudTests;
+			productReference = FEB557021C3E505600FCFA43 /* ApartmentCloudTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FEB5570C1C3E505600FCFA43 /* ApartmentCloudUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FEB5571C1C3E505600FCFA43 /* Build configuration list for PBXNativeTarget "ApartmentCloudUITests" */;
+			buildPhases = (
+				FEB557091C3E505600FCFA43 /* Sources */,
+				FEB5570A1C3E505600FCFA43 /* Frameworks */,
+				FEB5570B1C3E505600FCFA43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FEB5570F1C3E505600FCFA43 /* PBXTargetDependency */,
+			);
+			name = ApartmentCloudUITests;
+			productName = ApartmentCloudUITests;
+			productReference = FEB5570D1C3E505600FCFA43 /* ApartmentCloudUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FEB556E11C3E505600FCFA43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = JC_CP3;
+				TargetAttributes = {
+					FEB556E81C3E505600FCFA43 = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					FEB557011C3E505600FCFA43 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = FEB556E81C3E505600FCFA43;
+					};
+					FEB5570C1C3E505600FCFA43 = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = FEB556E81C3E505600FCFA43;
+					};
+				};
+			};
+			buildConfigurationList = FEB556E41C3E505600FCFA43 /* Build configuration list for PBXProject "ApartmentCloud" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FEB556E01C3E505600FCFA43;
+			productRefGroup = FEB556EA1C3E505600FCFA43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FEB556E81C3E505600FCFA43 /* ApartmentCloud */,
+				FEB557011C3E505600FCFA43 /* ApartmentCloudTests */,
+				FEB5570C1C3E505600FCFA43 /* ApartmentCloudUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FEB556E71C3E505600FCFA43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEB5578A1C3E60C600FCFA43 /* ts.tab in Resources */,
+				FEB556F91C3E505600FCFA43 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEB557001C3E505600FCFA43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEB5570B1C3E505600FCFA43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7FB21EDC102310B05143E3C3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		90487D7AF83BD706C4EA8FBB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FEB556E51C3E505600FCFA43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEB557421C3E553F00FCFA43 /* CustomSizeUtils.m in Sources */,
+				FEB557541C3E56C800FCFA43 /* DateFormatUtils.m in Sources */,
+				FEB557501C3E563700FCFA43 /* BaseViewController.m in Sources */,
+				FEB557441C3E553F00FCFA43 /* CustomTimeUtils.m in Sources */,
+				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
+				FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */,
+				FEB557741C3E5B1A00FCFA43 /* EGOImageView.m in Sources */,
+				FEB5574F1C3E563700FCFA43 /* BaseNavController.m in Sources */,
+				FEB557461C3E553F00FCFA43 /* MBProgressHUD.m in Sources */,
+				FEB557731C3E5B1A00FCFA43 /* EGOImageLoader.m in Sources */,
+				FEB5573F1C3E553F00FCFA43 /* CustomImageUtils.m in Sources */,
+				FEB5578D1C3E625800FCFA43 /* Constants.m in Sources */,
+				FEB557721C3E5B1A00FCFA43 /* EGOImageLoadConnection.m in Sources */,
+				FEB557471C3E553F00FCFA43 /* MJRefreshDIYFooter.m in Sources */,
+				FEB557481C3E553F00FCFA43 /* MJRefreshDIYHeader.m in Sources */,
+				FEB5575B1C3E596A00FCFA43 /* GlobalUtils.m in Sources */,
+				FEB5573E1C3E553F00FCFA43 /* CustomAlertView.m in Sources */,
+				FEB5577C1C3E5DE000FCFA43 /* UIView+MultipleConstraints.m in Sources */,
+				FEB5577B1C3E5DE000FCFA43 /* NSObject+CustomCategory.m in Sources */,
+				FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */,
+				FEB557411C3E553F00FCFA43 /* CustomRequestUtils.m in Sources */,
+				FEB557801C3E5FAB00FCFA43 /* SvGifView.m in Sources */,
+				FEB557451C3E553F00FCFA43 /* CustomUrlUtils.m in Sources */,
+				FEB557711C3E5B1A00FCFA43 /* EGOImageButton.m in Sources */,
+				FEB557891C3E60C600FCFA43 /* OBCConvertor.m in Sources */,
+				FEB557841C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m in Sources */,
+				FEB5576F1C3E5B1A00FCFA43 /* EGOCache.m in Sources */,
+				FEB557751C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m in Sources */,
+				FEB556EE1C3E505600FCFA43 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEB556FE1C3E505600FCFA43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEB557071C3E505600FCFA43 /* ApartmentCloudTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FEB557091C3E505600FCFA43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FEB557121C3E505600FCFA43 /* ApartmentCloudUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FEB557041C3E505600FCFA43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FEB556E81C3E505600FCFA43 /* ApartmentCloud */;
+			targetProxy = FEB557031C3E505600FCFA43 /* PBXContainerItemProxy */;
+		};
+		FEB5570F1C3E505600FCFA43 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FEB556E81C3E505600FCFA43 /* ApartmentCloud */;
+			targetProxy = FEB5570E1C3E505600FCFA43 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		FEB557141C3E505600FCFA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FEB557151C3E505600FCFA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FEB557171C3E505600FCFA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A41F761C482EF0B164551491 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ApartmentCloud/ApartmentCloud-Prefix.pch";
+				INFOPLIST_FILE = ApartmentCloud/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apartment.cloud;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		FEB557181C3E505600FCFA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/ApartmentCloud/ApartmentCloud-Prefix.pch";
+				INFOPLIST_FILE = ApartmentCloud/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apartment.cloud;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		FEB5571A1C3E505600FCFA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ApartmentCloudTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apartment.cloud.ApartmentCloudTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ApartmentCloud.app/ApartmentCloud";
+			};
+			name = Debug;
+		};
+		FEB5571B1C3E505600FCFA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ApartmentCloudTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apartment.cloud.ApartmentCloudTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ApartmentCloud.app/ApartmentCloud";
+			};
+			name = Release;
+		};
+		FEB5571D1C3E505600FCFA43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ApartmentCloudUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apartment.cloud.ApartmentCloudUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ApartmentCloud;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		FEB5571E1C3E505600FCFA43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = ApartmentCloudUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.apartment.cloud.ApartmentCloudUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = ApartmentCloud;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FEB556E41C3E505600FCFA43 /* Build configuration list for PBXProject "ApartmentCloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEB557141C3E505600FCFA43 /* Debug */,
+				FEB557151C3E505600FCFA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEB557161C3E505600FCFA43 /* Build configuration list for PBXNativeTarget "ApartmentCloud" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEB557171C3E505600FCFA43 /* Debug */,
+				FEB557181C3E505600FCFA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEB557191C3E505600FCFA43 /* Build configuration list for PBXNativeTarget "ApartmentCloudTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEB5571A1C3E505600FCFA43 /* Debug */,
+				FEB5571B1C3E505600FCFA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FEB5571C1C3E505600FCFA43 /* Build configuration list for PBXNativeTarget "ApartmentCloudUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FEB5571D1C3E505600FCFA43 /* Debug */,
+				FEB5571E1C3E505600FCFA43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FEB556E11C3E505600FCFA43 /* Project object */;
+}

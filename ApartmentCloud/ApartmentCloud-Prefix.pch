@@ -1,0 +1,59 @@
+//
+//  ApartmentCloud-Prefix.pch
+//  ApartmentCloud
+//
+//  Created by JC_CP3 on 16/1/7.
+//  Copyright © 2016年 JC_CP3. All rights reserved.
+//
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <AFNetworking/AFNetworking.h>
+#import "BaseViewController.h"
+#import "BaseNavController.h"
+#import "UIView+MultipleConstraints.h"
+#import "NSObject+CustomCategory.h"
+#import "CustomStringUtils.h"
+#import "CustomSizeUtils.h"
+#import "CustomRequestUtils.h"
+#import "GlobalUtils.h"
+#import "CustomUrlUtils.h"
+#import "Constants.h"
+#endif
+
+#ifndef ApartmentCloud_Prefix_pch
+#define ApartmentCloud_Prefix_pch
+
+#define MainScreenWidth CGRectGetWidth([[UIScreen mainScreen] bounds])
+#define MainScreenHeight CGRectGetHeight([[UIScreen mainScreen] bounds])
+
+#define IOS5 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.0)
+#define IOS6 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 6.0)
+#define IOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+#define IOS8 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+#define IOS8_L_3 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [[[UIDevice currentDevice] systemVersion] floatValue] < 8.3)
+
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+
+#define SCREEN_WIDTH ([[UIScreen mainScreen] bounds].size.width)
+#define SCREEN_HEIGHT ([[UIScreen mainScreen] bounds].size.height)
+#define SCREEN_MAX_LENGTH (MAX(SCREEN_WIDTH, SCREEN_HEIGHT))
+#define SCREEN_MIN_LENGTH (MIN(SCREEN_WIDTH, SCREEN_HEIGHT))
+
+#define IS_IPHONE_6 (IS_IPHONE && SCREEN_MAX_LENGTH == 667.0)
+#define IS_IPHONE_6P (IS_IPHONE && SCREEN_MAX_LENGTH == 736.0)
+
+#define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:(a)]
+
+#define ImageNamed(_pointer) [UIImage imageNamed:_pointer]
+#define ImageContentsOfFile(name, type) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:type]]
+#define UserDefaults [NSUserDefaults standardUserDefaults]
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* ApartmentCloud_Prefix_pch */
