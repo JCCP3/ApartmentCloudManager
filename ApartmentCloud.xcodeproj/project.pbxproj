@@ -12,6 +12,11 @@
 		367A16311C3E8A9E001D711D /* loginPwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162E1C3E8A9E001D711D /* loginPwd@2x.png */; settings = {ASSET_TAGS = (); }; };
 		367A16341C3E8ED5001D711D /* CustomColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16331C3E8ED5001D711D /* CustomColorUtils.m */; settings = {ASSET_TAGS = (); }; };
 		367A16361C3E95B9001D711D /* loginLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A16351C3E95B9001D711D /* loginLogo@2x.png */; settings = {ASSET_TAGS = (); }; };
+		368F7E771C3FCEA700010EC2 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368F7E761C3FCEA700010EC2 /* RegisterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		368F7E7A1C3FD00E00010EC2 /* nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368F7E791C3FD00E00010EC2 /* nav_back_white@2x.png */; settings = {ASSET_TAGS = (); }; };
+		368F7E7E1C3FE93800010EC2 /* ApartmentManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368F7E7D1C3FE93800010EC2 /* ApartmentManagerViewController.m */; settings = {ASSET_TAGS = (); }; };
+		368F7E821C3FEA6B00010EC2 /* nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368F7E801C3FEA6B00010EC2 /* nav_back_white@2x.png */; settings = {ASSET_TAGS = (); }; };
+		368F7E831C3FEA6B00010EC2 /* nav_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368F7E811C3FEA6B00010EC2 /* nav_menu@2x.png */; settings = {ASSET_TAGS = (); }; };
 		ABB6875629579397F9209BA6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E22CCFA7811654A775F916F /* libPods.a */; };
 		FEB556EE1C3E505600FCFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556ED1C3E505600FCFA43 /* main.m */; };
 		FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556F01C3E505600FCFA43 /* AppDelegate.m */; };
@@ -73,6 +78,13 @@
 		367A16321C3E8ED5001D711D /* CustomColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomColorUtils.h; sourceTree = "<group>"; };
 		367A16331C3E8ED5001D711D /* CustomColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomColorUtils.m; sourceTree = "<group>"; };
 		367A16351C3E95B9001D711D /* loginLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginLogo@2x.png"; sourceTree = "<group>"; };
+		368F7E751C3FCEA700010EC2 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		368F7E761C3FCEA700010EC2 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		368F7E791C3FD00E00010EC2 /* nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_back_white@2x.png"; sourceTree = "<group>"; };
+		368F7E7C1C3FE93800010EC2 /* ApartmentManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentManagerViewController.h; sourceTree = "<group>"; };
+		368F7E7D1C3FE93800010EC2 /* ApartmentManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentManagerViewController.m; sourceTree = "<group>"; };
+		368F7E801C3FEA6B00010EC2 /* nav_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_back_white@2x.png"; sourceTree = "<group>"; };
+		368F7E811C3FEA6B00010EC2 /* nav_menu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nav_menu@2x.png"; sourceTree = "<group>"; };
 		7E22CCFA7811654A775F916F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41F761C482EF0B164551491 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +189,8 @@
 			children = (
 				367A16271C3E8644001D711D /* LoginViewController.h */,
 				367A16281C3E8644001D711D /* LoginViewController.m */,
+				368F7E751C3FCEA700010EC2 /* RegisterViewController.h */,
+				368F7E761C3FCEA700010EC2 /* RegisterViewController.m */,
 			);
 			path = ProfileController;
 			sourceTree = "<group>";
@@ -184,6 +198,7 @@
 		367A162A1C3E8946001D711D /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				368F7E781C3FD00E00010EC2 /* icons */,
 				367A162B1C3E8946001D711D /* ProfileImages */,
 			);
 			path = Images;
@@ -197,6 +212,33 @@
 				367A162E1C3E8A9E001D711D /* loginPwd@2x.png */,
 			);
 			path = ProfileImages;
+			sourceTree = "<group>";
+		};
+		368F7E781C3FD00E00010EC2 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				368F7E7F1C3FEA6B00010EC2 /* icons */,
+				368F7E791C3FD00E00010EC2 /* nav_back_white@2x.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+		368F7E7B1C3FE92D00010EC2 /* ApartmentManager */ = {
+			isa = PBXGroup;
+			children = (
+				368F7E7C1C3FE93800010EC2 /* ApartmentManagerViewController.h */,
+				368F7E7D1C3FE93800010EC2 /* ApartmentManagerViewController.m */,
+			);
+			path = ApartmentManager;
+			sourceTree = "<group>";
+		};
+		368F7E7F1C3FEA6B00010EC2 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				368F7E801C3FEA6B00010EC2 /* nav_back_white@2x.png */,
+				368F7E811C3FEA6B00010EC2 /* nav_menu@2x.png */,
+			);
+			name = icons;
 			sourceTree = "<group>";
 		};
 		7A572611C470B4D9D6D85C46 /* Frameworks */ = {
@@ -286,6 +328,7 @@
 		FEB5571F1C3E508500FCFA43 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				368F7E7B1C3FE92D00010EC2 /* ApartmentManager */,
 				367A16261C3E8629001D711D /* ProfileController */,
 				FEB5574A1C3E563700FCFA43 /* BaseController */,
 			);
@@ -599,6 +642,9 @@
 				FEB5578A1C3E60C600FCFA43 /* ts.tab in Resources */,
 				FEB556F91C3E505600FCFA43 /* Assets.xcassets in Resources */,
 				367A16361C3E95B9001D711D /* loginLogo@2x.png in Resources */,
+				368F7E831C3FEA6B00010EC2 /* nav_menu@2x.png in Resources */,
+				368F7E821C3FEA6B00010EC2 /* nav_back_white@2x.png in Resources */,
+				368F7E7A1C3FD00E00010EC2 /* nav_back_white@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +724,7 @@
 				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
 				FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */,
 				FEB557741C3E5B1A00FCFA43 /* EGOImageView.m in Sources */,
+				368F7E7E1C3FE93800010EC2 /* ApartmentManagerViewController.m in Sources */,
 				FEB5574F1C3E563700FCFA43 /* BaseNavController.m in Sources */,
 				FEB557461C3E553F00FCFA43 /* MBProgressHUD.m in Sources */,
 				FEB557731C3E5B1A00FCFA43 /* EGOImageLoader.m in Sources */,
@@ -694,6 +741,7 @@
 				FEB5577B1C3E5DE000FCFA43 /* NSObject+CustomCategory.m in Sources */,
 				FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */,
 				FEB557411C3E553F00FCFA43 /* CustomRequestUtils.m in Sources */,
+				368F7E771C3FCEA700010EC2 /* RegisterViewController.m in Sources */,
 				FEB557801C3E5FAB00FCFA43 /* SvGifView.m in Sources */,
 				FEB557451C3E553F00FCFA43 /* CustomUrlUtils.m in Sources */,
 				FEB557711C3E5B1A00FCFA43 /* EGOImageButton.m in Sources */,

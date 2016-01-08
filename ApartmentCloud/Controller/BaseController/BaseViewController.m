@@ -110,7 +110,7 @@ static const CGFloat segmentItemHeight = 29;
 {
     switch (bgTag) {
         case CustomNavigationBarColorRed:
-            navBarBackgroundColor = RGBCOLOR(167, 10, 10);
+            navBarBackgroundColor = [CustomColorUtils colorWithHexString:@"#fb5d6b"];
             navBarTextColor = [UIColor whiteColor];
             navBarSeparatorColor = RGBCOLOR(133, 11, 11);
             

@@ -54,6 +54,7 @@
 #define ImageNamed(_pointer) [UIImage imageNamed:_pointer]
 #define ImageContentsOfFile(name, type) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:type]]
 #define UserDefaults [NSUserDefaults standardUserDefaults]
+#define AppThemeColor [CustomColorUtils colorWithHexString:@"#fb5d6b"]
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.

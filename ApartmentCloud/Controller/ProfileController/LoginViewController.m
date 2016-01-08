@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#import "RegisterViewController.h"
 
 @interface LoginViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -23,6 +24,12 @@
 
 @implementation LoginViewController
 
+- (void)loadView
+{
+    self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -37,6 +44,13 @@
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self removeObservers];
 }
 
 - (void)setTableView
@@ -109,7 +123,9 @@
     //忘记密码
     UIButton *forgetPwdBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(loginBtn.frame) + 5, CGRectGetMaxY(loginBtn.frame) + 10, 100, 14)];
     [[forgetPwdBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
+        RegisterViewController *view = [[RegisterViewController alloc] init];
+        view.isRegisterView = NO;
+        [self.navigationController pushViewController:view animated:YES];
     }];
     [forgetPwdBtn setTitle:@". 忘记密码" forState:UIControlStateNormal];
     [forgetPwdBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -119,7 +135,9 @@
     //注册账号
     UIButton *registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(loginBtn.frame) - 100 - 5, CGRectGetMaxY(loginBtn.frame) + 10, 100, 14)];
     [[registerBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
+        RegisterViewController *view = [[RegisterViewController alloc] init];
+        view.isRegisterView = YES;
+        [self.navigationController pushViewController:view animated:YES];
     }];
     [registerBtn setTitle:@". 注册账号" forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -133,6 +151,11 @@
 - (void)addKeyboardObserver
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
+
+- (void)removeObservers
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - UIKeyboardNotification
