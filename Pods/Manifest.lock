@@ -27,6 +27,9 @@ PODS:
     - FMDB/common
   - MJRefresh (3.1.0)
   - pop (1.0.8)
+  - PPHelpMe (1.0.2)
+  - PPRevealSideViewController (1.2.2):
+    - PPHelpMe
   - ReactiveCocoa (2.5):
     - ReactiveCocoa/UI (= 2.5)
   - ReactiveCocoa/Core (2.5):
@@ -41,6 +44,7 @@ DEPENDENCIES:
   - FMDB
   - MJRefresh
   - pop (~> 1.0)
+  - PPRevealSideViewController
   - ReactiveCocoa (~> 2.0)
   - TTTAttributedLabel (= 1.12.0)
 
@@ -49,6 +53,8 @@ SPEC CHECKSUMS:
   FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
+  PPHelpMe: 243c40d2fad33ebdcc6b158c0db54893e0cc2d14
+  PPRevealSideViewController: be6d88511fcf55ddcfb9e9ad6167644a421e709a
   ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
   TTTAttributedLabel: 2f39c9f6f3b1127202c83a16a7aae8b7f4f03c4b
 

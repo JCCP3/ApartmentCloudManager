@@ -38,6 +38,11 @@
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     
     [self setUpTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     [self addKeyboardObserver];
 }
@@ -45,8 +50,10 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
+
+    [self onClickResignKeyboard];
     [self removeObservers];
+
 }
 
 - (void)setUpTableView

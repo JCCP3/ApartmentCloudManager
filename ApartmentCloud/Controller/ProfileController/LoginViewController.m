@@ -36,20 +36,21 @@
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
     
     [self setTableView];
-    
-    [self addKeyboardObserver];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     self.navigationController.navigationBarHidden = YES;
+    
+    [self addKeyboardObserver];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     
+    [self onClickResignKeyboard];
     [self removeObservers];
 }
 
