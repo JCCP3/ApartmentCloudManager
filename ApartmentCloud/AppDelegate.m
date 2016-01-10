@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "BaseNavController.h"
+#import "ApartmentManagerViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +21,12 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    LoginViewController *viewController = [[LoginViewController alloc] init];
+    ApartmentManagerViewController *viewController = [[ApartmentManagerViewController alloc] init];
     BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
-    self.window.rootViewController = nav;
+    self.ppRevealSideViewController = [[PPRevealSideViewController alloc] initWithRootViewController:nav];
+    [self.ppRevealSideViewController resetOption:PPRevealSideOptionsiOS7StatusBarFading];
+    [self.ppRevealSideViewController setOption:PPRevealSideOptionsNoStatusBar];
+    self.window.rootViewController = self.ppRevealSideViewController;
     [self.window makeKeyAndVisible];
     
     return YES;

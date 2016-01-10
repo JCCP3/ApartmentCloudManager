@@ -43,9 +43,8 @@
     UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, CGRectGetWidth(frame), 14)];
     navLabel.tag = 99;
     navLabel.text = title;
-    navLabel.textColor = RGBCOLOR(85, 85, 85);
+    navLabel.textColor = [CustomColorUtils colorWithHexString:@"#888888"];
     navLabel.font = [UIFont systemFontOfSize:12.0f];
-    navLabel.backgroundColor = [UIColor clearColor];
 //    navLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.5f];
 //    navLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
     navLabel.textAlignment = NSTextAlignmentCenter;

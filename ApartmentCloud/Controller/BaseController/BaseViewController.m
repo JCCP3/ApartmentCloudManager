@@ -345,7 +345,7 @@ static const CGFloat segmentItemHeight = 29;
     
     [navLeftBarBtn setImage:normalImage forState:UIControlStateNormal];
     [navLeftBarBtn setImage:highlightedImage forState:UIControlStateHighlighted];
-    [navLeftBarBtn setFrame:CGRectMake(0, 20.f, normalImage.size.width, 44.f)];
+    [navLeftBarBtn setFrame:CGRectMake(15.f, 20.f, normalImage.size.width, 44.f)];
 }
 
 #pragma mark FirstRightItem

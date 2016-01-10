@@ -22,6 +22,8 @@
 #import "GlobalUtils.h"
 #import "CustomUrlUtils.h"
 #import "Constants.h"
+#import <PPRevealSideViewController.h>
+#import "AppDelegate.h"
 #endif
 
 #ifndef ApartmentCloud_Prefix_pch
@@ -55,6 +57,7 @@
 #define ImageContentsOfFile(name, type) [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:name ofType:type]]
 #define UserDefaults [NSUserDefaults standardUserDefaults]
 #define AppThemeColor [CustomColorUtils colorWithHexString:@"#fb5d6b"]
+#define APPDELEGATE (AppDelegate *)[UIApplication sharedApplication].delegate
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
