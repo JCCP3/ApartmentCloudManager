@@ -11,6 +11,7 @@
 #import "DecorateViewController.h"
 #import "SaleViewController.h"
 #import "OtherViewController.h"
+#import "LoginViewController.h"
 
 @interface LeftSideViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -153,7 +154,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1) {
+    if (indexPath.row == 0) {
+        
+        LoginViewController *viewController = [[LoginViewController alloc] init];
+        BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
+        [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
+        
+    } else if (indexPath.row == 1) {
         ApartmentManagerViewController *viewController = [[ApartmentManagerViewController alloc] init];
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];

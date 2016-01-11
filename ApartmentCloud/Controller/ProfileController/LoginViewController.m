@@ -113,7 +113,15 @@
     loginBtn.layer.cornerRadius = 20;
     [[loginBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         if (![CustomStringUtils isBlankString:accountTextField.text] && ![CustomStringUtils isBlankString:pwdTextField.text]) {
-            
+            NSString *requestUrl = [NSString stringWithFormat:@"/user/logon.json?account=%@&logonPassword=%@",accountTextField.text,pwdTextField.text];
+            [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSDictionary *jsonDic = responseObject;
+                if (jsonDic) {
+                    
+                }
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"%@",error);
+            }];
         }
     }];
     loginBtn.backgroundColor = [UIColor whiteColor];

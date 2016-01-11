@@ -9,6 +9,9 @@
 #import "DecorateViewController.h"
 #import "LeftSideViewController.h"
 #import "AddDecorateViewController.h"
+#import "AddCleanViewController.h"
+#import "CleanRecordViewController.h"
+#import "DecorateFollowViewController.h"
 
 @interface DecorateViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -95,10 +98,29 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
+    if (indexPath.section == 0 || indexPath.section == 1) {
+        
         if (indexPath.row == 0) {
             AddDecorateViewController *viewController = [[AddDecorateViewController alloc] init];
+            if (indexPath.section == 0) {
+                viewController.isAddDecorate = YES;
+            }
             [self.navigationController pushViewController:viewController animated:YES];
+        } else {
+            DecorateFollowViewController *view = [[DecorateFollowViewController alloc] init];
+            if (indexPath.section == 0) {
+                view.isDecorateFollow = YES;
+            }
+            [self.navigationController pushViewController:view animated:YES];
+        }
+        
+    } else {
+        if (indexPath.row == 0) {
+            AddCleanViewController *view = [[AddCleanViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        } else {
+            CleanRecordViewController *view = [[CleanRecordViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
         }
     }
 }

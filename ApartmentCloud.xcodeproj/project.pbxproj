@@ -40,6 +40,10 @@
 		36B3D9E91C426320006D968C /* OtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9E81C426320006D968C /* OtherViewController.m */; settings = {ASSET_TAGS = (); }; };
 		36B3D9EC1C426902006D968C /* AddDecorateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9EB1C426902006D968C /* AddDecorateViewController.m */; settings = {ASSET_TAGS = (); }; };
 		36B3D9F01C429F61006D968C /* NormalInputTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9EF1C429F61006D968C /* NormalInputTextFieldCell.m */; settings = {ASSET_TAGS = (); }; };
+		36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9F51C43DAF3006D968C /* AddCleanViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9F81C43DC20006D968C /* CleanRecordViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */; settings = {ASSET_TAGS = (); }; };
 		ABB6875629579397F9209BA6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E22CCFA7811654A775F916F /* libPods.a */; };
 		FEB556EE1C3E505600FCFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556ED1C3E505600FCFA43 /* main.m */; };
 		FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556F01C3E505600FCFA43 /* AppDelegate.m */; };
@@ -139,6 +143,14 @@
 		36B3D9EB1C426902006D968C /* AddDecorateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDecorateViewController.m; sourceTree = "<group>"; };
 		36B3D9EE1C429F61006D968C /* NormalInputTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalInputTextFieldCell.h; sourceTree = "<group>"; };
 		36B3D9EF1C429F61006D968C /* NormalInputTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalInputTextFieldCell.m; sourceTree = "<group>"; };
+		36B3D9F41C43DAF3006D968C /* AddCleanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCleanViewController.h; sourceTree = "<group>"; };
+		36B3D9F51C43DAF3006D968C /* AddCleanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddCleanViewController.m; sourceTree = "<group>"; };
+		36B3D9F71C43DC20006D968C /* CleanRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CleanRecordViewController.h; sourceTree = "<group>"; };
+		36B3D9F81C43DC20006D968C /* CleanRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CleanRecordViewController.m; sourceTree = "<group>"; };
+		36B3D9FA1C43DD8C006D968C /* DecorateFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecorateFollowViewController.h; sourceTree = "<group>"; };
+		36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorateFollowViewController.m; sourceTree = "<group>"; };
+		36B3DA001C43EA0D006D968C /* HouseHolderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseHolderListViewController.h; sourceTree = "<group>"; };
+		36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseHolderListViewController.m; sourceTree = "<group>"; };
 		7E22CCFA7811654A775F916F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41F761C482EF0B164551491 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -363,6 +375,12 @@
 				36B3D9E01C425ED1006D968C /* DecorateViewController.m */,
 				36B3D9EA1C426902006D968C /* AddDecorateViewController.h */,
 				36B3D9EB1C426902006D968C /* AddDecorateViewController.m */,
+				36B3D9F41C43DAF3006D968C /* AddCleanViewController.h */,
+				36B3D9F51C43DAF3006D968C /* AddCleanViewController.m */,
+				36B3D9F71C43DC20006D968C /* CleanRecordViewController.h */,
+				36B3D9F81C43DC20006D968C /* CleanRecordViewController.m */,
+				36B3D9FA1C43DD8C006D968C /* DecorateFollowViewController.h */,
+				36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */,
 			);
 			path = DecorateController;
 			sourceTree = "<group>";
@@ -381,6 +399,8 @@
 			children = (
 				36B3D9E71C426320006D968C /* OtherViewController.h */,
 				36B3D9E81C426320006D968C /* OtherViewController.m */,
+				36B3DA001C43EA0D006D968C /* HouseHolderListViewController.h */,
+				36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */,
 			);
 			path = OtherController;
 			sourceTree = "<group>";
@@ -890,6 +910,7 @@
 				FEB557721C3E5B1A00FCFA43 /* EGOImageLoadConnection.m in Sources */,
 				36B3D9CE1C423C50006D968C /* LeftSideViewController.m in Sources */,
 				36B3D9B61C4229A2006D968C /* ApartmentCell.m in Sources */,
+				36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */,
 				FEB557471C3E553F00FCFA43 /* MJRefreshDIYFooter.m in Sources */,
 				367A16291C3E8644001D711D /* LoginViewController.m in Sources */,
 				FEB557481C3E553F00FCFA43 /* MJRefreshDIYHeader.m in Sources */,
@@ -911,8 +932,11 @@
 				36B3D9B21C42266B006D968C /* ApartmentCollectionView.m in Sources */,
 				FEB557841C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m in Sources */,
 				FEB5576F1C3E5B1A00FCFA43 /* EGOCache.m in Sources */,
+				36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */,
+				36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */,
 				36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */,
 				FEB557751C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m in Sources */,
+				36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */,
 				FEB556EE1C3E505600FCFA43 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

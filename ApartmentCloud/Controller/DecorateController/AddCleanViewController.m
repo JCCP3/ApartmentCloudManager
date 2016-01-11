@@ -1,24 +1,25 @@
 //
-//  AddDecorateViewController.m
+//  AddCleanViewController.m
 //  ApartmentCloud
 //
-//  Created by Rose on 16/1/10.
+//  Created by Rose on 16/1/11.
 //  Copyright © 2016年 JC_CP3. All rights reserved.
 //
 
-#import "AddDecorateViewController.h"
+#import "AddCleanViewController.h"
 #import "NormalInputTextFieldCell.h"
 
-@interface AddDecorateViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface AddCleanViewController () <UITableViewDataSource, UITableViewDelegate>
 {
-    UITableView *addDecorateTableView;
     NSArray *aryTitleData;
     NSArray *aryPlaceHolderData;
+    
+    UITableView *addCleanTableView;
 }
 
 @end
 
-@implementation AddDecorateViewController
+@implementation AddCleanViewController
 
 - (void)loadView
 {
@@ -29,29 +30,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    if (self.isAddDecorate) {
-        aryTitleData = @[@"公寓名称", @"装修楼层", @"装修房间", @"装修日期"];
-        aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的装修楼层", @"请选择您要装修的房间名称", @"请选择您装修的开始日期"];
-    } else {
-        aryTitleData = @[@"公寓名称", @"维修楼层", @"维修房间", @"维修日期"];
-        aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的维修楼层", @"请选择您要维修的房间名称", @"请选择您维修的开始日期"];
-    }
+    aryTitleData = @[@"公寓名称", @"保洁楼层", @"保洁房间", @"保洁日期"];
+    aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的保洁楼层", @"请选择您要保洁的房间名称", @"请选择您保洁日期"];
     
-    NSString *title = self.isAddDecorate ? @"添加装修事件" : @"添加维修事件";
-    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:title segmentArray:nil];
+    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加保洁事件" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     
     [self createTableView];
+
 }
 
 - (void)createTableView
 {
-    addDecorateTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
-    addDecorateTableView.delegate = self;
-    addDecorateTableView.dataSource = self;
-    addDecorateTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    addDecorateTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:addDecorateTableView];
+    addCleanTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
+    addCleanTableView.delegate = self;
+    addCleanTableView.dataSource = self;
+    addCleanTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    addCleanTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:addCleanTableView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,6 +99,7 @@
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 /*
 #pragma mark - Navigation

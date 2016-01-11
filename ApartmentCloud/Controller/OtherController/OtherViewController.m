@@ -8,6 +8,7 @@
 
 #import "OtherViewController.h"
 #import "LeftSideViewController.h"
+#import "HouseHolderListViewController.h"
 
 @interface OtherViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -96,6 +97,23 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 10;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0 ||indexPath.row == 1) {
+            HouseHolderListViewController *view = [[HouseHolderListViewController alloc] init];
+            if (indexPath.row == 0) {
+                view.isHouseHolderList = YES;
+            }
+            [self.navigationController pushViewController:view animated:YES];
+        }
+    } else {
+        
+    }
 }
 
 #pragma mark - BaseAction

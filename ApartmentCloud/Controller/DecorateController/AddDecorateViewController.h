@@ -10,4 +10,6 @@
 
 @interface AddDecorateViewController : BaseViewController
 
+@property (nonatomic, assign) BOOL isAddDecorate;
+
 @end

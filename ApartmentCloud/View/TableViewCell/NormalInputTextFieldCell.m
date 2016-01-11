@@ -60,9 +60,9 @@
 - (void)loadNormalInputTextFieldCellData
 {
     if (self.isTextFiledEnable) {
-        descTextField.enabled = NO;
-    } else {
         descTextField.enabled = YES;
+    } else {
+        descTextField.enabled = NO;
     }
     
     titleLabel.text = self.title;

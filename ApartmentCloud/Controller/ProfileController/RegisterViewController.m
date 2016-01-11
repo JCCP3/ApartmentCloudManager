@@ -121,7 +121,19 @@
     securityBtn.layer.cornerRadius = 20;
     [securityBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
     [[securityBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
+        NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+        [paramDic setObject:accountTextField.text forKey:@"phone"];
+        [paramDic setObject:@"REGISTER" forKey:@"category"];
+        [CustomRequestUtils createNewPostRequest:@"/sendSMS.json" params:paramDic success:^(id responseObject) {
+            
+            NSDictionary *jsonDic = responseObject;
+            if (jsonDic) {
+                
+            }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
+        }];
     }];
     [securityBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [securityBtn setBackgroundColor:AppThemeColor];
@@ -151,6 +163,30 @@
     registerBtn.backgroundColor = AppThemeColor;
     [registerBtn setTitle:self.isRegisterView ? @"注册" : @"确认提交" forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    @weakify (self);
+    [[registerBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify (self);
+        if (self.isRegisterView) {
+            NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+            [paramDic setObject:userNameTextField.text forKey:@"realName"];
+            [paramDic setObject:accountTextField.text forKey:@"phone"];
+            [paramDic setObject:securityCodeTextField.text forKey:@"phoneCode"];
+            [paramDic setObject:pwdTextField.text forKey:@"logonPassword"];
+            
+            [CustomRequestUtils createNewPostRequest:@"/user/register.json" params:paramDic success:^(id responseObject) {
+                NSDictionary *jsonDic = responseObject;
+                if (jsonDic) {
+                    
+                }
+            } failure:^(NSError *error) {
+                NSLog(@"%@",error);
+            }];
+            
+        }
+        
+        
+        
+    }];
     [tableHeaderView addSubview:registerBtn];
     
     registerTableView.tableHeaderView = tableHeaderView;
