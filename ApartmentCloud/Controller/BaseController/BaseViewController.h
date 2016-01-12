@@ -57,5 +57,6 @@ typedef enum {
 - (void)updateProgressText:(NSString *)progressText;
 
 - (void)refreshAllSubviews;
+- (void)removeSepaLine;
 
 @end

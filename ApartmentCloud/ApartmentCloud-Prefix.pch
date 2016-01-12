@@ -29,6 +29,8 @@
 #ifndef ApartmentCloud_Prefix_pch
 #define ApartmentCloud_Prefix_pch
 
+#define RequestSuccessful @"successful"
+
 #define MainScreenWidth CGRectGetWidth([[UIScreen mainScreen] bounds])
 #define MainScreenHeight CGRectGetHeight([[UIScreen mainScreen] bounds])
 

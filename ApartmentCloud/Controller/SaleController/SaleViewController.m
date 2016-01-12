@@ -8,6 +8,8 @@
 
 #import "SaleViewController.h"
 #import "LeftSideViewController.h"
+#import "AddSaleViewController.h"
+#import "HistorySaleViewController.h"
 
 @interface SaleViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -30,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    aryData = @[@"添加营销媒体资源", @"历史营销媒体资源", @"添加营销费用支出", @"历史营销费用支出"];
+    aryData = @[@"添加营销费用支出", @"历史营销费用支出"];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"营销销售" segmentArray:nil];
     [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
@@ -57,7 +59,7 @@
 #pragma mark - UITableViewDelegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -74,12 +76,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    NSString *title;
-    if (indexPath.section == 0) {
-        title = [aryData objectAtIndex:indexPath.row];
-    } else if (indexPath.section == 1) {
-        title = [aryData objectAtIndex:indexPath.row + 2];
-    }
+    NSString *title = [aryData objectAtIndex:indexPath.row];
     
     cell.textLabel.text = title;
     
@@ -89,6 +86,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 10;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        AddSaleViewController *viewController = [[AddSaleViewController alloc] init];
+        [self.navigationController pushViewController:viewController animated:YES];
+    } else {
+        HistorySaleViewController *viewController = [[HistorySaleViewController alloc] init];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 

@@ -195,8 +195,17 @@ static const CGFloat segmentItemHeight = 29;
         CGFloat customNavHeight = [currentSegmentArray count] > 0 ? 64 + 44 : 64;
         UIView *navBottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, customNavHeight - 0.5f, CGRectGetWidth(self.view.bounds), 0.5f)];
         navBottomLine.backgroundColor = navBarSeparatorColor;
+        navBottomLine.tag = 12580;
         [self.view addSubview:navBottomLine];
         [self.view resetSubViewWidthEqualToSuperView:navBottomLine];
+    }
+}
+
+- (void)removeSepaLine
+{
+    UIView *navBottomLine = [self.view viewWithTag:12580];
+    if (navBottomLine) {
+        [navBottomLine removeFromSuperview];
     }
 }
 

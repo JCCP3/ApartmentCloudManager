@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
+#import "LeftSideViewController.h"
 
 @interface LoginViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -33,7 +34,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleDefault;
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    
+    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:nil segmentArray:nil];
+    [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+    [self removeSepaLine];
     
     [self setTableView];
 }
@@ -56,7 +61,7 @@
 
 - (void)setTableView
 {
-    loginTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, MainScreenHeight)];
+    loginTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
     loginTableView.delegate = self;
     loginTableView.dataSource = self;
     loginTableView.backgroundColor = [CustomColorUtils colorWithHexString:@"#fb5d6b"];
@@ -206,6 +211,13 @@
 {
     [accountTextField resignFirstResponder];
     [pwdTextField resignFirstResponder];
+}
+
+#pragma mark - BaseAction
+- (void)onClickLeftItem
+{
+    LeftSideViewController *leftSideViewController = [[LeftSideViewController alloc] init];
+    [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
 }
 
 /*

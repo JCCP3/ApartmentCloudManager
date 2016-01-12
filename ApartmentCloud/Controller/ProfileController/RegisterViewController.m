@@ -118,9 +118,15 @@
     [securityView addSubview:securityCodeTextField];
     
     UIButton *securityBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(securityView.frame) + 10, CGRectGetMinY(securityView.frame), 110, 45)];
+    securityBtn.titleLabel.font = [UIFont systemFontOfSize:12.f];
     securityBtn.layer.cornerRadius = 20;
     [securityBtn setTitle:@"获取验证码" forState:UIControlStateNormal];
+    
+    @weakify (self);
     [[securityBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify (self);
+        [self addSecrityBtnTimer:securityBtn];
+        
         NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
         [paramDic setObject:accountTextField.text forKey:@"phone"];
         [paramDic setObject:@"REGISTER" forKey:@"category"];
@@ -163,7 +169,7 @@
     registerBtn.backgroundColor = AppThemeColor;
     [registerBtn setTitle:self.isRegisterView ? @"注册" : @"确认提交" forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    @weakify (self);
+    
     [[registerBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify (self);
         if (self.isRegisterView) {
@@ -175,21 +181,49 @@
             
             [CustomRequestUtils createNewPostRequest:@"/user/register.json" params:paramDic success:^(id responseObject) {
                 NSDictionary *jsonDic = responseObject;
-                if (jsonDic) {
-                    
+                if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                    //发送验证码成功
                 }
             } failure:^(NSError *error) {
                 NSLog(@"%@",error);
             }];
             
         }
-        
-        
-        
     }];
     [tableHeaderView addSubview:registerBtn];
     
     registerTableView.tableHeaderView = tableHeaderView;
+}
+
+- (void)addSecrityBtnTimer:(id)sender
+{
+    UIButton *btn = (UIButton *)sender;
+    
+    __block int timeout = 60; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout <= 0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [btn setTitle:@"获取验证码" forState:UIControlStateNormal];
+                btn.userInteractionEnabled = YES;
+            });
+        }else{
+            int seconds = timeout % 60 == 0 ? timeout : timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [btn setTitle:[NSString stringWithFormat:@"%@秒后重新获取",strTime] forState:UIControlStateNormal];
+                btn.userInteractionEnabled = NO;
+                
+            });
+            timeout--;
+        }
+    });
+    dispatch_resume(_timer);
 }
 
 #pragma mark - ValidLogin

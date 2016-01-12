@@ -44,6 +44,13 @@
 		36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9F81C43DC20006D968C /* CleanRecordViewController.m */; settings = {ASSET_TAGS = (); }; };
 		36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */; settings = {ASSET_TAGS = (); }; };
 		36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA051C451C7D006D968C /* AddSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA041C451C7D006D968C /* AddSaleViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA071C451C94006D968C /* HistorySaleViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA0A1C451E40006D968C /* NormalTextViewCell.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA0E1C45296D006D968C /* OperateStatementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA0D1C45296D006D968C /* OperateStatementViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA111C452AAA006D968C /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA101C452AAA006D968C /* FeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA141C452DBA006D968C /* TenantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA131C452DBA006D968C /* TenantViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA171C452F50006D968C /* LocalUserUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA161C452F50006D968C /* LocalUserUtils.m */; settings = {ASSET_TAGS = (); }; };
 		ABB6875629579397F9209BA6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E22CCFA7811654A775F916F /* libPods.a */; };
 		FEB556EE1C3E505600FCFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556ED1C3E505600FCFA43 /* main.m */; };
 		FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556F01C3E505600FCFA43 /* AppDelegate.m */; };
@@ -151,6 +158,20 @@
 		36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecorateFollowViewController.m; sourceTree = "<group>"; };
 		36B3DA001C43EA0D006D968C /* HouseHolderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseHolderListViewController.h; sourceTree = "<group>"; };
 		36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseHolderListViewController.m; sourceTree = "<group>"; };
+		36B3DA031C451C7D006D968C /* AddSaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSaleViewController.h; sourceTree = "<group>"; };
+		36B3DA041C451C7D006D968C /* AddSaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSaleViewController.m; sourceTree = "<group>"; };
+		36B3DA061C451C94006D968C /* HistorySaleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistorySaleViewController.h; sourceTree = "<group>"; };
+		36B3DA071C451C94006D968C /* HistorySaleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistorySaleViewController.m; sourceTree = "<group>"; };
+		36B3DA091C451E40006D968C /* NormalTextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NormalTextViewCell.h; sourceTree = "<group>"; };
+		36B3DA0A1C451E40006D968C /* NormalTextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NormalTextViewCell.m; sourceTree = "<group>"; };
+		36B3DA0C1C45296C006D968C /* OperateStatementViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OperateStatementViewController.h; path = ../SaleController/OperateStatementViewController.h; sourceTree = "<group>"; };
+		36B3DA0D1C45296D006D968C /* OperateStatementViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OperateStatementViewController.m; path = ../SaleController/OperateStatementViewController.m; sourceTree = "<group>"; };
+		36B3DA0F1C452AAA006D968C /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		36B3DA101C452AAA006D968C /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		36B3DA121C452DBA006D968C /* TenantViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TenantViewController.h; sourceTree = "<group>"; };
+		36B3DA131C452DBA006D968C /* TenantViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TenantViewController.m; sourceTree = "<group>"; };
+		36B3DA151C452F50006D968C /* LocalUserUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalUserUtils.h; sourceTree = "<group>"; };
+		36B3DA161C452F50006D968C /* LocalUserUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalUserUtils.m; sourceTree = "<group>"; };
 		7E22CCFA7811654A775F916F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41F761C482EF0B164551491 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -390,6 +411,10 @@
 			children = (
 				36B3D9E31C4261B7006D968C /* SaleViewController.h */,
 				36B3D9E41C4261B7006D968C /* SaleViewController.m */,
+				36B3DA031C451C7D006D968C /* AddSaleViewController.h */,
+				36B3DA041C451C7D006D968C /* AddSaleViewController.m */,
+				36B3DA061C451C94006D968C /* HistorySaleViewController.h */,
+				36B3DA071C451C94006D968C /* HistorySaleViewController.m */,
 			);
 			path = SaleController;
 			sourceTree = "<group>";
@@ -401,6 +426,12 @@
 				36B3D9E81C426320006D968C /* OtherViewController.m */,
 				36B3DA001C43EA0D006D968C /* HouseHolderListViewController.h */,
 				36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */,
+				36B3DA0C1C45296C006D968C /* OperateStatementViewController.h */,
+				36B3DA0D1C45296D006D968C /* OperateStatementViewController.m */,
+				36B3DA0F1C452AAA006D968C /* FeedBackViewController.h */,
+				36B3DA101C452AAA006D968C /* FeedBackViewController.m */,
+				36B3DA121C452DBA006D968C /* TenantViewController.h */,
+				36B3DA131C452DBA006D968C /* TenantViewController.m */,
 			);
 			path = OtherController;
 			sourceTree = "<group>";
@@ -410,6 +441,8 @@
 			children = (
 				36B3D9EE1C429F61006D968C /* NormalInputTextFieldCell.h */,
 				36B3D9EF1C429F61006D968C /* NormalInputTextFieldCell.m */,
+				36B3DA091C451E40006D968C /* NormalTextViewCell.h */,
+				36B3DA0A1C451E40006D968C /* NormalTextViewCell.m */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -524,6 +557,8 @@
 				FEB557251C3E553F00FCFA43 /* CustomUtils */,
 				FEB557361C3E553F00FCFA43 /* MBHud */,
 				FEB557391C3E553F00FCFA43 /* MJRefreshDIY */,
+				36B3DA151C452F50006D968C /* LocalUserUtils.h */,
+				36B3DA161C452F50006D968C /* LocalUserUtils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -896,9 +931,12 @@
 				FEB557421C3E553F00FCFA43 /* CustomSizeUtils.m in Sources */,
 				FEB557541C3E56C800FCFA43 /* DateFormatUtils.m in Sources */,
 				FEB557501C3E563700FCFA43 /* BaseViewController.m in Sources */,
+				36B3DA051C451C7D006D968C /* AddSaleViewController.m in Sources */,
 				FEB557441C3E553F00FCFA43 /* CustomTimeUtils.m in Sources */,
 				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
+				36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */,
 				FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */,
+				36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */,
 				36B3D9E91C426320006D968C /* OtherViewController.m in Sources */,
 				FEB557741C3E5B1A00FCFA43 /* EGOImageView.m in Sources */,
 				368F7E7E1C3FE93800010EC2 /* ApartmentManagerViewController.m in Sources */,
@@ -910,8 +948,11 @@
 				FEB557721C3E5B1A00FCFA43 /* EGOImageLoadConnection.m in Sources */,
 				36B3D9CE1C423C50006D968C /* LeftSideViewController.m in Sources */,
 				36B3D9B61C4229A2006D968C /* ApartmentCell.m in Sources */,
+				36B3DA0E1C45296D006D968C /* OperateStatementViewController.m in Sources */,
 				36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */,
+				36B3DA171C452F50006D968C /* LocalUserUtils.m in Sources */,
 				FEB557471C3E553F00FCFA43 /* MJRefreshDIYFooter.m in Sources */,
+				36B3DA141C452DBA006D968C /* TenantViewController.m in Sources */,
 				367A16291C3E8644001D711D /* LoginViewController.m in Sources */,
 				FEB557481C3E553F00FCFA43 /* MJRefreshDIYHeader.m in Sources */,
 				FEB5575B1C3E596A00FCFA43 /* GlobalUtils.m in Sources */,
@@ -930,6 +971,7 @@
 				FEB557711C3E5B1A00FCFA43 /* EGOImageButton.m in Sources */,
 				FEB557891C3E60C600FCFA43 /* OBCConvertor.m in Sources */,
 				36B3D9B21C42266B006D968C /* ApartmentCollectionView.m in Sources */,
+				36B3DA111C452AAA006D968C /* FeedBackViewController.m in Sources */,
 				FEB557841C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m in Sources */,
 				FEB5576F1C3E5B1A00FCFA43 /* EGOCache.m in Sources */,
 				36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */,

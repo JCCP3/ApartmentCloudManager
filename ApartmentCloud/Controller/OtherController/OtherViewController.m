@@ -9,6 +9,9 @@
 #import "OtherViewController.h"
 #import "LeftSideViewController.h"
 #import "HouseHolderListViewController.h"
+#import "OperateStatementViewController.h"
+#import "FeedBackViewController.h"
+#import "TenantViewController.h"
 
 @interface OtherViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -110,9 +113,16 @@
                 view.isHouseHolderList = YES;
             }
             [self.navigationController pushViewController:view animated:YES];
+        } else if (indexPath.row == 2) {
+            OperateStatementViewController *view = [[OperateStatementViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        } else {
+            TenantViewController *view = [[TenantViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
         }
     } else {
-        
+        FeedBackViewController *view = [[FeedBackViewController alloc] init];
+        [self.navigationController pushViewController:view animated:YES];
     }
 }
 

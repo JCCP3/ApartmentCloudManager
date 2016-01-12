@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ApartmentCloud/Controller/ProfileController/RegisterViewController.m"
-            timestampString = "474212162.7022"
+            filePath = "ApartmentCloud/Controller/ProfileController/LoginViewController.m"
+            timestampString = "474297814.662807"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "-setUpTableHeaderView"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "-setTableHeaderView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ApartmentCloud/Controller/ProfileController/LoginViewController.m"
+            timestampString = "474297816.091488"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "-setTableHeaderView"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

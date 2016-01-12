@@ -14,15 +14,7 @@
 + (NSString *)getGlobalUrlPre
 {
 //    return kURL_Pre_Test;
-    if ([UserDefaults boolForKey:@"isDevEnvironment"]) {
-        return kURL_Pre_Test;
-    } else {
-        if ([UserDefaults objectForKey:@"defaultApi"]) {
-            return [NSString stringWithFormat:@"http://%@.%@", kURL_Pre_Online, [UserDefaults objectForKey:@"defaultApi"]];
-        } else {
-            return kURL_Pre;
-        }
-    }
+    return kURL_Pre;
 }
 
 + (NSString *)getGlobalImageUrlPre
