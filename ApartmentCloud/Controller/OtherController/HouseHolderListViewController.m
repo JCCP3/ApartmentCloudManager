@@ -39,6 +39,7 @@
     [self.view addSubview:m_searchBar];
     
     [self createTableView];
+    
 }
 
 - (void)createTableView
