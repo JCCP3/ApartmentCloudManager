@@ -28,7 +28,7 @@
     if (self) {
         borderView = [[UIView alloc] initWithFrame:CGRectMake(10, 5, MainScreenWidth - 20, 110)];
         borderView.layer.borderWidth = 1;
-        borderView.layer.borderColor = [CustomColorUtils colorWithHexString:@"#f7f7f7"].CGColor;
+        borderView.layer.borderColor = RGBCOLOR(243, 243, 243).CGColor;
         borderView.backgroundColor = [UIColor whiteColor];
         [self addSubview:borderView];
         

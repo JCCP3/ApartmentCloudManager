@@ -15,8 +15,7 @@
 
 + (void)removeLocalUserInfo;
 
-+ (NSString *)getUserId;
-+ (NSString *)getUserAvatar;
++ (NSString *)getKeyId;
 + (NSString *)getUsername;
 
 + (BOOL)userLoggedIn;

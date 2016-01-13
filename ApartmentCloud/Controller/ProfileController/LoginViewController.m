@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "LeftSideViewController.h"
+#import "LocalUserUtils.h"
+#import "ApartmentManagerViewController.h"
 
 @interface LoginViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -121,8 +123,12 @@
             NSString *requestUrl = [NSString stringWithFormat:@"/user/logon.json?account=%@&logonPassword=%@",accountTextField.text,pwdTextField.text];
             [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
                 NSDictionary *jsonDic = responseObject;
-                if (jsonDic) {
+                if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                    [LocalUserUtils setLocalUserInfo:jsonDic];
                     
+                    ApartmentManagerViewController *viewController = [[ApartmentManagerViewController alloc] init];
+                    BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
+                    [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
                 }
             } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
                 NSLog(@"%@",error);

@@ -9,6 +9,7 @@
 #import "ApartmentManagerViewController.h"
 #import "ApartmentCollectionView.h"
 #import "LeftSideViewController.h"
+#import "AddApartmentViewController.h"
 
 #define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"入住房间"]
 
@@ -42,6 +43,7 @@
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"所有公寓" segmentArray:nil];
     [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+    [self adaptSecondRightItemWithTitle:@"添加公寓"];
     
     [self createSecondNavView];
     
@@ -148,6 +150,12 @@
 {
     leftSideViewController = [[LeftSideViewController alloc] init];
     [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
+}
+
+- (void)onClickSecondRightItem
+{
+    AddApartmentViewController *view = [[AddApartmentViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 /*

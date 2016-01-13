@@ -8,7 +8,7 @@
 
 #import "NormalInputTextFieldCell.h"
 
-@interface NormalInputTextFieldCell ()
+@interface NormalInputTextFieldCell () <UITextFieldDelegate>
 {
     UIView *borderView;
     UILabel *titleLabel;
@@ -28,6 +28,7 @@
         borderView.layer.borderWidth = 1;
         borderView.layer.borderColor = [CustomColorUtils colorWithHexString:@"#f7f7f7"].CGColor;
         borderView.backgroundColor = [UIColor whiteColor];
+        borderView.tag = 10086;
         [self addSubview:borderView];
         
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 15.5, 60, 14)];
@@ -40,6 +41,7 @@
         [borderView addSubview:sepaLabel];
         
         descTextField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame) + 10, 15.5, CGRectGetWidth(borderView.bounds) - 10 - 10 - CGRectGetMaxX(titleLabel.frame), 14.f)];
+        descTextField.delegate = self;
         descTextField.font = [UIFont systemFontOfSize:14.f];
         [borderView addSubview:descTextField];
         
@@ -57,17 +59,29 @@
     // Configure the view for the selected state
 }
 
-- (void)loadNormalInputTextFieldCellData
+- (void)loadNormalInputTextFieldCellData:(Apartment *)apartment
 {
+    self.apartment = apartment;
+    
     if (self.isTextFiledEnable) {
         descTextField.enabled = YES;
     } else {
         descTextField.enabled = NO;
     }
     
+    if (self.keyboardType == KeyboardNumPad) {
+        descTextField.keyboardType = UIKeyboardTypeNumberPad;
+    }
+    
     titleLabel.text = self.title;
     descTextField.placeholder = self.placeHolderTitle;
     descTextField.font = [UIFont systemFontOfSize:14.f];
+}
+
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    
 }
 
 @end

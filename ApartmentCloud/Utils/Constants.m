@@ -15,7 +15,7 @@ NSString *const kURL_ImagePre_Test= @"http://42.62.64.88:8099"; //测试服务�
 NSString *const kURL_ChapterPre_Test= @"http://42.62.64.88:8282"; //测试服务器接口
   
 
-NSString *const kURL_Pre = @"http://60.186.190.184:5000"; //线上接口
+NSString *const kURL_Pre = @"http://114.215.93.158"; //线上接口
 NSString *const kURL_ImagePre = @"http://statics.zhuishushenqi.com"; //线上接口
 NSString *const kURL_ChapterPre = @"http://chapter.zhuishushenqi.com"; //线上接口
 NSString *const kURL_ChapterPre2 = @"http://chapter2.zhuishushenqi.com"; //线上接口

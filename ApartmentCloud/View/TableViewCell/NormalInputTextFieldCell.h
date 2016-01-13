@@ -7,13 +7,35 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Apartment.h"
+
+typedef enum
+{
+    AddApartmentLogic = 1,
+    AddSaleLogic = 2,
+    AddDecorateLogic = 3
+    
+} NormalInputTextFieldCellType;
+
+typedef enum
+{
+    KeyboardNumPad = 1,
+    KeyboardASCII = 2
+    
+} KeyBoardType;
 
 @interface NormalInputTextFieldCell : UITableViewCell
+
+@property (nonatomic, assign) NormalInputTextFieldCellType cellType;
+@property (nonatomic, assign) KeyBoardType keyboardType;
+@property (nonatomic, strong) Apartment *apartment;
 
 @property (nonatomic, assign) BOOL isTextFiledEnable;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *placeHolderTitle;
 
+
 - (void)loadNormalInputTextFieldCellData;
+- (void)loadNormalInputTextFieldCellData:(Apartment *)apartment;
 
 @end

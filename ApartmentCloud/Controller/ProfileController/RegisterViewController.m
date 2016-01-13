@@ -146,18 +146,14 @@
     [tableHeaderView addSubview:securityBtn];
     
     //密码
-    UIView *pwdView = [[UIView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(securityView.frame) + 30, MainScreenWidth - 40, 45)];
+    UIView *pwdView = [[UIView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(securityView.frame) + 30, MainScreenWidth - 40 - 40, 45)];
     pwdView.backgroundColor = [UIColor whiteColor];
     pwdView.layer.cornerRadius = 20;
     pwdView.layer.borderColor = AppThemeColor.CGColor;
     pwdView.layer.borderWidth = 1;
     [tableHeaderView addSubview:pwdView];
     
-    UIImageView *pwdImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 45 / 4, 45 / 2, 45 / 2)];
-    [pwdImageView setImage:ImageNamed(@"loginPwd.png")];
-    [pwdView addSubview:pwdImageView];
-    
-    pwdTextField = [[UITextField alloc] initWithFrame:CGRectMake(CGRectGetMaxX(pwdImageView.frame) + 20, 0, CGRectGetWidth(pwdView.bounds) - CGRectGetWidth(pwdImageView.bounds) - 40, 45)];
+    pwdTextField = [[UITextField alloc] initWithFrame:CGRectMake(20, 0, MainScreenWidth - 40, 45)];
     pwdTextField.placeholder = @"请输入您的密码";
     pwdTextField.secureTextEntry = YES;
     [pwdView addSubview:pwdTextField];
@@ -165,7 +161,6 @@
     //确认提交
     UIButton *registerBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(pwdView.frame) + 30, MainScreenWidth - 40, 45)];
     registerBtn.layer.cornerRadius = 20;
-    registerBtn.enabled = NO;
     registerBtn.backgroundColor = AppThemeColor;
     [registerBtn setTitle:self.isRegisterView ? @"注册" : @"确认提交" forState:UIControlStateNormal];
     [registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -182,7 +177,8 @@
             [CustomRequestUtils createNewPostRequest:@"/user/register.json" params:paramDic success:^(id responseObject) {
                 NSDictionary *jsonDic = responseObject;
                 if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-                    //发送验证码成功
+                    //注册成功
+                    [self.navigationController popViewControllerAnimated:YES];
                 }
             } failure:^(NSError *error) {
                 NSLog(@"%@",error);
