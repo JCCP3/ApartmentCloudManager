@@ -7,54 +7,54 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		367A16291C3E8644001D711D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16281C3E8644001D711D /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
-		367A162F1C3E8A9E001D711D /* loginAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162C1C3E8A9E001D711D /* loginAccount@2x.png */; settings = {ASSET_TAGS = (); }; };
-		367A16311C3E8A9E001D711D /* loginPwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162E1C3E8A9E001D711D /* loginPwd@2x.png */; settings = {ASSET_TAGS = (); }; };
-		367A16341C3E8ED5001D711D /* CustomColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16331C3E8ED5001D711D /* CustomColorUtils.m */; settings = {ASSET_TAGS = (); }; };
-		367A16361C3E95B9001D711D /* loginLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A16351C3E95B9001D711D /* loginLogo@2x.png */; settings = {ASSET_TAGS = (); }; };
-		368F7E771C3FCEA700010EC2 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368F7E761C3FCEA700010EC2 /* RegisterViewController.m */; settings = {ASSET_TAGS = (); }; };
-		368F7E7A1C3FD00E00010EC2 /* nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368F7E791C3FD00E00010EC2 /* nav_back_white@2x.png */; settings = {ASSET_TAGS = (); }; };
-		368F7E7E1C3FE93800010EC2 /* ApartmentManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368F7E7D1C3FE93800010EC2 /* ApartmentManagerViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9B21C42266B006D968C /* ApartmentCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9B11C42266B006D968C /* ApartmentCollectionView.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9B61C4229A2006D968C /* ApartmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9B51C4229A2006D968C /* ApartmentCell.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9BB1C422D6E006D968C /* apartment_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9B81C422D6E006D968C /* apartment_person@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9BC1C422D6E006D968C /* apartment_ThreePerson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9B91C422D6E006D968C /* apartment_ThreePerson@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9BD1C422D6E006D968C /* apartment_TwoPerson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9BA1C422D6E006D968C /* apartment_TwoPerson@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9C51C423042006D968C /* nav_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9BE1C423042006D968C /* nav_menu@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9C61C423042006D968C /* new_nav_hilighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9BF1C423042006D968C /* new_nav_hilighted@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9C71C423042006D968C /* new_nav_hilighted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C01C423042006D968C /* new_nav_hilighted@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9C81C423042006D968C /* new_nav_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C11C423042006D968C /* new_nav_normal@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9C91C423042006D968C /* new_nav_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C21C423042006D968C /* new_nav_normal@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9CA1C423042006D968C /* new_nav_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C31C423042006D968C /* new_nav_selected@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9CB1C423042006D968C /* new_nav_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C41C423042006D968C /* new_nav_selected@3x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9CE1C423C50006D968C /* LeftSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9CD1C423C50006D968C /* LeftSideViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9D71C423EE5006D968C /* left_accounts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D01C423EE5006D968C /* left_accounts@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9D81C423EE5006D968C /* left_apartment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D11C423EE5006D968C /* left_apartment@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9D91C423EE5006D968C /* left_decoration@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D21C423EE5006D968C /* left_decoration@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9DA1C423EE5006D968C /* left_horseManager@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D31C423EE5006D968C /* left_horseManager@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9DB1C423EE5006D968C /* left_other@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D41C423EE5006D968C /* left_other@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9DC1C423EE5006D968C /* left_sell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D51C423EE5006D968C /* left_sell@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9DD1C423EE5006D968C /* left_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D61C423EE5006D968C /* left_setting@2x.png */; settings = {ASSET_TAGS = (); }; };
-		36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9E01C425ED1006D968C /* DecorateViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9E51C4261B7006D968C /* SaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9E41C4261B7006D968C /* SaleViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9E91C426320006D968C /* OtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9E81C426320006D968C /* OtherViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9EC1C426902006D968C /* AddDecorateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9EB1C426902006D968C /* AddDecorateViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9F01C429F61006D968C /* NormalInputTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9EF1C429F61006D968C /* NormalInputTextFieldCell.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9F51C43DAF3006D968C /* AddCleanViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9F81C43DC20006D968C /* CleanRecordViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA051C451C7D006D968C /* AddSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA041C451C7D006D968C /* AddSaleViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA071C451C94006D968C /* HistorySaleViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA0A1C451E40006D968C /* NormalTextViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA0E1C45296D006D968C /* OperateStatementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA0D1C45296D006D968C /* OperateStatementViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA111C452AAA006D968C /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA101C452AAA006D968C /* FeedBackViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA141C452DBA006D968C /* TenantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA131C452DBA006D968C /* TenantViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA171C452F50006D968C /* LocalUserUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA161C452F50006D968C /* LocalUserUtils.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA1A1C466C13006D968C /* AddApartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA191C466C13006D968C /* AddApartmentViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA1D1C46717E006D968C /* AddApartmentFloorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA1C1C46717E006D968C /* AddApartmentFloorViewController.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA211C4673A4006D968C /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA201C4673A4006D968C /* Apartment.m */; settings = {ASSET_TAGS = (); }; };
-		36B3DA241C467518006D968C /* ApartmentFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA231C467518006D968C /* ApartmentFloor.m */; settings = {ASSET_TAGS = (); }; };
+		367A16291C3E8644001D711D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16281C3E8644001D711D /* LoginViewController.m */; };
+		367A162F1C3E8A9E001D711D /* loginAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162C1C3E8A9E001D711D /* loginAccount@2x.png */; };
+		367A16311C3E8A9E001D711D /* loginPwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162E1C3E8A9E001D711D /* loginPwd@2x.png */; };
+		367A16341C3E8ED5001D711D /* CustomColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16331C3E8ED5001D711D /* CustomColorUtils.m */; };
+		367A16361C3E95B9001D711D /* loginLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A16351C3E95B9001D711D /* loginLogo@2x.png */; };
+		368F7E771C3FCEA700010EC2 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368F7E761C3FCEA700010EC2 /* RegisterViewController.m */; };
+		368F7E7A1C3FD00E00010EC2 /* nav_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 368F7E791C3FD00E00010EC2 /* nav_back_white@2x.png */; };
+		368F7E7E1C3FE93800010EC2 /* ApartmentManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 368F7E7D1C3FE93800010EC2 /* ApartmentManagerViewController.m */; };
+		36B3D9B21C42266B006D968C /* ApartmentCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9B11C42266B006D968C /* ApartmentCollectionView.m */; };
+		36B3D9B61C4229A2006D968C /* ApartmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9B51C4229A2006D968C /* ApartmentCell.m */; };
+		36B3D9BB1C422D6E006D968C /* apartment_person@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9B81C422D6E006D968C /* apartment_person@2x.png */; };
+		36B3D9BC1C422D6E006D968C /* apartment_ThreePerson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9B91C422D6E006D968C /* apartment_ThreePerson@2x.png */; };
+		36B3D9BD1C422D6E006D968C /* apartment_TwoPerson@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9BA1C422D6E006D968C /* apartment_TwoPerson@2x.png */; };
+		36B3D9C51C423042006D968C /* nav_menu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9BE1C423042006D968C /* nav_menu@2x.png */; };
+		36B3D9C61C423042006D968C /* new_nav_hilighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9BF1C423042006D968C /* new_nav_hilighted@2x.png */; };
+		36B3D9C71C423042006D968C /* new_nav_hilighted@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C01C423042006D968C /* new_nav_hilighted@3x.png */; };
+		36B3D9C81C423042006D968C /* new_nav_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C11C423042006D968C /* new_nav_normal@2x.png */; };
+		36B3D9C91C423042006D968C /* new_nav_normal@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C21C423042006D968C /* new_nav_normal@3x.png */; };
+		36B3D9CA1C423042006D968C /* new_nav_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C31C423042006D968C /* new_nav_selected@2x.png */; };
+		36B3D9CB1C423042006D968C /* new_nav_selected@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9C41C423042006D968C /* new_nav_selected@3x.png */; };
+		36B3D9CE1C423C50006D968C /* LeftSideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9CD1C423C50006D968C /* LeftSideViewController.m */; };
+		36B3D9D71C423EE5006D968C /* left_accounts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D01C423EE5006D968C /* left_accounts@2x.png */; };
+		36B3D9D81C423EE5006D968C /* left_apartment@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D11C423EE5006D968C /* left_apartment@2x.png */; };
+		36B3D9D91C423EE5006D968C /* left_decoration@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D21C423EE5006D968C /* left_decoration@2x.png */; };
+		36B3D9DA1C423EE5006D968C /* left_horseManager@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D31C423EE5006D968C /* left_horseManager@2x.png */; };
+		36B3D9DB1C423EE5006D968C /* left_other@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D41C423EE5006D968C /* left_other@2x.png */; };
+		36B3D9DC1C423EE5006D968C /* left_sell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D51C423EE5006D968C /* left_sell@2x.png */; };
+		36B3D9DD1C423EE5006D968C /* left_setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3D9D61C423EE5006D968C /* left_setting@2x.png */; };
+		36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9E01C425ED1006D968C /* DecorateViewController.m */; };
+		36B3D9E51C4261B7006D968C /* SaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9E41C4261B7006D968C /* SaleViewController.m */; };
+		36B3D9E91C426320006D968C /* OtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9E81C426320006D968C /* OtherViewController.m */; };
+		36B3D9EC1C426902006D968C /* AddDecorateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9EB1C426902006D968C /* AddDecorateViewController.m */; };
+		36B3D9F01C429F61006D968C /* NormalInputTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9EF1C429F61006D968C /* NormalInputTextFieldCell.m */; };
+		36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9F51C43DAF3006D968C /* AddCleanViewController.m */; };
+		36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9F81C43DC20006D968C /* CleanRecordViewController.m */; };
+		36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */; };
+		36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA011C43EA0D006D968C /* HouseHolderListViewController.m */; };
+		36B3DA051C451C7D006D968C /* AddSaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA041C451C7D006D968C /* AddSaleViewController.m */; };
+		36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA071C451C94006D968C /* HistorySaleViewController.m */; };
+		36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA0A1C451E40006D968C /* NormalTextViewCell.m */; };
+		36B3DA0E1C45296D006D968C /* OperateStatementViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA0D1C45296D006D968C /* OperateStatementViewController.m */; };
+		36B3DA111C452AAA006D968C /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA101C452AAA006D968C /* FeedBackViewController.m */; };
+		36B3DA141C452DBA006D968C /* TenantViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA131C452DBA006D968C /* TenantViewController.m */; };
+		36B3DA171C452F50006D968C /* LocalUserUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA161C452F50006D968C /* LocalUserUtils.m */; };
+		36B3DA1A1C466C13006D968C /* AddApartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA191C466C13006D968C /* AddApartmentViewController.m */; };
+		36B3DA1D1C46717E006D968C /* AddApartmentFloorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA1C1C46717E006D968C /* AddApartmentFloorViewController.m */; };
+		36B3DA211C4673A4006D968C /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA201C4673A4006D968C /* Apartment.m */; };
+		36B3DA241C467518006D968C /* ApartmentFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA231C467518006D968C /* ApartmentFloor.m */; };
 		ABB6875629579397F9209BA6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E22CCFA7811654A775F916F /* libPods.a */; };
 		FEB556EE1C3E505600FCFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556ED1C3E505600FCFA43 /* main.m */; };
 		FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556F01C3E505600FCFA43 /* AppDelegate.m */; };
@@ -89,6 +89,8 @@
 		FEB557891C3E60C600FCFA43 /* OBCConvertor.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB557871C3E60C600FCFA43 /* OBCConvertor.m */; };
 		FEB5578A1C3E60C600FCFA43 /* ts.tab in Resources */ = {isa = PBXBuildFile; fileRef = FEB557881C3E60C600FCFA43 /* ts.tab */; };
 		FEB5578D1C3E625800FCFA43 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB5578C1C3E625800FCFA43 /* Constants.m */; };
+		FEBDF8321C4726C8009C9271 /* CustomPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBDF8311C4726C8009C9271 /* CustomPickerView.m */; };
+		FEBDF8371C472B4E009C9271 /* SqliteUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBDF8361C472B4E009C9271 /* SqliteUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -255,6 +257,10 @@
 		FEB557881C3E60C600FCFA43 /* ts.tab */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ts.tab; sourceTree = "<group>"; };
 		FEB5578B1C3E625800FCFA43 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		FEB5578C1C3E625800FCFA43 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		FEBDF8301C4726C8009C9271 /* CustomPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPickerView.h; sourceTree = "<group>"; };
+		FEBDF8311C4726C8009C9271 /* CustomPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomPickerView.m; sourceTree = "<group>"; };
+		FEBDF8351C472B4E009C9271 /* SqliteUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SqliteUtils.h; sourceTree = "<group>"; };
+		FEBDF8361C472B4E009C9271 /* SqliteUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SqliteUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +354,7 @@
 		36B3D9AD1C42263B006D968C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FEBDF82F1C47251F009C9271 /* CustomView */,
 				36B3D9ED1C429F2E006D968C /* TableViewCell */,
 				36B3D9B31C42297F006D968C /* CollectionCell */,
 				36B3D9AE1C42263B006D968C /* CollectionView */,
@@ -516,6 +523,7 @@
 		FEB556EB1C3E505600FCFA43 /* ApartmentCloud */ = {
 			isa = PBXGroup;
 			children = (
+				FEBDF8331C472B1E009C9271 /* Storage */,
 				36B3DA1E1C467397006D968C /* Model */,
 				36B3D9AD1C42263B006D968C /* View */,
 				367A162A1C3E8946001D711D /* Images */,
@@ -755,6 +763,32 @@
 			path = OBCConvertor;
 			sourceTree = "<group>";
 		};
+		FEBDF82F1C47251F009C9271 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				FEBDF8301C4726C8009C9271 /* CustomPickerView.h */,
+				FEBDF8311C4726C8009C9271 /* CustomPickerView.m */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		FEBDF8331C472B1E009C9271 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				FEBDF8341C472B45009C9271 /* SqliteWarpper */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
+		FEBDF8341C472B45009C9271 /* SqliteWarpper */ = {
+			isa = PBXGroup;
+			children = (
+				FEBDF8351C472B4E009C9271 /* SqliteUtils.h */,
+				FEBDF8361C472B4E009C9271 /* SqliteUtils.m */,
+			);
+			path = SqliteWarpper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -981,6 +1015,7 @@
 				36B3D9B61C4229A2006D968C /* ApartmentCell.m in Sources */,
 				36B3DA0E1C45296D006D968C /* OperateStatementViewController.m in Sources */,
 				36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */,
+				FEBDF8371C472B4E009C9271 /* SqliteUtils.m in Sources */,
 				36B3DA171C452F50006D968C /* LocalUserUtils.m in Sources */,
 				FEB557471C3E553F00FCFA43 /* MJRefreshDIYFooter.m in Sources */,
 				36B3DA141C452DBA006D968C /* TenantViewController.m in Sources */,
@@ -1011,6 +1046,7 @@
 				36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */,
 				FEB557751C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m in Sources */,
 				36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */,
+				FEBDF8321C4726C8009C9271 /* CustomPickerView.m in Sources */,
 				FEB556EE1C3E505600FCFA43 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
