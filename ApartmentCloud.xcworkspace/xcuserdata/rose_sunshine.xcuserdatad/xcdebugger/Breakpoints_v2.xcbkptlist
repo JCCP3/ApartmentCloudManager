@@ -6,16 +6,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentViewController.m"
-            timestampString = "474709957.411351"
+            timestampString = "474712777.502578"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "-addApartmentToServer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentViewController.m"
-            timestampString = "474709957.411351"
+            timestampString = "474712777.502578"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "-actionSheet:didDismissWithButtonIndex:"
+            startingLineNumber = "306"
+            endingLineNumber = "306"
+            landmarkName = "-addApartmentToServer"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -24,9 +24,18 @@ typedef enum
     
 } KeyBoardType;
 
+@protocol NormalInputTextFieldCellDelegate <NSObject>
+
+@optional
+- (void)NITFC_addApartmentWithApartment:(Apartment *)apartment;
+
+@end
+
 @interface NormalInputTextFieldCell : UITableViewCell
 
 @property (nonatomic, strong) UITextField *descTextField;
+
+@property (nonatomic, assign) id <NormalInputTextFieldCellDelegate> delegate;
 
 @property (nonatomic, assign) NormalInputTextFieldCellType cellType;
 @property (nonatomic, assign) KeyBoardType keyboardType;

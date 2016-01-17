@@ -18,12 +18,13 @@ typedef enum
     
 }ApartmentStyle;
 
-@interface AddApartmentViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface AddApartmentViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, NormalInputTextFieldCellDelegate>
 {
     UITableView *addApartmentTableView;
     NSArray *aryTitleData;
     NSArray *aryPlaceHolderData;
     NSArray *aryApartmentStyle;
+    NSArray *aryApartmentStypeId;
     
     CGFloat keyboardOriginY;
     CGFloat keyboardHeight;
@@ -32,7 +33,7 @@ typedef enum
 @end
 
 @implementation AddApartmentViewController
-@synthesize apartment;
+@synthesize addApartment;
 
 - (void)loadView
 {
@@ -44,13 +45,14 @@ typedef enum
     
     [super viewDidLoad];
     
-    if (!apartment) {
-        apartment = [[Apartment alloc] init];
+    if (!addApartment) {
+        addApartment = [[Apartment alloc] init];
     }
     
     aryTitleData = @[@"公寓名称", @"公寓类型", @"管理电话", @"公寓区域", @"道路名称", @"小区名称", @"水(元/吨)", @"电(元/度)", @"气(元/m)"];
     aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的公寓类型", @"请输入您的管理电话号码", @"请选择您公寓所在的区域", @"请输入公寓所在道路名称", @"请输入公寓所在小区名称", @"请输入用水费用标准", @"请输入用电费用标准", @"请输入燃气费用标准"];
     aryApartmentStyle = @[@"集中式",@"分散式",@"酒店"];
+    aryApartmentStypeId = @[@"CONCENTRATED", @"DISPERSION", @"HOTELS"];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加公寓" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
@@ -169,6 +171,7 @@ typedef enum
     }
     
     cell.cellType = AddApartmentLogic;
+    cell.delegate = self;
     cell.backgroundColor = [UIColor clearColor];
 
     if (indexPath.section == 0) {
@@ -188,7 +191,7 @@ typedef enum
         cell.isTextFiledEnable = YES;
     }
     
-    [cell loadNormalInputTextFieldCellData:apartment withIndexPath:indexPath];
+    [cell loadNormalInputTextFieldCellData:addApartment withIndexPath:indexPath];
     
     return cell;
 }
@@ -258,6 +261,8 @@ typedef enum
 
 - (void)onClickSecondRightItem
 {
+    [self onClickResign];
+    
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"添加楼层",@"完成添加", nil];
     actionSheet.tag = 12580;
     
@@ -268,22 +273,45 @@ typedef enum
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == 12580) {
-        if (buttonIndex == 1) {
+        if (buttonIndex == 0) {
             //添加楼层
             AddApartmentFloorViewController *view = [[AddApartmentFloorViewController alloc] init];
             [self.navigationController pushViewController:view animated:YES];
             
-        } else if (buttonIndex == 2) {
-            
+        } else if (buttonIndex == 1) {
             //添加公寓
-            
-            
+            [self addApartmentToServer];
         }
     } else if (actionSheet.tag == 12590) {
-        NSString *apartmentStyle = [aryApartmentStyle objectAtIndex:buttonIndex];
-        apartment.type = apartmentStyle;
-        [addApartmentTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        if (buttonIndex < aryApartmentStyle.count) {
+//            NSString *apartmentStyle = [aryApartmentStyle objectAtIndex:buttonIndex];
+            addApartment.type = [aryApartmentStypeId objectAtIndex:buttonIndex];
+            [addApartmentTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+        }
     }
+}
+
+- (void)addApartmentToServer
+{
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:addApartment.title forKey:@"apartmentName"];
+    [paramDic setObject:addApartment.type forKey:@"category"];
+    [paramDic setObject:addApartment.phone forKey:@"managerPhone"];
+    [paramDic setObject:@"123" forKey:@"cityId"];
+    [paramDic setObject:addApartment.parcelTitle forKey:@"communityName"];
+    [paramDic setObject:addApartment.roadName forKey:@"roadName"];
+    [paramDic setObject:addApartment.waterPay forKey:@"waterPrice"];
+    [paramDic setObject:addApartment.elecPay forKey:@"electricityPrice"];
+    [paramDic setObject:addApartment.gasPay forKey:@"gasPrice"];
+    [CustomRequestUtils createNewPostRequest:@"/apartment/add.json" params:paramDic success:^(id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+            //添加公寓成功
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 
 #pragma mark - UIGestureRecognize delegate
@@ -294,6 +322,12 @@ typedef enum
     }
     
     return YES;
+}
+
+#pragma mark - NormalInputTextFieldDelegate
+- (void)NITFC_addApartmentWithApartment:(Apartment *)apartment
+{
+    addApartment = apartment;
 }
 
 /*

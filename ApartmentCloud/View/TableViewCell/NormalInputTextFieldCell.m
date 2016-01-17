@@ -13,6 +13,8 @@
     UIView *borderView;
     UILabel *titleLabel;
     UILabel *sepaLabel;
+    
+    NSIndexPath *textFieldIndexPath;
 }
 
 @end
@@ -62,6 +64,7 @@
 - (void)loadNormalInputTextFieldCellData:(Apartment *)apartment withIndexPath:(NSIndexPath *)indexPath
 {
     self.apartment = apartment;
+    textFieldIndexPath = indexPath;
     
     if (self.isTextFiledEnable) {
         descTextField.enabled = YES;
@@ -77,17 +80,23 @@
     descTextField.placeholder = self.placeHolderTitle;
     descTextField.font = [UIFont systemFontOfSize:14.f];
     
-    [self reloadApartmenCell:indexPath];
+    [self reloadApartmenCell:indexPath withType:1 apartmentString:nil];
 }
 
-- (void)reloadApartmenCell:(NSIndexPath *)indexPath
+- (void)reloadApartmenCell:(NSIndexPath *)indexPath withType:(NSInteger)type apartmentString:(NSString *)apartmentString
 {
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
             {
-                if (![CustomStringUtils isBlankString:self.apartment.title]) {
-                    descTextField.text = self.apartment.title;
+                if (type == 1) {
+                    if (![CustomStringUtils isBlankString:self.apartment.title]) {
+                        descTextField.text = self.apartment.title;
+                    }
+                } else if (type == 2){
+                    if (![CustomStringUtils isBlankString:apartmentString]) {
+                        self.apartment.title = apartmentString;
+                    }
                 }
             }
                 break;
@@ -102,8 +111,14 @@
                 
             case 2:
             {
-                if (![CustomStringUtils isBlankString:self.apartment.phone]) {
-                    descTextField.text = self.apartment.phone;
+                if (type == 1) {
+                    if (![CustomStringUtils isBlankString:self.apartment.phone]) {
+                        descTextField.text = self.apartment.phone;
+                    }
+                } else if (type == 2){
+                    if (![CustomStringUtils isBlankString:apartmentString]) {
+                        self.apartment.phone = apartmentString;
+                    }
                 }
             }
                 break;
@@ -118,16 +133,29 @@
                
             case 4:
             {
-                if (![CustomStringUtils isBlankString:self.apartment.roadName]) {
-                    descTextField.text = self.apartment.roadName;
+                if (type == 1) {
+                    if (![CustomStringUtils isBlankString:self.apartment.roadName]) {
+                        descTextField.text = self.apartment.roadName;
+                    }
+                } else if (type == 2) {
+                    if (![CustomStringUtils isBlankString:apartmentString]) {
+                        self.apartment.roadName = apartmentString;
+                    }
                 }
+               
                 break;
             }
                 
             case 5:
             {
-                if (![CustomStringUtils isBlankString:self.apartment.parcelTitle]) {
-                    descTextField.text = self.apartment.parcelTitle;
+                if (type == 1) {
+                    if (![CustomStringUtils isBlankString:self.apartment.parcelTitle]) {
+                        descTextField.text = self.apartment.parcelTitle;
+                    }
+                } else if (type == 2) {
+                    if (![CustomStringUtils isBlankString:apartmentString]) {
+                        self.apartment.parcelTitle = apartmentString;
+                    }
                 }
                 break;
             }
@@ -139,24 +167,43 @@
         switch (indexPath.row) {
             case 0:
             {
-                if (![CustomStringUtils isBlankString:self.apartment.waterPay]) {
-                    descTextField.text = self.apartment.waterPay;
+                if (type == 1) {
+                    if (![CustomStringUtils isBlankString:self.apartment.waterPay]) {
+                        descTextField.text = self.apartment.waterPay;
+                    }
+                } else if (type == 2) {
+                    if (![CustomStringUtils isBlankString:apartmentString]) {
+                        self.apartment.waterPay = apartmentString;
+                    }
                 }
             }
                 break;
                 
             case 1:
             {
-                if (![CustomStringUtils isBlankString:self.apartment.elecPay]) {
-                    descTextField.text = self.apartment.elecPay;
+                if (type == 1) {
+                    if (![CustomStringUtils isBlankString:self.apartment.elecPay]) {
+                        descTextField.text = self.apartment.elecPay;
+                    }
+                } else if (type == 2) {
+                    if (![CustomStringUtils isBlankString:apartmentString]) {
+                        self.apartment.elecPay = apartmentString;
+                    }
                 }
+                
             }
                 break;
                 
             case 2:
             {
-                if (![CustomStringUtils isBlankString:self.apartment.gasPay]) {
-                    descTextField.text = self.apartment.gasPay;
+                if (type == 1) {
+                    if (![CustomStringUtils isBlankString:self.apartment.gasPay]) {
+                        descTextField.text = self.apartment.gasPay;
+                    }
+                } else if (type == 2) {
+                    if (![CustomStringUtils isBlankString:apartmentString]) {
+                        self.apartment.gasPay = apartmentString;
+                    }
                 }
             }
                 break;
@@ -170,7 +217,14 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    
+    if (self.cellType == 1) {
+        
+        [self reloadApartmenCell:textFieldIndexPath withType:2 apartmentString:textField.text];
+        
+        if ([self.delegate respondsToSelector:@selector(NITFC_addApartmentWithApartment:)]) {
+            [self.delegate NITFC_addApartmentWithApartment:self.apartment];
+        }
+    }
 }
 
 @end

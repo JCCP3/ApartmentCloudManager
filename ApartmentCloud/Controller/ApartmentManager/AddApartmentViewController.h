@@ -11,6 +11,6 @@
 
 @interface AddApartmentViewController : BaseViewController
 
-@property (nonatomic, strong) Apartment *apartment;
+@property (nonatomic, strong) Apartment *addApartment;
 
 @end
