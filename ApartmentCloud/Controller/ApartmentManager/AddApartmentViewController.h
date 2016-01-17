@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "Apartment.h"
 
 @interface AddApartmentViewController : BaseViewController
+
+@property (nonatomic, strong) Apartment *apartment;
 
 @end

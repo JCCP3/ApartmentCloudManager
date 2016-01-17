@@ -10,13 +10,20 @@
 #import "NormalInputTextFieldCell.h"
 #import "AddApartmentFloorViewController.h"
 
-@interface AddApartmentViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+typedef enum
+{
+    CONCENTRATED = 1,
+    DISPERSION = 2,
+    HOTELS
+    
+}ApartmentStyle;
+
+@interface AddApartmentViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 {
     UITableView *addApartmentTableView;
     NSArray *aryTitleData;
     NSArray *aryPlaceHolderData;
-    
-    Apartment *apartment;
+    NSArray *aryApartmentStyle;
     
     CGFloat keyboardOriginY;
     CGFloat keyboardHeight;
@@ -25,6 +32,7 @@
 @end
 
 @implementation AddApartmentViewController
+@synthesize apartment;
 
 - (void)loadView
 {
@@ -36,8 +44,13 @@
     
     [super viewDidLoad];
     
+    if (!apartment) {
+        apartment = [[Apartment alloc] init];
+    }
+    
     aryTitleData = @[@"公寓名称", @"公寓类型", @"管理电话", @"公寓区域", @"道路名称", @"小区名称", @"水(元/吨)", @"电(元/度)", @"气(元/m)"];
     aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的公寓类型", @"请输入您的管理电话号码", @"请选择您公寓所在的区域", @"请输入公寓所在道路名称", @"请输入公寓所在小区名称", @"请输入用水费用标准", @"请输入用电费用标准", @"请输入燃气费用标准"];
+    aryApartmentStyle = @[@"集中式",@"分散式",@"酒店"];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加公寓" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
@@ -51,6 +64,7 @@
 - (void)addTableViewGesture
 {
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickResign)];
+    tap.delegate = self;
     [addApartmentTableView addGestureRecognizer:tap];
 }
 
@@ -174,7 +188,7 @@
         cell.isTextFiledEnable = YES;
     }
     
-    [cell loadNormalInputTextFieldCellData:apartment];
+    [cell loadNormalInputTextFieldCellData:apartment withIndexPath:indexPath];
     
     return cell;
 }
@@ -223,6 +237,19 @@
     return headerView;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"集中式",@"分散式",@"酒店", nil];
+            actionSheet.tag = 12590;
+            [actionSheet showInView:self.view];
+        } else if (indexPath.row == 3) {
+            
+        }
+    }
+}
+
 #pragma mark - BaseAction
 - (void)onClickLeftItem
 {
@@ -240,17 +267,33 @@
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        
-        AddApartmentFloorViewController *view = [[AddApartmentFloorViewController alloc] init];
-        [self.navigationController pushViewController:view animated:YES];
-        
-    } else if (buttonIndex == 2) {
-        
-        //添加公寓
-        
-        
+    if (actionSheet.tag == 12580) {
+        if (buttonIndex == 1) {
+            //添加楼层
+            AddApartmentFloorViewController *view = [[AddApartmentFloorViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+            
+        } else if (buttonIndex == 2) {
+            
+            //添加公寓
+            
+            
+        }
+    } else if (actionSheet.tag == 12590) {
+        NSString *apartmentStyle = [aryApartmentStyle objectAtIndex:buttonIndex];
+        apartment.type = apartmentStyle;
+        [addApartmentTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     }
+}
+
+#pragma mark - UIGestureRecognize delegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([NSStringFromClass([touch.view.superview class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    
+    return YES;
 }
 
 /*

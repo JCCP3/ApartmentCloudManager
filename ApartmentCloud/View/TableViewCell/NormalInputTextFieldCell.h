@@ -26,6 +26,8 @@ typedef enum
 
 @interface NormalInputTextFieldCell : UITableViewCell
 
+@property (nonatomic, strong) UITextField *descTextField;
+
 @property (nonatomic, assign) NormalInputTextFieldCellType cellType;
 @property (nonatomic, assign) KeyBoardType keyboardType;
 @property (nonatomic, strong) Apartment *apartment;
@@ -36,6 +38,6 @@ typedef enum
 
 
 - (void)loadNormalInputTextFieldCellData;
-- (void)loadNormalInputTextFieldCellData:(Apartment *)apartment;
+- (void)loadNormalInputTextFieldCellData:(Apartment *)apartment withIndexPath:(NSIndexPath *)indexPath;
 
 @end

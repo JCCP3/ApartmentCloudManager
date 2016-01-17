@@ -30,7 +30,7 @@
         borderView.layer.borderWidth = 1;
         borderView.layer.borderColor = RGBCOLOR(243, 243, 243).CGColor;
         borderView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:borderView];
+        [self.contentView addSubview:borderView];
         
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 48, 60, 14)];
         titleLabel.textAlignment = NSTextAlignmentLeft;
