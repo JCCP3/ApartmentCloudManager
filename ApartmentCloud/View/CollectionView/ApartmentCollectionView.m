@@ -7,23 +7,41 @@
 //
 
 #import "ApartmentCollectionView.h"
+#import "ApartmentCell.h"
+
+@interface ApartmentCollectionView ()
+{
+    NSMutableArray *aryApartmentItem;
+    NSMutableArray *aryApartmentRoomItem;
+}
+
+@end
 
 @implementation ApartmentCollectionView
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame collectionViewLayout:(nonnull UICollectionViewLayout *)layout
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         self.backgroundColor = [CustomColorUtils colorWithHexString:@"#f7f7f7"];
         self.delegate = self;
         self.dataSource = self;
+        
+        //注册头部
+        [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+        [self registerClass:[ApartmentCell class] forCellWithReuseIdentifier:@"CollectionCell"];
+        
+        aryApartmentItem = [[NSMutableArray alloc] init];
+        aryApartmentRoomItem = [[NSMutableArray alloc] init];
     }
     return self;
 }
 
-- (void)loadApartmentCollectionViewData
+- (void)loadApartmentCollectionViewData:(Apartment *)apartment
 {
+    [aryApartmentItem addObject:apartment];
     
+    [self reloadData];
 }
 
 #pragma mark - UICollectionViewDelegate & dataSource
@@ -34,12 +52,72 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 0;
+    return [aryApartmentRoomItem count] + 1;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return CGSizeMake(50, 60);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    if (section == 0) {
+        return UIEdgeInsetsMake(12, 10, 0, 10);;
+    }
+    return UIEdgeInsetsMake(0, 15, 20, 15);
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    ApartmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
+    
+    if ([aryApartmentItem count] == 0) {
+        [cell loadApartmentRoomCellData:nil];
+    }
+    
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    CGSize headerSize = CGSizeMake(MainScreenWidth, 28);
+    return headerSize;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if (kind == UICollectionElementKindSectionHeader) {
+        UICollectionReusableView *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        
+        if (indexPath.section == 0) {
+            
+            UILabel *sepaLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 12, 3, 16)];
+            sepaLabel.backgroundColor = AppThemeColor;
+            [reusableview addSubview:sepaLabel];
+            
+            UILabel *sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(16, 12, 200, 16)];
+            sectionTitle.backgroundColor = [UIColor clearColor];
+            sectionTitle.textColor = AppThemeColor;
+            sectionTitle.font = [UIFont systemFontOfSize:16];
+            sectionTitle.text = [GlobalUtils translateStr:@"公寓房间情况"];
+            [reusableview addSubview:sectionTitle];
+        }
+        return reusableview;
+    }
+    
     return nil;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            if ([self.apartmentCollectionViewDelegate respondsToSelector:@selector(ACVD_addRoom:)]) {
+                [self.apartmentCollectionViewDelegate ACVD_addRoom:[aryApartmentItem objectAtIndex:0]];
+            }
+        }
+    }
 }
 
 /*

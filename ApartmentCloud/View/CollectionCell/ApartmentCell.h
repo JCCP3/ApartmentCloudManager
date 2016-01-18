@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ApartmentRoom.h"
 
 @interface ApartmentCell : UICollectionViewCell
 
-- (void)loadApartmentCellData;
+- (void)loadApartmentRoomCellData:(ApartmentRoom *)room;
 
 @end

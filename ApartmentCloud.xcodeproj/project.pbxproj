@@ -55,6 +55,11 @@
 		36B3DA1D1C46717E006D968C /* AddApartmentFloorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA1C1C46717E006D968C /* AddApartmentFloorViewController.m */; };
 		36B3DA211C4673A4006D968C /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA201C4673A4006D968C /* Apartment.m */; };
 		36B3DA241C467518006D968C /* ApartmentFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA231C467518006D968C /* ApartmentFloor.m */; };
+		36B3DA271C4D2645006D968C /* AddApartmentDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA261C4D2645006D968C /* AddApartmentDescViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA2A1C4D2B21006D968C /* AddApartmentUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA291C4D2B21006D968C /* AddApartmentUserViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA2D1C4D2F67006D968C /* ApartmentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA2C1C4D2F67006D968C /* ApartmentUser.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA2F1C4D3C37006D968C /* apartment_addRoom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */; settings = {ASSET_TAGS = (); }; };
+		36B3DA321C4D3C84006D968C /* ApartmentRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA311C4D3C84006D968C /* ApartmentRoom.m */; settings = {ASSET_TAGS = (); }; };
 		ABB6875629579397F9209BA6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E22CCFA7811654A775F916F /* libPods.a */; };
 		FEB556EE1C3E505600FCFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556ED1C3E505600FCFA43 /* main.m */; };
 		FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556F01C3E505600FCFA43 /* AppDelegate.m */; };
@@ -186,6 +191,15 @@
 		36B3DA201C4673A4006D968C /* Apartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apartment.m; sourceTree = "<group>"; };
 		36B3DA221C467518006D968C /* ApartmentFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentFloor.h; sourceTree = "<group>"; };
 		36B3DA231C467518006D968C /* ApartmentFloor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentFloor.m; sourceTree = "<group>"; };
+		36B3DA251C4D2645006D968C /* AddApartmentDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentDescViewController.h; sourceTree = "<group>"; };
+		36B3DA261C4D2645006D968C /* AddApartmentDescViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentDescViewController.m; sourceTree = "<group>"; };
+		36B3DA281C4D2B21006D968C /* AddApartmentUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentUserViewController.h; sourceTree = "<group>"; };
+		36B3DA291C4D2B21006D968C /* AddApartmentUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentUserViewController.m; sourceTree = "<group>"; };
+		36B3DA2B1C4D2F67006D968C /* ApartmentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentUser.h; sourceTree = "<group>"; };
+		36B3DA2C1C4D2F67006D968C /* ApartmentUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentUser.m; sourceTree = "<group>"; };
+		36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apartment_addRoom@2x.png"; sourceTree = "<group>"; };
+		36B3DA301C4D3C84006D968C /* ApartmentRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentRoom.h; sourceTree = "<group>"; };
+		36B3DA311C4D3C84006D968C /* ApartmentRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentRoom.m; sourceTree = "<group>"; };
 		7E22CCFA7811654A775F916F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41F761C482EF0B164551491 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -347,6 +361,10 @@
 				36B3DA191C466C13006D968C /* AddApartmentViewController.m */,
 				36B3DA1B1C46717E006D968C /* AddApartmentFloorViewController.h */,
 				36B3DA1C1C46717E006D968C /* AddApartmentFloorViewController.m */,
+				36B3DA251C4D2645006D968C /* AddApartmentDescViewController.h */,
+				36B3DA261C4D2645006D968C /* AddApartmentDescViewController.m */,
+				36B3DA281C4D2B21006D968C /* AddApartmentUserViewController.h */,
+				36B3DA291C4D2B21006D968C /* AddApartmentUserViewController.m */,
 			);
 			path = ApartmentManager;
 			sourceTree = "<group>";
@@ -391,6 +409,7 @@
 		36B3D9B71C422D6E006D968C /* ApartmentImages */ = {
 			isa = PBXGroup;
 			children = (
+				36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */,
 				36B3D9B81C422D6E006D968C /* apartment_person@2x.png */,
 				36B3D9B91C422D6E006D968C /* apartment_ThreePerson@2x.png */,
 				36B3D9BA1C422D6E006D968C /* apartment_TwoPerson@2x.png */,
@@ -477,6 +496,10 @@
 				36B3DA201C4673A4006D968C /* Apartment.m */,
 				36B3DA221C467518006D968C /* ApartmentFloor.h */,
 				36B3DA231C467518006D968C /* ApartmentFloor.m */,
+				36B3DA2B1C4D2F67006D968C /* ApartmentUser.h */,
+				36B3DA2C1C4D2F67006D968C /* ApartmentUser.m */,
+				36B3DA301C4D3C84006D968C /* ApartmentRoom.h */,
+				36B3DA311C4D3C84006D968C /* ApartmentRoom.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -917,6 +940,7 @@
 				36B3D9CA1C423042006D968C /* new_nav_selected@2x.png in Resources */,
 				36B3D9BB1C422D6E006D968C /* apartment_person@2x.png in Resources */,
 				36B3D9DD1C423EE5006D968C /* left_setting@2x.png in Resources */,
+				36B3DA2F1C4D3C37006D968C /* apartment_addRoom@2x.png in Resources */,
 				36B3D9C51C423042006D968C /* nav_menu@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -994,9 +1018,11 @@
 				FEB557541C3E56C800FCFA43 /* DateFormatUtils.m in Sources */,
 				FEB557501C3E563700FCFA43 /* BaseViewController.m in Sources */,
 				36B3DA051C451C7D006D968C /* AddSaleViewController.m in Sources */,
+				36B3DA2D1C4D2F67006D968C /* ApartmentUser.m in Sources */,
 				FEB557441C3E553F00FCFA43 /* CustomTimeUtils.m in Sources */,
 				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
 				36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */,
+				36B3DA271C4D2645006D968C /* AddApartmentDescViewController.m in Sources */,
 				FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */,
 				36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */,
 				36B3D9E91C426320006D968C /* OtherViewController.m in Sources */,
@@ -1025,6 +1051,7 @@
 				FEB5575B1C3E596A00FCFA43 /* GlobalUtils.m in Sources */,
 				36B3D9EC1C426902006D968C /* AddDecorateViewController.m in Sources */,
 				FEB5573E1C3E553F00FCFA43 /* CustomAlertView.m in Sources */,
+				36B3DA321C4D3C84006D968C /* ApartmentRoom.m in Sources */,
 				367A16341C3E8ED5001D711D /* CustomColorUtils.m in Sources */,
 				FEB5577C1C3E5DE000FCFA43 /* UIView+MultipleConstraints.m in Sources */,
 				FEB5577B1C3E5DE000FCFA43 /* NSObject+CustomCategory.m in Sources */,
@@ -1041,6 +1068,7 @@
 				36B3DA111C452AAA006D968C /* FeedBackViewController.m in Sources */,
 				FEB557841C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m in Sources */,
 				FEB5576F1C3E5B1A00FCFA43 /* EGOCache.m in Sources */,
+				36B3DA2A1C4D2B21006D968C /* AddApartmentUserViewController.m in Sources */,
 				36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */,
 				36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */,
 				36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */,

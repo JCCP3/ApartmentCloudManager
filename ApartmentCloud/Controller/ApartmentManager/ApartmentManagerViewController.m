@@ -13,7 +13,7 @@
 
 #define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"入住房间"]
 
-@interface ApartmentManagerViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ApartmentManagerViewController () <UICollectionViewDataSource, UICollectionViewDelegate, AddApartmentViewControllerDelegate>
 {
     NSMutableArray *aryData;
     
@@ -47,7 +47,7 @@
     
     [self createSecondNavView];
     
-//    [self setUpCollectionViews];
+    [self setUpCollectionViews];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -57,24 +57,19 @@
 
 - (void)setUpCollectionViews
 {
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     if (!myApartmentCollectionView) {
-        myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 40, MainScreenWidth, MainScreenHeight - 64 - 40)];
-        myApartmentCollectionView.delegate = self;
-        myApartmentCollectionView.dataSource = self;
+        myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         [self.view addSubview:myApartmentCollectionView];
     }
     
     if (!payApartmentCollectionView) {
-        payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 40, MainScreenWidth, MainScreenHeight - 64 - 40)];
-        payApartmentCollectionView.delegate = self;
-        payApartmentCollectionView.dataSource = self;
+        payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         [self.view addSubview:payApartmentCollectionView];
     }
     
     if (!expiredApartmentCollectionView) {
-        expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 40, MainScreenWidth, MainScreenHeight - 64 - 40)];
-        expiredApartmentCollectionView.delegate = self;
-        expiredApartmentCollectionView.dataSource = self;
+        expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         [self.view addSubview:expiredApartmentCollectionView];
     }
     
@@ -155,8 +150,16 @@
 - (void)onClickSecondRightItem
 {
     AddApartmentViewController *view = [[AddApartmentViewController alloc] init];
+    view.delegate = self;
     [self.navigationController pushViewController:view animated:YES];
 }
+
+#pragma mark - AddApartmentViewControllerDelegate
+- (void)AAVCD_passApartment:(Apartment *)apartment
+{
+    [myApartmentCollectionView loadApartmentCollectionViewData:apartment];
+}
+
 
 /*
 #pragma mark - Navigation

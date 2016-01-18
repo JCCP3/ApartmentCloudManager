@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Apartment.h"
+
+@protocol ApartmentCollectionViewDelegate <NSObject>
+
+@optional
+- (void)ACVD_addRoom:(Apartment *)apartment;
+
+@end
 
 @interface ApartmentCollectionView : UICollectionView <UICollectionViewDelegate, UICollectionViewDataSource>
 
-- (void)loadApartmentCollectionViewData;
+@property (nonatomic, assign) id <ApartmentCollectionViewDelegate> apartmentCollectionViewDelegate;
+- (void)loadApartmentCollectionViewData:(Apartment *)apartment;
 
 @end

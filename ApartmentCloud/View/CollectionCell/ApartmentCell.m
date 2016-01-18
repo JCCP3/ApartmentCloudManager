@@ -11,7 +11,9 @@
 @interface ApartmentCell ()
 {
     UILabel *roomNumLabel;
+    
     UIImageView *roomImageView;
+    UIImageView *addRoomImageView;
 }
 
 @end
@@ -22,21 +24,35 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = AppThemeColor;
+        
         roomNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 50, 60)];
         roomNumLabel.font = [UIFont systemFontOfSize:13.f];
         roomNumLabel.textColor = [UIColor whiteColor];
-        [self addSubview:roomNumLabel];
+        [self.contentView addSubview:roomNumLabel];
         
         roomImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(roomNumLabel.frame) + 5, CGRectGetWidth(frame), CGRectGetHeight(frame))];
-        [self addSubview:roomImageView];
+        [self.contentView addSubview:roomImageView];
+        
+        addRoomImageView = [[UIImageView alloc] initWithFrame:CGRectMake((50 - 28) / 2, (60 - 28) / 2, 28, 28)];
+        [addRoomImageView setImage:ImageNamed(@"apartment_addRoom.png")];
+        [self.contentView addSubview:addRoomImageView];
+        
+        self.layer.borderWidth = 1;
+        self.layer.borderColor = AppThemeColor.CGColor;
     }
     return self;
 }
 
-- (void)loadApartmentCellData
+- (void)loadApartmentRoomCellData:(ApartmentRoom *)room
 {
-    
+    if (!room) {
+        roomNumLabel.hidden = YES;
+        roomImageView.hidden = YES;
+        addRoomImageView.hidden = NO;
+        self.backgroundColor = [UIColor whiteColor];
+    } else {
+        self.backgroundColor = AppThemeColor;
+    }
 }
 
 

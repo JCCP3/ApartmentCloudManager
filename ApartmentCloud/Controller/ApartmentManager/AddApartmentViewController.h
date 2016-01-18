@@ -9,8 +9,16 @@
 #import "BaseViewController.h"
 #import "Apartment.h"
 
+@protocol AddApartmentViewControllerDelegate <NSObject>
+
+@optional
+- (void)AAVCD_passApartment:(Apartment *)apartment;
+
+@end
+
 @interface AddApartmentViewController : BaseViewController
 
 @property (nonatomic, strong) Apartment *addApartment;
+@property (nonatomic, assign) id<AddApartmentViewControllerDelegate> delegate;
 
 @end

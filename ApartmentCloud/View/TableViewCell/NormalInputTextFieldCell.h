@@ -13,7 +13,8 @@ typedef enum
 {
     AddApartmentLogic = 1,
     AddSaleLogic = 2,
-    AddDecorateLogic = 3
+    AddDecorateLogic = 3,
+    AddApartmentUserLogic = 4
     
 } NormalInputTextFieldCellType;
 

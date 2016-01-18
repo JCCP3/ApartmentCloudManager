@@ -306,6 +306,9 @@ typedef enum
     [CustomRequestUtils createNewPostRequest:@"/apartment/add.json" params:paramDic success:^(id responseObject) {
         NSDictionary *jsonDic = responseObject;
         if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+            if ([self.delegate respondsToSelector:@selector(AAVCD_passApartment:)]) {
+                [self.delegate AAVCD_passApartment:addApartment];
+            }
             //添加公寓成功
             [self.navigationController popViewControllerAnimated:YES];
         }

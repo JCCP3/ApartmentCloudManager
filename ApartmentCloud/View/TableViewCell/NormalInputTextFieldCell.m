@@ -214,6 +214,8 @@
     }
 }
 
+
+
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
@@ -224,6 +226,8 @@
         if ([self.delegate respondsToSelector:@selector(NITFC_addApartmentWithApartment:)]) {
             [self.delegate NITFC_addApartmentWithApartment:self.apartment];
         }
+    } else if (self.cellType == 4) {
+        
     }
 }
 
