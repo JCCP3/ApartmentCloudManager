@@ -10,10 +10,11 @@
 #import "ApartmentCollectionView.h"
 #import "LeftSideViewController.h"
 #import "AddApartmentViewController.h"
+#import "AddApartmentDescViewController.h"
 
 #define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"入住房间"]
 
-@interface ApartmentManagerViewController () <UICollectionViewDataSource, UICollectionViewDelegate, AddApartmentViewControllerDelegate>
+@interface ApartmentManagerViewController () <AddApartmentViewControllerDelegate, ApartmentCollectionViewDelegate>
 {
     NSMutableArray *aryData;
     
@@ -160,6 +161,12 @@
     [myApartmentCollectionView loadApartmentCollectionViewData:apartment];
 }
 
+#pragma mark - ApartmentCollectionViewDelegate
+- (void)ACVD_addRoom:(Apartment *)apartment
+{
+    AddApartmentDescViewController *view = [[AddApartmentDescViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
+}
 
 /*
 #pragma mark - Navigation
