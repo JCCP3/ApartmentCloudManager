@@ -9,22 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ApartmentCloud/View/CollectionView/ApartmentCollectionView.m"
-            timestampString = "474824589.121985"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "-loadApartmentCollectionViewData:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentRoomViewController.m"
             timestampString = "474907681.503079"
             startingColumnNumber = "9223372036854775807"
@@ -65,6 +49,70 @@
             endingLineNumber = "254"
             landmarkName = "-NITFC_addRoomWithRoom:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ApartmentCloud/View/CollectionView/ApartmentCollectionView.m"
+            timestampString = "474908067.513707"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-loadApartmentCollectionViewData"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ApartmentCloud/View/CollectionView/ApartmentCollectionView.m"
+            timestampString = "474908208.714951"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-loadApartmentCollectionViewData"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[ApartmentCollectionView loadApartmentCollectionViewData]"
+                  moduleName = "ApartmentCloud"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/View/CollectionView/ApartmentCollectionView.m"
+                  timestampString = "474908229.406618"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "45">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__58-[ApartmentCollectionView loadApartmentCollectionViewData]_block_invoke"
+                  moduleName = "ApartmentCloud"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/View/CollectionView/ApartmentCollectionView.m"
+                  timestampString = "474908229.407077"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "83">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

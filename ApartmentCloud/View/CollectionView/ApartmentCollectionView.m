@@ -37,9 +37,16 @@
     return self;
 }
 
-- (void)loadApartmentCollectionViewData:(Apartment *)apartment
+- (void)loadApartmentCollectionViewData
 {
-    [aryApartmentItem addObject:apartment];
+    [CustomRequestUtils createNewRequest:@"/apartment/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+            
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
     
     [self reloadData];
 }

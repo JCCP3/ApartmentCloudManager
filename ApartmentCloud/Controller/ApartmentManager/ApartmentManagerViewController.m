@@ -62,6 +62,7 @@
     if (!myApartmentCollectionView) {
         myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         myApartmentCollectionView.apartmentCollectionViewDelegate = self;
+        [myApartmentCollectionView loadApartmentCollectionViewData];
         [self.view addSubview:myApartmentCollectionView];
     }
     
@@ -161,7 +162,7 @@
 #pragma mark - AddApartmentViewControllerDelegate
 - (void)AAVCD_passApartment:(Apartment *)apartment
 {
-    [myApartmentCollectionView loadApartmentCollectionViewData:apartment];
+    [myApartmentCollectionView loadApartmentCollectionViewData];
 }
 
 #pragma mark - ApartmentCollectionViewDelegate

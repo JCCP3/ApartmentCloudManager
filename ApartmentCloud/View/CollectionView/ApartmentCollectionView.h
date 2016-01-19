@@ -19,6 +19,6 @@
 @interface ApartmentCollectionView : UICollectionView <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (nonatomic, assign) id <ApartmentCollectionViewDelegate> apartmentCollectionViewDelegate;
-- (void)loadApartmentCollectionViewData:(Apartment *)apartment;
+- (void)loadApartmentCollectionViewData;
 
 @end
