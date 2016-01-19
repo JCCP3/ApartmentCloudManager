@@ -10,7 +10,7 @@
 #import "ApartmentCollectionView.h"
 #import "LeftSideViewController.h"
 #import "AddApartmentViewController.h"
-#import "AddApartmentDescViewController.h"
+#import "AddApartmentRoomViewController.h"
 
 #define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"入住房间"]
 
@@ -61,16 +61,19 @@
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     if (!myApartmentCollectionView) {
         myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        myApartmentCollectionView.apartmentCollectionViewDelegate = self;
         [self.view addSubview:myApartmentCollectionView];
     }
     
     if (!payApartmentCollectionView) {
         payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        payApartmentCollectionView.apartmentCollectionViewDelegate = self;
         [self.view addSubview:payApartmentCollectionView];
     }
     
     if (!expiredApartmentCollectionView) {
         expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        expiredApartmentCollectionView.apartmentCollectionViewDelegate = self;
         [self.view addSubview:expiredApartmentCollectionView];
     }
     
@@ -164,7 +167,7 @@
 #pragma mark - ApartmentCollectionViewDelegate
 - (void)ACVD_addRoom:(Apartment *)apartment
 {
-    AddApartmentDescViewController *view = [[AddApartmentDescViewController alloc] init];
+    AddApartmentRoomViewController *view = [[AddApartmentRoomViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
 }
 

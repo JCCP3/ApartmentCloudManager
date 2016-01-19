@@ -191,7 +191,8 @@ typedef enum
         cell.isTextFiledEnable = YES;
     }
     
-    [cell loadNormalInputTextFieldCellData:addApartment withIndexPath:indexPath];
+    cell.apartment = addApartment;
+    [cell loadAddApartmentCellWithIndexPath:indexPath];
     
     return cell;
 }

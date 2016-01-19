@@ -114,7 +114,7 @@
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             if ([self.apartmentCollectionViewDelegate respondsToSelector:@selector(ACVD_addRoom:)]) {
-                [self.apartmentCollectionViewDelegate ACVD_addRoom:[aryApartmentItem objectAtIndex:0]];
+                [self.apartmentCollectionViewDelegate ACVD_addRoom:nil];
             }
         }
     }

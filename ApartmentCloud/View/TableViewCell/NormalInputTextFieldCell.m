@@ -10,17 +10,16 @@
 
 @interface NormalInputTextFieldCell () <UITextFieldDelegate>
 {
-    UIView *borderView;
     UILabel *titleLabel;
     UILabel *sepaLabel;
     
-    NSIndexPath *textFieldIndexPath;
+    NSIndexPath *currentIndexPath;
 }
 
 @end
 
 @implementation NormalInputTextFieldCell
-@synthesize descTextField;
+@synthesize descTextField, borderView;
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -61,11 +60,8 @@
     // Configure the view for the selected state
 }
 
-- (void)loadNormalInputTextFieldCellData:(Apartment *)apartment withIndexPath:(NSIndexPath *)indexPath
+- (void)decorateTitleWithDesc
 {
-    self.apartment = apartment;
-    textFieldIndexPath = indexPath;
-    
     if (self.isTextFiledEnable) {
         descTextField.enabled = YES;
     } else {
@@ -79,28 +75,149 @@
     titleLabel.text = self.title;
     descTextField.placeholder = self.placeHolderTitle;
     descTextField.font = [UIFont systemFontOfSize:14.f];
-    
-    [self reloadApartmenCell:indexPath withType:1 apartmentString:nil];
 }
 
-- (void)reloadApartmenCell:(NSIndexPath *)indexPath withType:(NSInteger)type apartmentString:(NSString *)apartmentString
+- (void)loadAddRoomCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    currentIndexPath = indexPath;
+    
+    [self decorateTitleWithDesc];
+    [self reloadCellWithAddRoom:indexPath loadType:ShowCellData roomParam:nil];
+}
+
+- (void)reloadCellWithAddRoom:(NSIndexPath *)indexPath loadType:(LoadDataType)type roomParam:(NSString *)roomParam
 {
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
             {
-                if (type == 1) {
-                    if (![CustomStringUtils isBlankString:self.apartment.title]) {
-                        descTextField.text = self.apartment.title;
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.title]) {
+                        descTextField.text = self.room.title;
                     }
-                } else if (type == 2){
-                    if (![CustomStringUtils isBlankString:apartmentString]) {
-                        self.apartment.title = apartmentString;
+                } else {
+                    if (![CustomStringUtils isBlankString:roomParam]) {
+                        self.room.title = roomParam;
                     }
                 }
             }
                 break;
                 
+            case 1:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.status]) {
+                        descTextField.text = self.room.status;
+                    }
+                }
+            }
+                break;
+                
+            case 2:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.monthlyRent]) {
+                        descTextField.text = self.room.monthlyRent;
+                    }
+                } else {
+                    if (![CustomStringUtils isBlankString:roomParam]) {
+                        self.room.monthlyRent = roomParam;
+                    }
+                }
+            }
+                break;
+                
+            case 3:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.deposit]) {
+                        descTextField.text = self.room.deposit;
+                    }
+                } else {
+                    if (![CustomStringUtils isBlankString:roomParam]) {
+                        self.room.deposit = roomParam;
+                    }
+                }
+            }
+                break;
+                
+            case 4:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.expDate]) {
+                        descTextField.text = self.room.expDate;
+                    }
+                }
+            }
+                break;
+                
+            case 5:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.deliverCategory]) {
+                        descTextField.text = self.room.deliverCategory;
+                    }
+                }
+            }
+                break;
+                
+            case 6:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.tanantNumber]) {
+                        descTextField.text = self.room.tanantNumber;
+                    }
+                }
+            }
+                break;
+                
+            case 7:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.room.rentCategory]) {
+                        descTextField.text = self.room.rentCategory;
+                    }
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+        
+    } else if (indexPath.section == 1) {
+        
+    } else if (indexPath.section == 2) {
+        
+    }
+}
+
+- (void)loadAddApartmentCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    currentIndexPath = indexPath;
+    
+    [self decorateTitleWithDesc];
+    
+    [self reloadCellWithAddApartment:currentIndexPath loadType:ShowCellData apartmentParam:nil];
+}
+
+- (void)reloadCellWithAddApartment:(NSIndexPath *)indexPath loadType:(LoadDataType)type apartmentParam:(NSString *)apartmentParam
+{
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.apartment.title]) {
+                        descTextField.text = self.apartment.title;
+                    }
+                } else {
+                    if (![CustomStringUtils isBlankString:apartmentParam]) {
+                        self.apartment.title = apartmentParam;
+                    }
+                }
+            }
+                break;
             case 1:
             {
                 if (![CustomStringUtils isBlankString:self.apartment.type]) {
@@ -111,13 +228,13 @@
                 
             case 2:
             {
-                if (type == 1) {
+                if (type == ShowCellData) {
                     if (![CustomStringUtils isBlankString:self.apartment.phone]) {
                         descTextField.text = self.apartment.phone;
                     }
-                } else if (type == 2){
-                    if (![CustomStringUtils isBlankString:apartmentString]) {
-                        self.apartment.phone = apartmentString;
+                } else {
+                    if (![CustomStringUtils isBlankString:apartmentParam]) {
+                        self.apartment.phone = apartmentParam;
                     }
                 }
             }
@@ -130,36 +247,34 @@
                 }
                 break;
             }
-               
+                
             case 4:
             {
-                if (type == 1) {
+                if (type == ShowCellData) {
                     if (![CustomStringUtils isBlankString:self.apartment.roadName]) {
                         descTextField.text = self.apartment.roadName;
                     }
-                } else if (type == 2) {
-                    if (![CustomStringUtils isBlankString:apartmentString]) {
-                        self.apartment.roadName = apartmentString;
+                } else {
+                    if (![CustomStringUtils isBlankString:apartmentParam]) {
+                        self.apartment.roadName = apartmentParam;
                     }
                 }
-               
                 break;
             }
-                
             case 5:
             {
-                if (type == 1) {
+                if (type == ShowCellData) {
                     if (![CustomStringUtils isBlankString:self.apartment.parcelTitle]) {
                         descTextField.text = self.apartment.parcelTitle;
                     }
-                } else if (type == 2) {
-                    if (![CustomStringUtils isBlankString:apartmentString]) {
-                        self.apartment.parcelTitle = apartmentString;
+                } else {
+                    if (![CustomStringUtils isBlankString:apartmentParam]) {
+                        self.apartment.parcelTitle = apartmentParam;
                     }
                 }
                 break;
             }
-
+                
             default:
                 break;
         }
@@ -167,27 +282,26 @@
         switch (indexPath.row) {
             case 0:
             {
-                if (type == 1) {
+                if (type == ShowCellData) {
                     if (![CustomStringUtils isBlankString:self.apartment.waterPay]) {
                         descTextField.text = self.apartment.waterPay;
                     }
-                } else if (type == 2) {
-                    if (![CustomStringUtils isBlankString:apartmentString]) {
-                        self.apartment.waterPay = apartmentString;
+                } else {
+                    if (![CustomStringUtils isBlankString:apartmentParam]) {
+                        self.apartment.waterPay = apartmentParam;
                     }
                 }
             }
                 break;
-                
             case 1:
             {
-                if (type == 1) {
+                if (type == ShowCellData) {
                     if (![CustomStringUtils isBlankString:self.apartment.elecPay]) {
                         descTextField.text = self.apartment.elecPay;
                     }
-                } else if (type == 2) {
-                    if (![CustomStringUtils isBlankString:apartmentString]) {
-                        self.apartment.elecPay = apartmentString;
+                } else {
+                    if (![CustomStringUtils isBlankString:apartmentParam]) {
+                        self.apartment.elecPay = apartmentParam;
                     }
                 }
                 
@@ -196,13 +310,13 @@
                 
             case 2:
             {
-                if (type == 1) {
+                if (type == ShowCellData) {
                     if (![CustomStringUtils isBlankString:self.apartment.gasPay]) {
                         descTextField.text = self.apartment.gasPay;
                     }
-                } else if (type == 2) {
-                    if (![CustomStringUtils isBlankString:apartmentString]) {
-                        self.apartment.gasPay = apartmentString;
+                } else {
+                    if (![CustomStringUtils isBlankString:apartmentParam]) {
+                        self.apartment.gasPay = apartmentParam;
                     }
                 }
             }
@@ -212,22 +326,25 @@
                 break;
         }
     }
+
 }
-
-
 
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (self.cellType == 1) {
-        
-        [self reloadApartmenCell:textFieldIndexPath withType:2 apartmentString:textField.text];
+    if (self.cellType == AddApartmentLogic) {
+        [self reloadCellWithAddApartment:currentIndexPath loadType:AddCellData apartmentParam:textField.text];
         
         if ([self.delegate respondsToSelector:@selector(NITFC_addApartmentWithApartment:)]) {
             [self.delegate NITFC_addApartmentWithApartment:self.apartment];
         }
-    } else if (self.cellType == 4) {
+    } else if (self.cellType == AddApartmentUserLogic) {
         
+    } else if (self.cellType == AddRoomLogic) {
+        [self reloadCellWithAddRoom:currentIndexPath loadType:AddCellData roomParam:textField.text];
+        if ([self.delegate respondsToSelector:@selector(NITFC_addRoomWithRoom:)]) {
+            [self.delegate NITFC_addRoomWithRoom:self.room];
+        }
     }
 }
 

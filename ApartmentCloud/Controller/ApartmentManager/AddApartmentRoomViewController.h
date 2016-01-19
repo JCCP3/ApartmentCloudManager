@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface AddApartmentDescViewController : BaseViewController
+@interface AddApartmentRoomViewController : BaseViewController
 
 @end

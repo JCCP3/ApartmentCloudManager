@@ -55,7 +55,7 @@
 		36B3DA1D1C46717E006D968C /* AddApartmentFloorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA1C1C46717E006D968C /* AddApartmentFloorViewController.m */; };
 		36B3DA211C4673A4006D968C /* Apartment.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA201C4673A4006D968C /* Apartment.m */; };
 		36B3DA241C467518006D968C /* ApartmentFloor.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA231C467518006D968C /* ApartmentFloor.m */; };
-		36B3DA271C4D2645006D968C /* AddApartmentDescViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA261C4D2645006D968C /* AddApartmentDescViewController.m */; settings = {ASSET_TAGS = (); }; };
+		36B3DA271C4D2645006D968C /* AddApartmentRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA261C4D2645006D968C /* AddApartmentRoomViewController.m */; settings = {ASSET_TAGS = (); }; };
 		36B3DA2A1C4D2B21006D968C /* AddApartmentUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA291C4D2B21006D968C /* AddApartmentUserViewController.m */; settings = {ASSET_TAGS = (); }; };
 		36B3DA2D1C4D2F67006D968C /* ApartmentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA2C1C4D2F67006D968C /* ApartmentUser.m */; settings = {ASSET_TAGS = (); }; };
 		36B3DA2F1C4D3C37006D968C /* apartment_addRoom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */; settings = {ASSET_TAGS = (); }; };
@@ -191,8 +191,8 @@
 		36B3DA201C4673A4006D968C /* Apartment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Apartment.m; sourceTree = "<group>"; };
 		36B3DA221C467518006D968C /* ApartmentFloor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentFloor.h; sourceTree = "<group>"; };
 		36B3DA231C467518006D968C /* ApartmentFloor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentFloor.m; sourceTree = "<group>"; };
-		36B3DA251C4D2645006D968C /* AddApartmentDescViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentDescViewController.h; sourceTree = "<group>"; };
-		36B3DA261C4D2645006D968C /* AddApartmentDescViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentDescViewController.m; sourceTree = "<group>"; };
+		36B3DA251C4D2645006D968C /* AddApartmentRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentRoomViewController.h; sourceTree = "<group>"; };
+		36B3DA261C4D2645006D968C /* AddApartmentRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentRoomViewController.m; sourceTree = "<group>"; };
 		36B3DA281C4D2B21006D968C /* AddApartmentUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentUserViewController.h; sourceTree = "<group>"; };
 		36B3DA291C4D2B21006D968C /* AddApartmentUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentUserViewController.m; sourceTree = "<group>"; };
 		36B3DA2B1C4D2F67006D968C /* ApartmentUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentUser.h; sourceTree = "<group>"; };
@@ -361,8 +361,8 @@
 				36B3DA191C466C13006D968C /* AddApartmentViewController.m */,
 				36B3DA1B1C46717E006D968C /* AddApartmentFloorViewController.h */,
 				36B3DA1C1C46717E006D968C /* AddApartmentFloorViewController.m */,
-				36B3DA251C4D2645006D968C /* AddApartmentDescViewController.h */,
-				36B3DA261C4D2645006D968C /* AddApartmentDescViewController.m */,
+				36B3DA251C4D2645006D968C /* AddApartmentRoomViewController.h */,
+				36B3DA261C4D2645006D968C /* AddApartmentRoomViewController.m */,
 				36B3DA281C4D2B21006D968C /* AddApartmentUserViewController.h */,
 				36B3DA291C4D2B21006D968C /* AddApartmentUserViewController.m */,
 			);
@@ -1022,7 +1022,7 @@
 				FEB557441C3E553F00FCFA43 /* CustomTimeUtils.m in Sources */,
 				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
 				36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */,
-				36B3DA271C4D2645006D968C /* AddApartmentDescViewController.m in Sources */,
+				36B3DA271C4D2645006D968C /* AddApartmentRoomViewController.m in Sources */,
 				FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */,
 				36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */,
 				36B3D9E91C426320006D968C /* OtherViewController.m in Sources */,
