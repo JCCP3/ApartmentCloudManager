@@ -25,12 +25,13 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        roomNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 50, 60)];
+        roomNumLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 50, 13)];
         roomNumLabel.font = [UIFont systemFontOfSize:13.f];
+        roomNumLabel.textAlignment = NSTextAlignmentCenter;
         roomNumLabel.textColor = [UIColor whiteColor];
         [self.contentView addSubview:roomNumLabel];
         
-        roomImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(roomNumLabel.frame) + 5, CGRectGetWidth(frame), CGRectGetHeight(frame))];
+        roomImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(roomNumLabel.frame) + 5, 9, 20)];
         [self.contentView addSubview:roomImageView];
         
         addRoomImageView = [[UIImageView alloc] initWithFrame:CGRectMake((50 - 28) / 2, (60 - 28) / 2, 28, 28)];
@@ -51,7 +52,32 @@
         addRoomImageView.hidden = NO;
         self.backgroundColor = [UIColor whiteColor];
     } else {
+        roomNumLabel.hidden = NO;
+        roomImageView.hidden = NO;
+        addRoomImageView.hidden = YES;
         self.backgroundColor = AppThemeColor;
+    }
+    
+    if (![CustomStringUtils isBlankString:room.homeName]) {
+        roomNumLabel.text = room.homeName;
+    }
+    
+    if (room.tanantNumber > 0) {
+        UIImage *img = nil;
+        if (room.tanantNumber == 1) {
+            img = ImageNamed(@"apartment_person.png");
+            roomImageView.frame = CGRectMake((50 - 9) / 2, CGRectGetMinY(roomImageView.frame), 9, 20);
+        } else if (room.tanantNumber == 2) {
+            img = ImageNamed(@"apartment_TwoPerson.png");
+            roomImageView.frame = CGRectMake((50 - 23) / 2, CGRectGetMinY(roomImageView.frame), 23, 20);
+        } else if (room.tanantNumber >= 3) {
+            img = ImageNamed(@"apartment_ThreePerson.png");
+            roomImageView.frame = CGRectMake((50 - 33) / 2, CGRectGetMinY(roomImageView.frame), 33, 20);
+        }
+        
+        if (img) {
+            [roomImageView setImage:img];
+        }
     }
 }
 

@@ -19,7 +19,6 @@ typedef enum{
 }ApartmentStatus;
 
 
-
 @interface AddApartmentRoomViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
 {
     UITableView *addRoomTableView;
@@ -29,14 +28,12 @@ typedef enum{
 
     NSArray *aryStatusItem;
     NSArray *aryRentItem;
-    
-    ApartmentRoom *apartmentRoom;
-
 }
 
 @end
 
 @implementation AddApartmentRoomViewController
+@synthesize apartmentRoom;
 
 - (void)loadView
 {
@@ -225,13 +222,13 @@ typedef enum{
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
     Apartment *currentApartment = apartmentRoom.roomAtApartment;
     [paramDic setObject:currentApartment.apartmentId forKey:@"apartmentId"];
-    [paramDic setObject:currentApartment.title forKey:@"homeName"];
+    [paramDic setObject:apartmentRoom.homeName forKey:@"homeName"];
     [paramDic setObject:apartmentRoom.status forKey:@"status"];
-    [paramDic setObject:apartmentRoom.monthlyRent forKey:@"monthlyRent"];
-    [paramDic setObject:apartmentRoom.deposit forKey:@"deposit"];
+    [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)apartmentRoom.monthlyRent] forKey:@"monthlyRent"];
+    [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)apartmentRoom.deposit] forKey:@"deposit"];
     [paramDic setObject:apartmentRoom.expDate forKey:@"expDate"];
     [paramDic setObject:apartmentRoom.deliverCategory forKey:@"deliverCategory"];
-    [paramDic setObject:apartmentRoom.tanantNumber forKey:@"tanantNumber"];
+    [paramDic setObject:[NSString stringWithFormat:@"%ld", apartmentRoom.tanantNumber] forKey:@"tanantNumber"];
     [paramDic setObject:apartmentRoom.rentCategory forKey:@"rentCategory"];
     [paramDic setObject:apartmentRoom.mark forKey:@"mark"];
     [paramDic setObject:apartmentRoom.userIds forKey:@"userIds"];

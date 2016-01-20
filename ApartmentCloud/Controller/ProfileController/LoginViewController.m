@@ -115,6 +115,9 @@
     pwdTextField.secureTextEntry = YES;
     [pwdView addSubview:pwdTextField];
     
+    accountTextField.text = @"18358105381";
+    pwdTextField.text = @"123456";
+    
     //登陆
     UIButton *loginBtn = [[UIButton alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(pwdView.frame) + 30, MainScreenWidth - 40, 45)];
     loginBtn.layer.cornerRadius = 20;

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Apartment.h"
+#import "ApartmentRoom.h"
 
 @protocol ApartmentCollectionViewDelegate <NSObject>
 
 @optional
 - (void)ACVD_addRoom:(Apartment *)apartment;
+- (void)ACVD_goToRoom:(ApartmentRoom *)room;
 
 @end
 

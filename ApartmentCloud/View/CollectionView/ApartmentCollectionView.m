@@ -30,7 +30,7 @@
         //注册头部
         [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
         [self registerClass:[ApartmentCell class] forCellWithReuseIdentifier:@"CollectionCell"];
-        
+    
         aryApartmentItem = [[NSMutableArray alloc] init];
         aryApartmentRoomItem = [[NSMutableArray alloc] init];
     }
@@ -41,26 +41,69 @@
 {
     [CustomRequestUtils createNewRequest:@"/apartment/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
-        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-            
-        }
+        [self parseJsonData:jsonDic];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
+}
+
+- (void)parseJsonData:(NSDictionary *)jsonDic
+{
+    NSMutableArray *finalApartmentArray = [[NSMutableArray alloc] init];
+    NSMutableArray *finalArray = [[NSMutableArray alloc] init];
     
-    [self reloadData];
+    NSMutableArray *tmpArray = [jsonDic objectForKey:@"datas"];
+    if (tmpArray && [tmpArray count] > 0) {
+        for (NSDictionary *dic in tmpArray) {
+            
+            Apartment *apartment = [[Apartment alloc] initWithDictionary:dic];
+            [finalApartmentArray addObject:apartment];
+            
+            NSMutableArray *aryApartmentRomeData = [[NSMutableArray alloc] init];
+            if ([dic objectForKey:@"apartmentHomes"]) {
+                NSMutableArray *currentTmpArray = [dic objectForKey:@"apartmentHomes"];
+                
+                if (currentTmpArray && [currentTmpArray count] > 0) {
+                    for (NSDictionary *tmpDic in currentTmpArray) {
+                        ApartmentRoom *room = [[ApartmentRoom alloc] initWithDictionary:tmpDic];
+                        [aryApartmentRomeData addObject:room];
+                    }
+                }
+            }
+            
+            NSMutableDictionary *currentTmpDic = [[NSMutableDictionary alloc] init];
+            [currentTmpDic setObject:aryApartmentRomeData forKey:apartment.apartmentName];
+            
+            [finalArray addObject:currentTmpDic];
+            
+        }
+        
+        if ([finalArray count] > 0) {
+            [aryApartmentRoomItem addObjectsFromArray:finalArray];
+        }
+        
+        if ([finalApartmentArray count] > 0) {
+            aryApartmentItem = finalApartmentArray;
+        }
+        
+        [self reloadData];
+    }
+
 }
 
 #pragma mark - UICollectionViewDelegate & dataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return 1;
+    return [aryApartmentItem count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [aryApartmentRoomItem count] + 1;
+    NSMutableDictionary *currentDic = [aryApartmentRoomItem objectAtIndex:section];
+    NSMutableArray *tmpArray = [currentDic allValues][0];
+    return [tmpArray count] + 1;
 }
+
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -69,17 +112,24 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    if (section == 0) {
-        return UIEdgeInsetsMake(12, 10, 0, 10);;
-    }
-    return UIEdgeInsetsMake(0, 15, 20, 15);
+    return UIEdgeInsetsMake(12, 10, 0, 10);;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ApartmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
     
-    if ([aryApartmentItem count] == 0) {
+    NSMutableDictionary *tmpDic = [aryApartmentRoomItem objectAtIndex:indexPath.section];
+    
+    NSMutableArray *tmpArray = [tmpDic allValues][0];
+    if (tmpArray && [tmpArray count] > 0) {
+        if (indexPath.row < [tmpArray count]) {
+            ApartmentRoom *room = [tmpArray objectAtIndex:indexPath.row];
+            [cell loadApartmentRoomCellData:room];
+        } else {
+            [cell loadApartmentRoomCellData:nil];
+        }
+    } else {
         [cell loadApartmentRoomCellData:nil];
     }
     
@@ -88,7 +138,13 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    CGSize headerSize = CGSizeMake(MainScreenWidth, 28);
+    CGSize headerSize;
+    if (section == 0) {
+        headerSize = CGSizeMake(MainScreenWidth, 56);
+    } else {
+        headerSize = CGSizeMake(MainScreenWidth, 28);
+    }
+    
     return headerSize;
 }
 
@@ -96,6 +152,8 @@
 {
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        
+        CGFloat marginTop = 0.f;
         
         if (indexPath.section == 0) {
             
@@ -109,7 +167,19 @@
             sectionTitle.font = [UIFont systemFontOfSize:16];
             sectionTitle.text = [GlobalUtils translateStr:@"公寓房间情况"];
             [reusableview addSubview:sectionTitle];
+            
+            marginTop += 28;
+            
         }
+        
+        UILabel *sectionLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, marginTop + 12.f, MainScreenWidth - 20, 16)];
+        [reusableview addSubview:sectionLabel];
+        NSMutableDictionary *tmpDic = [aryApartmentRoomItem objectAtIndex:indexPath.section];
+        NSString *apartmentName = [tmpDic allKeys][0];
+        sectionLabel.font = [UIFont systemFontOfSize:16.f];
+        sectionLabel.text = apartmentName;
+        sectionLabel.textColor = [CustomColorUtils colorWithHexString:@"#333333"];
+        
         return reusableview;
     }
     
@@ -118,11 +188,15 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            if ([self.apartmentCollectionViewDelegate respondsToSelector:@selector(ACVD_addRoom:)]) {
-                [self.apartmentCollectionViewDelegate ACVD_addRoom:nil];
-            }
+    NSMutableDictionary *tmpDic = [aryApartmentRoomItem objectAtIndex:indexPath.section];
+    NSArray *roomArray = [tmpDic allValues][0];
+    if (indexPath.row < [roomArray count]) {
+        if ([self.apartmentCollectionViewDelegate respondsToSelector:@selector(ACVD_goToRoom:)]) {
+            [self.apartmentCollectionViewDelegate ACVD_goToRoom:[roomArray objectAtIndex:indexPath.row]];
+        }
+    } else {
+        if ([self.apartmentCollectionViewDelegate respondsToSelector:@selector(ACVD_addRoom:)]) {
+            [self.apartmentCollectionViewDelegate ACVD_addRoom:nil];
         }
     }
 }

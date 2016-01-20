@@ -286,7 +286,7 @@ typedef enum
     } else if (actionSheet.tag == 12590) {
         if (buttonIndex < aryApartmentStyle.count) {
 //            NSString *apartmentStyle = [aryApartmentStyle objectAtIndex:buttonIndex];
-            addApartment.type = [aryApartmentStypeId objectAtIndex:buttonIndex];
+            addApartment.category = [aryApartmentStypeId objectAtIndex:buttonIndex];
             [addApartmentTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }
     }
@@ -295,15 +295,15 @@ typedef enum
 - (void)addApartmentToServer
 {
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
-    [paramDic setObject:addApartment.title forKey:@"apartmentName"];
-    [paramDic setObject:addApartment.type forKey:@"category"];
-    [paramDic setObject:addApartment.phone forKey:@"managerPhone"];
+    [paramDic setObject:addApartment.apartmentName forKey:@"apartmentName"];
+    [paramDic setObject:addApartment.category forKey:@"category"];
+    [paramDic setObject:addApartment.managerPhone forKey:@"managerPhone"];
     [paramDic setObject:@"123" forKey:@"cityId"];
-    [paramDic setObject:addApartment.parcelTitle forKey:@"communityName"];
+    [paramDic setObject:addApartment.communityName forKey:@"communityName"];
     [paramDic setObject:addApartment.roadName forKey:@"roadName"];
-    [paramDic setObject:addApartment.waterPay forKey:@"waterPrice"];
-    [paramDic setObject:addApartment.elecPay forKey:@"electricityPrice"];
-    [paramDic setObject:addApartment.gasPay forKey:@"gasPrice"];
+    [paramDic setObject:addApartment.waterPrice forKey:@"waterPrice"];
+    [paramDic setObject:addApartment.electricityPrice forKey:@"electricityPrice"];
+    [paramDic setObject:addApartment.gasPrice forKey:@"gasPrice"];
     [CustomRequestUtils createNewPostRequest:@"/apartment/add.json" params:paramDic success:^(id responseObject) {
         NSDictionary *jsonDic = responseObject;
         if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {

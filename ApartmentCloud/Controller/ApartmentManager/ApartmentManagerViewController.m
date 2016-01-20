@@ -14,7 +14,7 @@
 
 #define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"入住房间"]
 
-@interface ApartmentManagerViewController () <AddApartmentViewControllerDelegate, ApartmentCollectionViewDelegate>
+@interface ApartmentManagerViewController () <AddApartmentViewControllerDelegate, ApartmentCollectionViewDelegate, UIScrollViewDelegate>
 {
     NSMutableArray *aryData;
     
@@ -58,25 +58,31 @@
 
 - (void)setUpCollectionViews
 {
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45)];
+    scrollView.delegate = self;
+    [self.view addSubview:scrollView];
+    
     if (!myApartmentCollectionView) {
-        myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         myApartmentCollectionView.apartmentCollectionViewDelegate = self;
         [myApartmentCollectionView loadApartmentCollectionViewData];
-        [self.view addSubview:myApartmentCollectionView];
+        [scrollView addSubview:myApartmentCollectionView];
     }
     
-    if (!payApartmentCollectionView) {
-        payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
-        payApartmentCollectionView.apartmentCollectionViewDelegate = self;
-        [self.view addSubview:payApartmentCollectionView];
-    }
-    
-    if (!expiredApartmentCollectionView) {
-        expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
-        expiredApartmentCollectionView.apartmentCollectionViewDelegate = self;
-        [self.view addSubview:expiredApartmentCollectionView];
-    }
+//    if (!payApartmentCollectionView) {
+//        payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+//        payApartmentCollectionView.apartmentCollectionViewDelegate = self;
+//        [scrollView addSubview:payApartmentCollectionView];
+//    }
+//    
+//    if (!expiredApartmentCollectionView) {
+//        expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth * 2, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+//        expiredApartmentCollectionView.apartmentCollectionViewDelegate = self;
+//        [scrollView addSubview:expiredApartmentCollectionView];
+//    }
+//    
+//    [scrollView setContentSize:CGSizeMake(MainScreenWidth * 4, MainScreenHeight - 64 - 45)];
     
 }
 
@@ -171,6 +177,14 @@
     AddApartmentRoomViewController *view = [[AddApartmentRoomViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
 }
+
+- (void)ACVD_goToRoom:(ApartmentRoom *)room
+{
+    AddApartmentRoomViewController *view = [[AddApartmentRoomViewController alloc] init];
+    view.apartmentRoom = room;
+    [self.navigationController pushViewController:view animated:YES];
+}
+
 
 /*
 #pragma mark - Navigation
