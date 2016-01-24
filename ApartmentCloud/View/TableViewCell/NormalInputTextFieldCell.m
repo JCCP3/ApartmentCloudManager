@@ -192,6 +192,77 @@
     }
 }
 
+- (void)loadAddUserCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    currentIndexPath = indexPath;
+    
+    [self decorateTitleWithDesc];
+    
+    [self reloadAddApartmentUserCellWithIndexPath:currentIndexPath loadType:ShowCellData userParam:nil];
+}
+
+- (void)reloadAddApartmentUserCellWithIndexPath:(NSIndexPath *)indexPath loadType:(LoadDataType)type userParam:(NSString *)userParam
+{
+    if (indexPath.section == 0) {
+        switch (indexPath.row) {
+            case 0:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.apartmentUser.userName]) {
+                        descTextField.text = self.apartmentUser.userName;
+                    }
+                } else {
+                    if (![CustomStringUtils isBlankString:userParam]) {
+                        self.apartmentUser.userName = userParam;
+                    }
+                }
+            }
+                break;
+                
+            case 1:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.apartmentUser.userSex]) {
+                        descTextField.text = self.apartmentUser.userSex;
+                    }
+                }
+            }
+                break;
+                
+            case 2:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.apartmentUser.userPhone]) {
+                        descTextField.text = self.apartmentUser.userPhone;
+                    }
+                } else {
+                    if (![CustomStringUtils isBlankString:userParam]) {
+                        self.apartmentUser.userPhone = userParam;
+                    }
+                }
+            }
+                break;
+                
+            case 3:
+            {
+                if (type == ShowCellData) {
+                    if (![CustomStringUtils isBlankString:self.apartmentUser.userCardId]) {
+                        descTextField.text = self.apartmentUser.userCardId;
+                    }
+                } else {
+                    if (![CustomStringUtils isBlankString:userParam]) {
+                        self.apartmentUser.userCardId = userParam;
+                    }
+                }
+            }
+                break;
+                
+            default:
+                break;
+        }
+    }
+}
+
 - (void)loadAddApartmentCellWithIndexPath:(NSIndexPath *)indexPath
 {
     currentIndexPath = indexPath;
@@ -339,6 +410,12 @@
             [self.delegate NITFC_addApartmentWithApartment:self.apartment];
         }
     } else if (self.cellType == AddApartmentUserLogic) {
+        
+        [self reloadAddApartmentUserCellWithIndexPath:currentIndexPath loadType:AddCellData userParam:textField.text];
+        
+        if ([self.delegate respondsToSelector:@selector(NITFC_addApartmentUser:)]) {
+            [self.delegate NITFC_addApartmentUser:self.apartmentUser];
+        }
         
     } else if (self.cellType == AddRoomLogic) {
         [self reloadCellWithAddRoom:currentIndexPath loadType:AddCellData roomParam:textField.text];

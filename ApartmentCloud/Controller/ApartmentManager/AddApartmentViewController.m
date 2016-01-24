@@ -264,26 +264,14 @@ typedef enum
 {
     [self onClickResign];
     
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"添加楼层",@"完成添加", nil];
-    actionSheet.tag = 12580;
-    
-    [actionSheet showInView:self.view];
+    //添加公寓
+    [self addApartmentToServer];
 }
 
 #pragma mark UIActionSheetDelegate
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag == 12580) {
-        if (buttonIndex == 0) {
-            //添加楼层
-            AddApartmentFloorViewController *view = [[AddApartmentFloorViewController alloc] init];
-            [self.navigationController pushViewController:view animated:YES];
-            
-        } else if (buttonIndex == 1) {
-            //添加公寓
-            [self addApartmentToServer];
-        }
-    } else if (actionSheet.tag == 12590) {
+    if (actionSheet.tag == 12590) {
         if (buttonIndex < aryApartmentStyle.count) {
 //            NSString *apartmentStyle = [aryApartmentStyle objectAtIndex:buttonIndex];
             addApartment.category = [aryApartmentStypeId objectAtIndex:buttonIndex];

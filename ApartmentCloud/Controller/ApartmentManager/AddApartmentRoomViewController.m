@@ -9,6 +9,9 @@
 #import "AddApartmentRoomViewController.h"
 #import "NormalInputTextFieldCell.h"
 #import "ApartmentRoom.h"
+#import "AddApartmentUserViewController.h"
+#import "NormalTextViewCell.h"
+#import "DateFormatUtils.h"
 
 typedef enum{
     
@@ -19,7 +22,7 @@ typedef enum{
 }ApartmentStatus;
 
 
-@interface AddApartmentRoomViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate>
+@interface AddApartmentRoomViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, AddApartmentUserDelegate>
 {
     UITableView *addRoomTableView;
     
@@ -28,6 +31,13 @@ typedef enum{
 
     NSArray *aryStatusItem;
     NSArray *aryRentItem;
+    
+    UIDatePicker *datePicker;
+    
+    CGFloat keyboardHeight;
+    CGFloat keyboardOriginY;
+    
+    BOOL datePickerShowed;
 }
 
 @end
@@ -58,9 +68,13 @@ typedef enum{
         apartmentRoom = [[ApartmentRoom alloc] init];
     }
     
+    [self initDatePickerView];
+    
     [self createTableView];
     
     [self addTableViewGesture];
+    
+    [self addKeyboardObserver];
 }
 
 - (void)createTableView
@@ -83,9 +97,9 @@ typedef enum{
 - (void)onClickResign
 {
     int i = 0 ;
-    while (i < 2) {
+    while (i < 1) {
         
-        int maxNum = i == 0 ? 8 : 3;
+        int maxNum = i == 0 ? 8 : 0;
         
         for (int j = 0 ; j < maxNum ; j++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
@@ -103,9 +117,46 @@ typedef enum{
         
         i ++;
     }
+    
+    for (int j = 0 ; j < 1 ; j++) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:2];
+        NormalTextViewCell *cell = (NormalTextViewCell *)[addRoomTableView cellForRowAtIndexPath:indexPath];
+        for (UIView *subView in cell.subviews) {
+            UIView *wrapperView = (UIView *)[subView viewWithTag:10086];
+            for (UIView *tmpSubView in wrapperView.subviews) {
+                if ([tmpSubView isKindOfClass:[UITextView class]]) {
+                    UITextView *textView = (UITextView *)tmpSubView;
+                    [textView resignFirstResponder];
+                }
+            }
+        }
+    }
+    
+    if (datePickerShowed) {
+        [self hideDatePickerView];
+    }
 }
 
+- (void)addKeyboardObserver
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeKeyboardHeight:) name:UIKeyboardWillChangeFrameNotification object:nil];
+}
 
+- (void)changeKeyboardHeight:(NSNotification *)notification
+{
+    CGRect keyboardRect = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    keyboardHeight = keyboardRect.size.height;
+    keyboardOriginY = keyboardRect.origin.y;
+    
+    if (keyboardOriginY != MainScreenHeight) {
+        
+        [self hideDatePickerView];
+        
+        [addRoomTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64 - keyboardHeight)];
+    } else {
+        [addRoomTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -115,44 +166,118 @@ typedef enum{
 #pragma mark - UITableViewDelegate & dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 6;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [aryTitleData count];
+    switch (section) {
+        case 0:
+            return [aryTitleData count];
+            break;
+            
+        case 1:
+            return [self.apartmentRoom.aryApartmentUser count];
+            break;
+            
+        case 2:
+            return 1;
+            break;
+            
+        case 3:
+            return 0;
+            break;
+            
+        case 4:
+            return 0;
+            break;
+            
+        case 5:
+            return 0;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"Cell";
-    NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
-    
-    if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3) {
-        cell.isTextFiledEnable = YES;
-    } else {
+    if (indexPath.section == 0) {
+        static NSString *cellIdentifier = @"Cell";
+        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        if (indexPath.row == 0 || indexPath.row == 2 || indexPath.row == 3) {
+            cell.isTextFiledEnable = YES;
+        } else {
+            cell.isTextFiledEnable = NO;
+        }
+        
+        cell.title = [aryTitleData objectAtIndex:indexPath.row];
+        cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
+        
+        cell.cellType = AddRoomLogic;
+        cell.backgroundColor = [UIColor clearColor];
+        
+        cell.room = apartmentRoom;
+        [cell loadAddRoomCellWithIndexPath:indexPath];
+        
+        return cell;
+
+    } else if (indexPath.section == 1) {
+        
+        ApartmentUser *apartmentUser = [self.apartmentRoom.aryApartmentUser objectAtIndex:indexPath.row];
+        static NSString *cellIdentifier = @"ApartmentUserCell";
+        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
         cell.isTextFiledEnable = NO;
+        cell.title = @"住户姓名";
+        cell.descTextField.text = apartmentUser.userName;
+        
+        return cell;
+        
+    } else if (indexPath.section == 2) {
+        
+        static NSString *cellIdentifier = @"NormalTextViewCell";
+        
+        NormalTextViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[NormalTextViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.backgroundColor = [UIColor clearColor];
+        }
+        
+        cell.title = @"房间备注";
+        cell.placeHolderTitle = @"添加房间备注";
+        
+        [cell loadNormalTextViewCell];
+        
+        return cell;
+        
+    } else if (indexPath.section == 3 || indexPath.section == 4 || indexPath.section == 5) {
+        
     }
     
-    cell.title = [aryTitleData objectAtIndex:indexPath.row];
-    cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
-    
-    cell.cellType = AddRoomLogic;
-    cell.backgroundColor = [UIColor clearColor];
-    
-    cell.room = apartmentRoom;
-    [cell loadAddRoomCellWithIndexPath:indexPath];
-    
-    return cell;
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 50;
+    if (indexPath.section == 2) {
+        return 120;
+    } else {
+        return 50;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -183,8 +308,66 @@ typedef enum{
         title = @"基本信息";
     } else if (section == 1) {
         title = @"住户信息";
-    } else {
+        
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(MainScreenWidth - 10 - 100, 16, 100, 12)];
+        [btn setTitle:@"添加住户" forState:UIControlStateNormal];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            view.delegate = self;
+            [self.navigationController pushViewController:view animated:YES];
+        }];
+        [sectionHeaderView addSubview:btn];
+        
+    } else if (section == 2){
         title = @"特殊备注";
+    } else if (section == 3) {
+        title = @"水表读数";
+        
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(MainScreenWidth - 10 - 100, 16, 100, 12)];
+        [btn setTitle:@"添加水表" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
+        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            view.delegate = self;
+            [self.navigationController pushViewController:view animated:YES];
+        }];
+        [sectionHeaderView addSubview:btn];
+        
+    } else if (section == 4) {
+        title = @"电表读数";
+        
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(MainScreenWidth - 10 - 100, 16, 100, 12)];
+        [btn setTitle:@"添加电表" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
+        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            view.delegate = self;
+            [self.navigationController pushViewController:view animated:YES];
+        }];
+        [sectionHeaderView addSubview:btn];
+        
+    } else {
+        title = @"燃气读数";
+        
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(MainScreenWidth - 10 - 100, 16, 100, 12)];
+        [btn setTitle:@"添加燃气" forState:UIControlStateNormal];
+        btn.titleLabel.font = [UIFont systemFontOfSize:12];
+        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
+        [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            view.delegate = self;
+            [self.navigationController pushViewController:view animated:YES];
+        }];
+        [sectionHeaderView addSubview:btn];
+        
     }
     sectionTitle.text = [GlobalUtils translateStr:title];
     [sectionHeaderView addSubview:sectionTitle];
@@ -194,11 +377,17 @@ typedef enum{
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self onClickResign];
+    
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"出租中",@"闲置中",@"未打扫", nil];
             actionSheet.tag = 111;
             [actionSheet showInView:self.view];
+        } else if (indexPath.row == 4) {
+            
+            [self showDatePickerView];
+            
         } else if (indexPath.row == 6) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"1人", @"2人", @"3人", @"3人以上",nil];
             actionSheet.tag = 112;
@@ -261,7 +450,7 @@ typedef enum{
         }
      } else if (actionSheet.tag == 112) {
          if (buttonIndex < [actionSheet numberOfButtons]) {
-             apartmentRoom.tanantNumber = [actionSheet buttonTitleAtIndex:buttonIndex];
+             apartmentRoom.tanantNumber = [[actionSheet buttonTitleAtIndex:buttonIndex] integerValue];
              [addRoomTableView reloadData];
          }
     } else if (actionSheet.tag == 113) {
@@ -280,6 +469,69 @@ typedef enum{
     }
     
     return YES;
+}
+
+#pragma mark - AddApartmentUserViewControllerDelegate
+- (void)AAUD_passApartmentUser:(ApartmentUser *)apartmentUser
+{
+    if (![self.apartmentRoom.aryApartmentUser containsObject:apartmentUser]) {
+        [self.apartmentRoom.aryApartmentUser addObject:apartmentUser];
+        [addRoomTableView reloadData];
+    }
+}
+
+#pragma mark - datePickerViewFunction
+- (void)initDatePickerView
+{
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
+    datePicker.backgroundColor = [UIColor whiteColor];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [datePicker addTarget:self action:@selector(onClickChangePickerViewValue:) forControlEvents:UIControlEventValueChanged];
+    [datePicker setDate:[NSDate date]];
+    [self.view addSubview:datePicker];
+    
+    [self hideDatePickerView];
+}
+
+- (void)onClickChangePickerViewValue:(UIDatePicker *)picker
+{
+    NSString *dateString = [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:picker.date];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
+    [self sendMsgToCellTextFieldWithIndexPath:indexPath dateString:dateString];
+}
+
+- (void)sendMsgToCellTextFieldWithIndexPath:(NSIndexPath *)indexPath dateString:(NSString *)dateString
+{
+    NormalInputTextFieldCell *cell = (NormalInputTextFieldCell *)[addRoomTableView cellForRowAtIndexPath:indexPath];
+    for (UIView *subView in cell.subviews) {
+        UIView *wrapperView = (UIView *)[subView viewWithTag:10086];
+        for (UIView *tmpSubView in wrapperView.subviews) {
+            if ([tmpSubView isKindOfClass:[UITextField class]]) {
+                UITextField *textField = (UITextField *)tmpSubView;
+                textField.text = dateString;
+            }
+        }
+    }
+}
+
+- (void)showDatePickerView
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [datePicker setFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
+        [self.view bringSubviewToFront:datePicker];
+        datePickerShowed = YES;
+        [addRoomTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 216 - 64)];
+    }];
+}
+
+- (void)hideDatePickerView
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [datePicker setFrame:CGRectMake(0, MainScreenHeight, MainScreenWidth, 216)];
+        datePickerShowed = NO;
+        [addRoomTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
+    }];
 }
 
 /*

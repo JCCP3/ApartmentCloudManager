@@ -29,6 +29,7 @@
         
         //注册头部
         [self registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView"];
+        
         [self registerClass:[ApartmentCell class] forCellWithReuseIdentifier:@"CollectionCell"];
     
         aryApartmentItem = [[NSMutableArray alloc] init];
@@ -79,7 +80,7 @@
         }
         
         if ([finalArray count] > 0) {
-            [aryApartmentRoomItem addObjectsFromArray:finalArray];
+            aryApartmentRoomItem = finalArray;
         }
         
         if ([finalApartmentArray count] > 0) {
@@ -112,7 +113,11 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
 {
-    return UIEdgeInsetsMake(12, 10, 0, 10);;
+    if (section == [aryApartmentItem count] - 1) {
+        return UIEdgeInsetsMake(12, 10, 20, 10);
+    } else {
+        return UIEdgeInsetsMake(12, 10, 0, 10);
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -152,6 +157,7 @@
 {
     if (kind == UICollectionElementKindSectionHeader) {
         UICollectionReusableView *reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HeaderView" forIndexPath:indexPath];
+        [reusableview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
         
         CGFloat marginTop = 0.f;
         
@@ -182,6 +188,7 @@
         
         return reusableview;
     }
+    
     
     return nil;
 }

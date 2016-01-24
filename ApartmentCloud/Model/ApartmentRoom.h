@@ -24,6 +24,7 @@
 @property (nonatomic, strong) NSString *mark;
 @property (nonatomic, strong) NSString *userIds;
 @property (nonatomic, strong) NSString *createTime;
+@property (nonatomic, strong) NSMutableArray *aryApartmentUser;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 

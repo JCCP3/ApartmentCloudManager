@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ApartmentRoom.h"
+#import "ApartmentUser.h"
 
 typedef enum
 {
@@ -37,6 +38,7 @@ typedef enum
 @optional
 - (void)NITFC_addApartmentWithApartment:(Apartment *)apartment;
 - (void)NITFC_addRoomWithRoom:(ApartmentRoom *)room;
+- (void)NITFC_addApartmentUser:(ApartmentUser *)apartmentUser;
 
 @end
 
@@ -51,15 +53,16 @@ typedef enum
 @property (nonatomic, assign) KeyBoardType keyboardType;
 @property (nonatomic, strong) Apartment *apartment;
 @property (nonatomic, strong) ApartmentRoom *room;
+@property (nonatomic, strong) ApartmentUser *apartmentUser;
 
 @property (nonatomic, assign) BOOL isTextFiledEnable;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *placeHolderTitle;
 
-
 - (void)loadNormalInputTextFieldCellData;
 
 - (void)loadAddApartmentCellWithIndexPath:(NSIndexPath *)indexPath;
 - (void)loadAddRoomCellWithIndexPath:(NSIndexPath *)indexPath;
+- (void)loadAddUserCellWithIndexPath:(NSIndexPath *)indexPath;
 
 @end

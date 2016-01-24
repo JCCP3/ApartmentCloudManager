@@ -14,11 +14,11 @@
 {
     self = [super init];
     if (self) {
+        self.aryApartmentUser = [[NSMutableArray alloc] init];
         if ([dic isKindOfClass:[NSDictionary class]]) {
             [self setValuesForKeysWithDictionary:dic];
         }
     }
-    
     return self;
 }
 
