@@ -121,6 +121,8 @@
         filnalStr = [NSString stringWithFormat:@"%@%@", [CustomUrlUtils getGlobalUrlPre], urlStr];
     }
     
+    filnalStr = [filnalStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
     NSMutableURLRequest *urlReq = [manager.requestSerializer requestWithMethod:@"POST"
                                                                      URLString:filnalStr
                                                                     parameters:params

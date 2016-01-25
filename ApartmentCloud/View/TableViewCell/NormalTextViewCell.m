@@ -30,6 +30,7 @@
         borderView.layer.borderWidth = 1;
         borderView.layer.borderColor = RGBCOLOR(243, 243, 243).CGColor;
         borderView.backgroundColor = [UIColor whiteColor];
+        borderView.tag = 10086;
         [self.contentView addSubview:borderView];
         
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 48, 60, 14)];
@@ -42,7 +43,6 @@
         [borderView addSubview:sepaLabel];
         
         descTextView = [[UITextView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(titleLabel.frame) + 10, 15.5, CGRectGetWidth(borderView.bounds) - 10 - 10 - CGRectGetMaxX(titleLabel.frame), 79)];
-        descTextView.tag = 10086;
         descTextView.delegate = self;
         descTextView.font = [UIFont systemFontOfSize:14.f];
         [borderView addSubview:descTextView];

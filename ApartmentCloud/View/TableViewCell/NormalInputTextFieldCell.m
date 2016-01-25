@@ -77,6 +77,11 @@
     descTextField.font = [UIFont systemFontOfSize:14.f];
 }
 
+- (void)loadNormalInputTextFieldCellData
+{
+    [self decorateTitleWithDesc];
+}
+
 - (void)loadAddRoomCellWithIndexPath:(NSIndexPath *)indexPath
 {
     currentIndexPath = indexPath;
@@ -208,12 +213,12 @@
             case 0:
             {
                 if (type == ShowCellData) {
-                    if (![CustomStringUtils isBlankString:self.apartmentUser.userName]) {
-                        descTextField.text = self.apartmentUser.userName;
+                    if (![CustomStringUtils isBlankString:self.apartmentUser.name]) {
+                        descTextField.text = self.apartmentUser.name;
                     }
                 } else {
                     if (![CustomStringUtils isBlankString:userParam]) {
-                        self.apartmentUser.userName = userParam;
+                        self.apartmentUser.name = userParam;
                     }
                 }
             }
@@ -232,12 +237,12 @@
             case 2:
             {
                 if (type == ShowCellData) {
-                    if (![CustomStringUtils isBlankString:self.apartmentUser.userPhone]) {
-                        descTextField.text = self.apartmentUser.userPhone;
+                    if (![CustomStringUtils isBlankString:self.apartmentUser.phone]) {
+                        descTextField.text = self.apartmentUser.phone;
                     }
                 } else {
                     if (![CustomStringUtils isBlankString:userParam]) {
-                        self.apartmentUser.userPhone = userParam;
+                        self.apartmentUser.phone = userParam;
                     }
                 }
             }
@@ -246,12 +251,12 @@
             case 3:
             {
                 if (type == ShowCellData) {
-                    if (![CustomStringUtils isBlankString:self.apartmentUser.userCardId]) {
-                        descTextField.text = self.apartmentUser.userCardId;
+                    if (![CustomStringUtils isBlankString:self.apartmentUser.numberId]) {
+                        descTextField.text = self.apartmentUser.numberId;
                     }
                 } else {
                     if (![CustomStringUtils isBlankString:userParam]) {
-                        self.apartmentUser.userCardId = userParam;
+                        self.apartmentUser.numberId = userParam;
                     }
                 }
             }
@@ -260,6 +265,19 @@
             default:
                 break;
         }
+    }
+}
+
+- (void)loadApartmentUserListCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    currentIndexPath = indexPath;
+    
+    [self decorateTitleWithDesc];
+    
+    if (self.isSelect) {
+        self.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        self.accessoryType = UITableViewCellAccessoryNone;
     }
 }
 
@@ -400,6 +418,13 @@
 
 }
 
+- (void)loadAddDecorateCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    currentIndexPath = indexPath;
+    
+    [self decorateTitleWithDesc];
+}
+
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
@@ -424,5 +449,7 @@
         }
     }
 }
+
+
 
 @end

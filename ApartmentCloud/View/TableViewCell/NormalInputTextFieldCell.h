@@ -55,14 +55,21 @@ typedef enum
 @property (nonatomic, strong) ApartmentRoom *room;
 @property (nonatomic, strong) ApartmentUser *apartmentUser;
 
+
 @property (nonatomic, assign) BOOL isTextFiledEnable;
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *placeHolderTitle;
+@property (nonatomic, assign) BOOL isSelect;
 
 - (void)loadNormalInputTextFieldCellData;
 
+//添加公寓
 - (void)loadAddApartmentCellWithIndexPath:(NSIndexPath *)indexPath;
 - (void)loadAddRoomCellWithIndexPath:(NSIndexPath *)indexPath;
 - (void)loadAddUserCellWithIndexPath:(NSIndexPath *)indexPath;
+- (void)loadApartmentUserListCellWithIndexPath:(NSIndexPath *)indexPath;
+
+//添加装修后勤
+- (void)loadAddDecorateCellWithIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -161,12 +161,21 @@
     [self onClickResign];
     
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
-    [paramDic setObject:self.currentApartmentUser.userName forKey:@"name"];
-    [paramDic setObject:self.currentApartmentUser.userCardId forKey:@"numberId"];
-    [paramDic setObject:self.currentApartmentUser.userPhone forKey:@"phone"];
+    
+    NSString *requestUrl = @"";
+    if (self.currentApartmentUser.apartmentUserId) {
+        [paramDic setValue:self.currentApartmentUser.apartmentUserId forKey:@"id"];
+        requestUrl = @"/tenants/update.json";
+    } else {
+        requestUrl = @"/tenants/add.json";
+    }
+    [paramDic setObject:self.currentApartmentUser.name forKey:@"name"];
+    [paramDic setObject:self.currentApartmentUser.numberId forKey:@"numberId"];
+    [paramDic setObject:self.currentApartmentUser.phone
+                 forKey:@"phone"];
     [paramDic setObject:self.currentApartmentUser.userSex forKey:@"sex"];
     
-    [CustomRequestUtils createNewPostRequest:@"/tenants/add.json" params:paramDic success:^(id responseObject) {
+    [CustomRequestUtils createNewPostRequest:requestUrl params:paramDic success:^(id responseObject) {
         NSDictionary *jsonDic = responseObject;
         if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
             //添加用户成功

@@ -12,6 +12,7 @@
 #import "AddApartmentUserViewController.h"
 #import "NormalTextViewCell.h"
 #import "DateFormatUtils.h"
+#import "ApartmentUserListViewController.h"
 
 typedef enum{
     
@@ -22,7 +23,7 @@ typedef enum{
 }ApartmentStatus;
 
 
-@interface AddApartmentRoomViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, AddApartmentUserDelegate>
+@interface AddApartmentRoomViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, ApartmentUserListDelegate, AddApartmentUserDelegate>
 {
     UITableView *addRoomTableView;
     
@@ -66,6 +67,7 @@ typedef enum{
     
     if (!apartmentRoom) {
         apartmentRoom = [[ApartmentRoom alloc] init];
+        apartmentRoom.aryApartmentUser = [[NSMutableArray alloc] init];
     }
     
     [self initDatePickerView];
@@ -177,7 +179,7 @@ typedef enum{
             break;
             
         case 1:
-            return [self.apartmentRoom.aryApartmentUser count];
+            return [apartmentRoom.aryApartmentUser count];
             break;
             
         case 2:
@@ -232,7 +234,7 @@ typedef enum{
 
     } else if (indexPath.section == 1) {
         
-        ApartmentUser *apartmentUser = [self.apartmentRoom.aryApartmentUser objectAtIndex:indexPath.row];
+        ApartmentUser *apartmentUser = [apartmentRoom.aryApartmentUser objectAtIndex:indexPath.row];
         static NSString *cellIdentifier = @"ApartmentUserCell";
         NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
@@ -242,7 +244,11 @@ typedef enum{
         
         cell.isTextFiledEnable = NO;
         cell.title = @"住户姓名";
-        cell.descTextField.text = apartmentUser.userName;
+        cell.descTextField.text = apartmentUser.name;
+        
+        cell.backgroundColor = [UIColor clearColor];
+        
+        [cell loadNormalInputTextFieldCellData];
         
         return cell;
         
@@ -315,7 +321,7 @@ typedef enum{
         [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
         btn.titleLabel.font = [UIFont systemFontOfSize:12];
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            ApartmentUserListViewController *view = [[ApartmentUserListViewController alloc] init];
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }];
@@ -397,6 +403,11 @@ typedef enum{
             actionSheet.tag = 113;
             [actionSheet showInView:self.view];
         }
+    } else if (indexPath.section == 1) {
+        AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+        view.delegate = self;
+        view.currentApartmentUser = [apartmentRoom.aryApartmentUser objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:view animated:YES];
     }
 }
 
@@ -420,7 +431,17 @@ typedef enum{
     [paramDic setObject:[NSString stringWithFormat:@"%ld", apartmentRoom.tanantNumber] forKey:@"tanantNumber"];
     [paramDic setObject:apartmentRoom.rentCategory forKey:@"rentCategory"];
     [paramDic setObject:apartmentRoom.mark forKey:@"mark"];
-    [paramDic setObject:apartmentRoom.userIds forKey:@"userIds"];
+    
+    NSString *tmpUserIds = @"";
+    for (ApartmentUser *user in apartmentRoom.aryApartmentUser) {
+        NSString *tmpString = [user.apartmentUserId stringValue];
+        if (![[apartmentRoom.aryApartmentUser lastObject] isEqual:user]) {
+            tmpString = [tmpString stringByAppendingString:@","];
+        }
+        tmpUserIds = [tmpUserIds stringByAppendingString:tmpString];
+    }
+    
+    [paramDic setObject:tmpUserIds forKey:@"userIds"];
     
     [CustomRequestUtils createNewRequest:@"/apartment/home/add.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
@@ -461,6 +482,7 @@ typedef enum{
     }
 }
 
+
 #pragma mark - UIGestureRecognize delegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
 {
@@ -469,15 +491,6 @@ typedef enum{
     }
     
     return YES;
-}
-
-#pragma mark - AddApartmentUserViewControllerDelegate
-- (void)AAUD_passApartmentUser:(ApartmentUser *)apartmentUser
-{
-    if (![self.apartmentRoom.aryApartmentUser containsObject:apartmentUser]) {
-        [self.apartmentRoom.aryApartmentUser addObject:apartmentUser];
-        [addRoomTableView reloadData];
-    }
 }
 
 #pragma mark - datePickerViewFunction
@@ -532,6 +545,31 @@ typedef enum{
         datePickerShowed = NO;
         [addRoomTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
     }];
+}
+
+#pragma mark - AULD_passApartmentUser
+- (void)AULD_passApartmentUser:(NSMutableArray *)aryApartmentUser
+{
+    for (ApartmentUser *user in aryApartmentUser) {
+        if (![apartmentRoom.aryApartmentUser containsObject:user]) {
+            [apartmentRoom.aryApartmentUser addObject:user];
+        }
+    }
+    
+    [addRoomTableView reloadData];
+}
+
+#pragma mark - AddApartmentUserDelegate
+- (void)AAUD_passApartmentUser:(ApartmentUser *)apartmentUser
+{
+    for (int i = 0; i < [apartmentRoom.aryApartmentUser count]; i++) {
+        ApartmentUser *user = [apartmentRoom.aryApartmentUser objectAtIndex:i];
+        if ([user.apartmentUserId isEqual:apartmentUser.apartmentUserId]) {
+            [apartmentRoom.aryApartmentUser replaceObjectAtIndex:i withObject:apartmentUser];
+        }
+    }
+    
+    [addRoomTableView reloadData];
 }
 
 /*
