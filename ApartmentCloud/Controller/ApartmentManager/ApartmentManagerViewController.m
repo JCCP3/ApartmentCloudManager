@@ -70,20 +70,22 @@
         [scrollView addSubview:myApartmentCollectionView];
     }
     
-//    if (!payApartmentCollectionView) {
-//        payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
-//        payApartmentCollectionView.apartmentCollectionViewDelegate = self;
-//        [scrollView addSubview:payApartmentCollectionView];
-//    }
-//    
-//    if (!expiredApartmentCollectionView) {
-//        expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth * 2, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
-//        expiredApartmentCollectionView.apartmentCollectionViewDelegate = self;
-//        [scrollView addSubview:expiredApartmentCollectionView];
-//    }
-//    
-//    [scrollView setContentSize:CGSizeMake(MainScreenWidth * 4, MainScreenHeight - 64 - 45)];
+    if (!payApartmentCollectionView) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        payApartmentCollectionView.apartmentCollectionViewDelegate = self;
+        
+        [scrollView addSubview:payApartmentCollectionView];
+    }
     
+    if (!expiredApartmentCollectionView) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth * 2, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        expiredApartmentCollectionView.apartmentCollectionViewDelegate = self;
+        [scrollView addSubview:expiredApartmentCollectionView];
+    }
+    
+    [scrollView setContentSize:CGSizeMake(MainScreenWidth * 4, MainScreenHeight - 64 - 45)];
 }
 
 - (void)createSecondNavView

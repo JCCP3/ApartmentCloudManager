@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		3626C6191C54C1BD00C85F11 /* ApartmentUserListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6181C54C1BD00C85F11 /* ApartmentUserListViewController.m */; settings = {ASSET_TAGS = (); }; };
 		3626C61C1C54EA1F00C85F11 /* CustomDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C61B1C54EA1F00C85F11 /* CustomDatePickerView.m */; settings = {ASSET_TAGS = (); }; };
+		3626C61F1C563F1E00C85F11 /* ApartmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C61E1C563F1E00C85F11 /* ApartmentListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C6221C564ED000C85F11 /* ApartmentRoomListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6211C564ED000C85F11 /* ApartmentRoomListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C6251C56571E00C85F11 /* ApartmentElecListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6241C56571E00C85F11 /* ApartmentElecListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C6281C56572E00C85F11 /* AddApartmentElecViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6271C56572E00C85F11 /* AddApartmentElecViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C62B1C56574600C85F11 /* ApartmentWaterListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C62A1C56574600C85F11 /* ApartmentWaterListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C62E1C56577600C85F11 /* AddApartmentWaterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C62D1C56577600C85F11 /* AddApartmentWaterViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C6311C56578500C85F11 /* ApartmentGasListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6301C56578500C85F11 /* ApartmentGasListViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C6341C56579000C85F11 /* AddApartmentGasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6331C56579000C85F11 /* AddApartmentGasViewController.m */; settings = {ASSET_TAGS = (); }; };
+		3626C6371C56598D00C85F11 /* Gas.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6361C56598D00C85F11 /* Gas.m */; settings = {ASSET_TAGS = (); }; };
+		3626C63A1C56599500C85F11 /* Water.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6391C56599500C85F11 /* Water.m */; settings = {ASSET_TAGS = (); }; };
+		3626C63D1C56599D00C85F11 /* Elec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C63C1C56599D00C85F11 /* Elec.m */; settings = {ASSET_TAGS = (); }; };
 		367A16291C3E8644001D711D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16281C3E8644001D711D /* LoginViewController.m */; };
 		367A162F1C3E8A9E001D711D /* loginAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162C1C3E8A9E001D711D /* loginAccount@2x.png */; };
 		367A16311C3E8A9E001D711D /* loginPwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162E1C3E8A9E001D711D /* loginPwd@2x.png */; };
@@ -122,6 +133,28 @@
 		3626C6181C54C1BD00C85F11 /* ApartmentUserListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentUserListViewController.m; sourceTree = "<group>"; };
 		3626C61A1C54EA1F00C85F11 /* CustomDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomDatePickerView.h; sourceTree = "<group>"; };
 		3626C61B1C54EA1F00C85F11 /* CustomDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomDatePickerView.m; sourceTree = "<group>"; };
+		3626C61D1C563F1E00C85F11 /* ApartmentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentListViewController.h; sourceTree = "<group>"; };
+		3626C61E1C563F1E00C85F11 /* ApartmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentListViewController.m; sourceTree = "<group>"; };
+		3626C6201C564ED000C85F11 /* ApartmentRoomListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentRoomListViewController.h; sourceTree = "<group>"; };
+		3626C6211C564ED000C85F11 /* ApartmentRoomListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentRoomListViewController.m; sourceTree = "<group>"; };
+		3626C6231C56571E00C85F11 /* ApartmentElecListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentElecListViewController.h; sourceTree = "<group>"; };
+		3626C6241C56571E00C85F11 /* ApartmentElecListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentElecListViewController.m; sourceTree = "<group>"; };
+		3626C6261C56572E00C85F11 /* AddApartmentElecViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentElecViewController.h; sourceTree = "<group>"; };
+		3626C6271C56572E00C85F11 /* AddApartmentElecViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentElecViewController.m; sourceTree = "<group>"; };
+		3626C6291C56574600C85F11 /* ApartmentWaterListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentWaterListViewController.h; sourceTree = "<group>"; };
+		3626C62A1C56574600C85F11 /* ApartmentWaterListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentWaterListViewController.m; sourceTree = "<group>"; };
+		3626C62C1C56577600C85F11 /* AddApartmentWaterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentWaterViewController.h; sourceTree = "<group>"; };
+		3626C62D1C56577600C85F11 /* AddApartmentWaterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentWaterViewController.m; sourceTree = "<group>"; };
+		3626C62F1C56578500C85F11 /* ApartmentGasListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentGasListViewController.h; sourceTree = "<group>"; };
+		3626C6301C56578500C85F11 /* ApartmentGasListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentGasListViewController.m; sourceTree = "<group>"; };
+		3626C6321C56579000C85F11 /* AddApartmentGasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddApartmentGasViewController.h; sourceTree = "<group>"; };
+		3626C6331C56579000C85F11 /* AddApartmentGasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddApartmentGasViewController.m; sourceTree = "<group>"; };
+		3626C6351C56598D00C85F11 /* Gas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gas.h; sourceTree = "<group>"; };
+		3626C6361C56598D00C85F11 /* Gas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gas.m; sourceTree = "<group>"; };
+		3626C6381C56599500C85F11 /* Water.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Water.h; sourceTree = "<group>"; };
+		3626C6391C56599500C85F11 /* Water.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Water.m; sourceTree = "<group>"; };
+		3626C63B1C56599D00C85F11 /* Elec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elec.h; sourceTree = "<group>"; };
+		3626C63C1C56599D00C85F11 /* Elec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Elec.m; sourceTree = "<group>"; };
 		367A16271C3E8644001D711D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		367A16281C3E8644001D711D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		367A162C1C3E8A9E001D711D /* loginAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginAccount@2x.png"; sourceTree = "<group>"; };
@@ -373,6 +406,18 @@
 				3626C6181C54C1BD00C85F11 /* ApartmentUserListViewController.m */,
 				36B3DA281C4D2B21006D968C /* AddApartmentUserViewController.h */,
 				36B3DA291C4D2B21006D968C /* AddApartmentUserViewController.m */,
+				3626C6231C56571E00C85F11 /* ApartmentElecListViewController.h */,
+				3626C6241C56571E00C85F11 /* ApartmentElecListViewController.m */,
+				3626C6261C56572E00C85F11 /* AddApartmentElecViewController.h */,
+				3626C6271C56572E00C85F11 /* AddApartmentElecViewController.m */,
+				3626C6291C56574600C85F11 /* ApartmentWaterListViewController.h */,
+				3626C62A1C56574600C85F11 /* ApartmentWaterListViewController.m */,
+				3626C62C1C56577600C85F11 /* AddApartmentWaterViewController.h */,
+				3626C62D1C56577600C85F11 /* AddApartmentWaterViewController.m */,
+				3626C62F1C56578500C85F11 /* ApartmentGasListViewController.h */,
+				3626C6301C56578500C85F11 /* ApartmentGasListViewController.m */,
+				3626C6321C56579000C85F11 /* AddApartmentGasViewController.h */,
+				3626C6331C56579000C85F11 /* AddApartmentGasViewController.m */,
 			);
 			path = ApartmentManager;
 			sourceTree = "<group>";
@@ -446,6 +491,10 @@
 				36B3D9E01C425ED1006D968C /* DecorateViewController.m */,
 				36B3D9EA1C426902006D968C /* AddDecorateViewController.h */,
 				36B3D9EB1C426902006D968C /* AddDecorateViewController.m */,
+				3626C61D1C563F1E00C85F11 /* ApartmentListViewController.h */,
+				3626C61E1C563F1E00C85F11 /* ApartmentListViewController.m */,
+				3626C6201C564ED000C85F11 /* ApartmentRoomListViewController.h */,
+				3626C6211C564ED000C85F11 /* ApartmentRoomListViewController.m */,
 				36B3D9F41C43DAF3006D968C /* AddCleanViewController.h */,
 				36B3D9F51C43DAF3006D968C /* AddCleanViewController.m */,
 				36B3D9F71C43DC20006D968C /* CleanRecordViewController.h */,
@@ -508,6 +557,12 @@
 				36B3DA2C1C4D2F67006D968C /* ApartmentUser.m */,
 				36B3DA301C4D3C84006D968C /* ApartmentRoom.h */,
 				36B3DA311C4D3C84006D968C /* ApartmentRoom.m */,
+				3626C6351C56598D00C85F11 /* Gas.h */,
+				3626C6361C56598D00C85F11 /* Gas.m */,
+				3626C6381C56599500C85F11 /* Water.h */,
+				3626C6391C56599500C85F11 /* Water.m */,
+				3626C63B1C56599D00C85F11 /* Elec.h */,
+				3626C63C1C56599D00C85F11 /* Elec.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1033,6 +1088,7 @@
 				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
 				36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */,
 				36B3DA271C4D2645006D968C /* AddApartmentRoomViewController.m in Sources */,
+				3626C6341C56579000C85F11 /* AddApartmentGasViewController.m in Sources */,
 				FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */,
 				36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */,
 				36B3D9E91C426320006D968C /* OtherViewController.m in Sources */,
@@ -1040,11 +1096,13 @@
 				368F7E7E1C3FE93800010EC2 /* ApartmentManagerViewController.m in Sources */,
 				FEB5574F1C3E563700FCFA43 /* BaseNavController.m in Sources */,
 				FEB557461C3E553F00FCFA43 /* MBProgressHUD.m in Sources */,
+				3626C63A1C56599500C85F11 /* Water.m in Sources */,
 				36B3DA1D1C46717E006D968C /* AddApartmentFloorViewController.m in Sources */,
 				36B3DA1A1C466C13006D968C /* AddApartmentViewController.m in Sources */,
 				FEB557731C3E5B1A00FCFA43 /* EGOImageLoader.m in Sources */,
 				36B3DA241C467518006D968C /* ApartmentFloor.m in Sources */,
 				FEB5573F1C3E553F00FCFA43 /* CustomImageUtils.m in Sources */,
+				3626C6371C56598D00C85F11 /* Gas.m in Sources */,
 				FEB5578D1C3E625800FCFA43 /* Constants.m in Sources */,
 				FEB557721C3E5B1A00FCFA43 /* EGOImageLoadConnection.m in Sources */,
 				36B3D9CE1C423C50006D968C /* LeftSideViewController.m in Sources */,
@@ -1062,6 +1120,7 @@
 				3626C61C1C54EA1F00C85F11 /* CustomDatePickerView.m in Sources */,
 				FEB5575B1C3E596A00FCFA43 /* GlobalUtils.m in Sources */,
 				36B3D9EC1C426902006D968C /* AddDecorateViewController.m in Sources */,
+				3626C6251C56571E00C85F11 /* ApartmentElecListViewController.m in Sources */,
 				FEB5573E1C3E553F00FCFA43 /* CustomAlertView.m in Sources */,
 				36B3DA321C4D3C84006D968C /* ApartmentRoom.m in Sources */,
 				367A16341C3E8ED5001D711D /* CustomColorUtils.m in Sources */,
@@ -1074,18 +1133,25 @@
 				368F7E771C3FCEA700010EC2 /* RegisterViewController.m in Sources */,
 				FEB557801C3E5FAB00FCFA43 /* SvGifView.m in Sources */,
 				FEB557451C3E553F00FCFA43 /* CustomUrlUtils.m in Sources */,
+				3626C6311C56578500C85F11 /* ApartmentGasListViewController.m in Sources */,
+				3626C61F1C563F1E00C85F11 /* ApartmentListViewController.m in Sources */,
 				FEB557711C3E5B1A00FCFA43 /* EGOImageButton.m in Sources */,
 				FEB557891C3E60C600FCFA43 /* OBCConvertor.m in Sources */,
 				36B3D9B21C42266B006D968C /* ApartmentCollectionView.m in Sources */,
 				36B3DA111C452AAA006D968C /* FeedBackViewController.m in Sources */,
+				3626C6281C56572E00C85F11 /* AddApartmentElecViewController.m in Sources */,
 				FEB557841C3E60A700FCFA43 /* UIDevice+IdentifierAddition.m in Sources */,
 				FEB5576F1C3E5B1A00FCFA43 /* EGOCache.m in Sources */,
 				36B3DA2A1C4D2B21006D968C /* AddApartmentUserViewController.m in Sources */,
+				3626C6221C564ED000C85F11 /* ApartmentRoomListViewController.m in Sources */,
+				3626C63D1C56599D00C85F11 /* Elec.m in Sources */,
 				36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */,
 				36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */,
+				3626C62B1C56574600C85F11 /* ApartmentWaterListViewController.m in Sources */,
 				36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */,
 				FEB557751C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m in Sources */,
 				36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */,
+				3626C62E1C56577600C85F11 /* AddApartmentWaterViewController.m in Sources */,
 				FEBDF8321C4726C8009C9271 /* CustomPickerView.m in Sources */,
 				FEB556EE1C3E505600FCFA43 /* main.m in Sources */,
 			);

@@ -70,7 +70,6 @@
 */
 
 #pragma mark - UITableViewDelegate & dataSource
-#pragma mark - UITableViewDelegate & dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

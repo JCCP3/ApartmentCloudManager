@@ -9,8 +9,10 @@
 #import "AddDecorateViewController.h"
 #import "NormalInputTextFieldCell.h"
 #import "DateFormatUtils.h"
+#import "ApartmentListViewController.h"
+#import "ApartmentRoomListViewController.h"
 
-@interface AddDecorateViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface AddDecorateViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, ApartmentListViewControllerDelegate, ApartmentRoomListDelegate>
 {
     UITableView *addDecorateTableView;
     NSArray *aryTitleData;
@@ -18,6 +20,10 @@
     
     UIDatePicker *datePicker;
     BOOL datePickerShowed;
+    
+    NSMutableArray *apartmentRoomArray;
+    Apartment *selectedApartment;
+    ApartmentRoom *selectedApartmentRoom;
 }
 
 @end
@@ -33,12 +39,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    apartmentRoomArray = [[NSMutableArray alloc] init];
+    
     if (self.isAddDecorate) {
-        aryTitleData = @[@"公寓名称", @"装修楼层", @"装修房间", @"装修日期"];
-        aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的装修楼层", @"请选择您要装修的房间名称", @"请选择您装修的开始日期"];
+        aryTitleData = @[@"公寓名称", @"装修房间", @"装修日期"];
+        aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您要装修的房间名称", @"请选择您装修的开始日期"];
     } else {
-        aryTitleData = @[@"公寓名称", @"维修楼层", @"维修房间", @"维修日期"];
-        aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的维修楼层", @"请选择您要维修的房间名称", @"请选择您维修的开始日期"];
+        aryTitleData = @[@"公寓名称", @"维修房间", @"维修日期"];
+        aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您要维修的房间名称", @"请选择您维修的开始日期"];
     }
     
     NSString *title = self.isAddDecorate ? @"添加装修事件" : @"添加维修事件";
@@ -58,7 +66,6 @@
     [addDecorateTableView addGestureRecognizer:tap];
 }
 
-
 - (void)createTableView
 {
     addDecorateTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
@@ -74,7 +81,7 @@
     int i = 0 ;
     while (i < 1) {
         
-        int maxNum = 4;
+        int maxNum = 3;
         
         for (int j = 0 ; j < maxNum ; j++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
@@ -94,7 +101,6 @@
     }
     
     [self hideDatePickerView];
-    
 }
 
 
@@ -123,14 +129,21 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    if (indexPath.row == 2) {
-        cell.isTextFiledEnable = YES;
-    } else {
-        cell.isTextFiledEnable = NO;
-    }
+    cell.isTextFiledEnable = NO;
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
+
+    NSString *descText;
+    if (indexPath.row == 0) {
+        descText = selectedApartment.apartmentName;
+    } else if (indexPath.row == 1) {
+        descText = selectedApartmentRoom.homeName;
+    } else {
+        descText = @"";
+    }
+    
+    cell.descTextField.text = descText;
     
     [cell loadAddDecorateCellWithIndexPath:indexPath];
     
@@ -146,7 +159,24 @@
 {
     [self onClickResign];
     
-    if (indexPath.row == 3) {
+    if (indexPath.row == 0) {
+        //选择公寓
+        ApartmentListViewController *view = [[ApartmentListViewController alloc] init];
+        view.delegate = self;
+        [self.navigationController pushViewController:view animated:YES];
+        
+    } else if (indexPath.row == 1) {
+        
+        if (selectedApartment && [apartmentRoomArray count] > 0) {
+            ApartmentRoomListViewController *viewController = [[ApartmentRoomListViewController alloc] init];
+            viewController.delegate = self;
+            viewController.aryApartmentRoom = apartmentRoomArray;
+            [self.navigationController pushViewController:viewController animated:YES];
+        } else {
+            //不存在
+        }
+        
+    } else if (indexPath.row == 2) {
         [self showDatePickerView];
     }
 }
@@ -174,7 +204,7 @@
 {
     NSString *dateString = [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:picker.date];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
     [self sendMsgToCellTextFieldWithIndexPath:indexPath dateString:dateString];
 }
 
@@ -219,6 +249,22 @@
     }
     
     return YES;
+}
+
+#pragma mark - ApartmentListViewControllerDelegate
+- (void)ALVCD_passApartment:(Apartment *)apartment withRoomArray:(NSMutableArray *)aryRoom
+{
+    selectedApartment = apartment;
+    apartmentRoomArray = aryRoom;
+
+    [addDecorateTableView reloadData];
+}
+
+#pragma mark - ApartmentRoomListViewControllerDelegate
+- (void)ARLD_passApartmentRoom:(ApartmentRoom *)room
+{
+    selectedApartmentRoom = room;
+    [addDecorateTableView reloadData];
 }
 
 /*
