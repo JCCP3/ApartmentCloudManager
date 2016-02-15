@@ -9,6 +9,7 @@
 #import "ApartmentWaterListViewController.h"
 #import "NormalInputTextFieldCell.h"
 #import "AddApartmentWaterViewController.h"
+#import "MJRefreshDIYHeader.h"
 
 @interface ApartmentWaterListViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -62,7 +63,7 @@
         tmpUrl = [tmpUrl stringByAppendingString:[NSString stringWithFormat:@"?currPage=%ld&pageSize=10",(long)[aryData count]/10]];
     }
     
-    tmpUrl = [tmpUrl stringByAppendingString:@"&bind=N"];
+//    tmpUrl = [tmpUrl stringByAppendingString:@"&noBinding=N"];
     
     [CustomRequestUtils createNewRequest:tmpUrl
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {

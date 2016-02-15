@@ -27,6 +27,10 @@
     ApartmentCollectionView *myApartmentCollectionView;
     ApartmentCollectionView *payApartmentCollectionView;
     ApartmentCollectionView *expiredApartmentCollectionView;
+    
+    BOOL myApartmentRequestFinish;
+    BOOL payApartmentRequestFinish;
+    BOOL expiredApartmentRequestFinish;
 }
 
 @end
@@ -36,7 +40,7 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [CustomColorUtils colorWithHexString:@"#f7f7f7"];
 }
 
 - (void)viewDidLoad {
@@ -46,7 +50,7 @@
     [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
     [self adaptSecondRightItemWithTitle:@"添加公寓"];
     
-    [self createSecondNavView];
+    [self createSecondNavView]; //创建二级菜单
     
     [self setUpCollectionViews];
 }
@@ -58,35 +62,36 @@
 
 - (void)setUpCollectionViews
 {
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45)];
-    scrollView.delegate = self;
-    [self.view addSubview:scrollView];
+    showMyApartmentScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64 + 45, MainScreenWidth, MainScreenHeight - 64 - 45)];
+    showMyApartmentScrollView.delegate = self;
+    showMyApartmentScrollView.showsHorizontalScrollIndicator = NO;
+    showMyApartmentScrollView.showsVerticalScrollIndicator = NO;
+    [self.view addSubview:showMyApartmentScrollView];
     
     if (!myApartmentCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         myApartmentCollectionView.apartmentCollectionViewDelegate = self;
         [myApartmentCollectionView loadApartmentCollectionViewData];
-        [scrollView addSubview:myApartmentCollectionView];
+        [showMyApartmentScrollView addSubview:myApartmentCollectionView];
     }
     
     if (!payApartmentCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         payApartmentCollectionView.apartmentCollectionViewDelegate = self;
-        
-        [scrollView addSubview:payApartmentCollectionView];
+        [showMyApartmentScrollView addSubview:payApartmentCollectionView];
     }
     
     if (!expiredApartmentCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth * 2, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         expiredApartmentCollectionView.apartmentCollectionViewDelegate = self;
-        [scrollView addSubview:expiredApartmentCollectionView];
+        [showMyApartmentScrollView addSubview:expiredApartmentCollectionView];
     }
     
-    scrollView.pagingEnabled = YES;
-    [scrollView setContentSize:CGSizeMake(MainScreenWidth * 4, MainScreenHeight - 64 - 45)];
+    showMyApartmentScrollView.pagingEnabled = YES;
+    [showMyApartmentScrollView setContentSize:CGSizeMake(MainScreenWidth * 4, MainScreenHeight - 64 - 45)];
 }
 
 - (void)createSecondNavView
@@ -123,18 +128,6 @@
         currentSelectedBtnTag = btn.tag;
     }
     
-    [SECOND_NAV_ARR enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        UIButton *navBtn = (UIButton *)[secondNavView viewWithTag:[self getConvertedTag:idx]];
-        UILabel *navLabel = (UILabel *)[navBtn viewWithTag:99];
-        if (navBtn.tag == currentSelectedBtnTag) {
-            navLabel.textColor = AppThemeColor;
-            navBtn.selected = YES;
-        } else {
-            navLabel.textColor = [CustomColorUtils colorWithHexString:@"#888888"];
-            navBtn.selected = NO;
-        }
-    }];
-    
     [showMyApartmentScrollView scrollRectToVisible:CGRectMake((currentSelectedBtnTag - 100) * MainScreenWidth, CGRectGetMinY(showMyApartmentScrollView.frame), MainScreenWidth, CGRectGetHeight(showMyApartmentScrollView.bounds)) animated:NO];
 }
 
@@ -143,16 +136,66 @@
     return originTag + 100;
 }
 
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - RequestAction
+- (void)requestMyApartmentInfo
+{
+    if (myApartmentCollectionView) {
+        [myApartmentCollectionView loadApartmentCollectionViewData];
+    }
+}
+
+- (void)requestPayApartmentInfo
+{
+    if (payApartmentCollectionView) {
+        [payApartmentCollectionView loadApartmentCollectionViewData];
+    }
+}
+
+- (void)requestExpiredApartmentInfo
+{
+    if (expiredApartmentCollectionView) {
+        [expiredApartmentCollectionView loadApartmentCollectionViewData];
+    }
+}
+
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    
+    if (scrollView.contentOffset.x < 0 || scrollView.contentOffset.x > MainScreenWidth * 4) {
+        scrollView.scrollEnabled = NO;
+        return;
+    } else {
+        int currentPage = scrollView.contentOffset.x / MainScreenWidth;
+        
+        currentSelectedBtnTag = [self getConvertedTag:currentPage];
+        
+        if (currentPage == 0) {
+            [self requestMyApartmentInfo];
+        } else if (currentPage == 1) {
+            [self requestPayApartmentInfo];
+        } else if (currentPage == 2) {
+            [self requestExpiredApartmentInfo];
+        } else {
+            //入住房间
+        }
+        
+        [SECOND_NAV_ARR enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIButton *navBtn = (UIButton *)[secondNavView viewWithTag:[self getConvertedTag:idx]];
+            UILabel *navLabel = (UILabel *)[navBtn viewWithTag:99];
+            if (navBtn.tag == currentSelectedBtnTag) {
+                navLabel.textColor = AppThemeColor;
+                navBtn.selected = YES;
+            } else {
+                navLabel.textColor = [CustomColorUtils colorWithHexString:@"#888888"];
+                navBtn.selected = NO;
+            }
+        }];
+    }
 }
 
 #pragma mark - BaseAction

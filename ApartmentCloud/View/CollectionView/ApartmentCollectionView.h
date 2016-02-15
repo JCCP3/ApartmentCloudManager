@@ -10,11 +10,20 @@
 #import "Apartment.h"
 #import "ApartmentRoom.h"
 
+typedef enum
+{
+    MyApartmentCollectionViewTag = 1,
+    PayApartmentCollectionViewTag = 2,
+    ExpiredApartmentCollectionViewTag = 3
+    
+}ApartmentCollectionViewTag;
+
 @protocol ApartmentCollectionViewDelegate <NSObject>
 
 @optional
 - (void)ACVD_addRoom:(Apartment *)apartment;
 - (void)ACVD_goToRoom:(ApartmentRoom *)room;
+- (void)ACVD_requestFinishWithTag:(ApartmentCollectionViewTag)tag;
 
 @end
 

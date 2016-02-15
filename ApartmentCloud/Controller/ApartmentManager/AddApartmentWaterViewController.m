@@ -147,7 +147,7 @@
     [CustomRequestUtils createNewPostRequest:@"/device/waterside/add.json" params:paramDic success:^(id responseObject) {
         NSDictionary *jsonDic = responseObject;
         
-        if (jsonDic) {
+        if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
             [self.navigationController popViewControllerAnimated:YES];
         }
         

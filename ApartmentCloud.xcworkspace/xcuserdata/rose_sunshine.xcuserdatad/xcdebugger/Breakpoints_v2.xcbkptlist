@@ -9,86 +9,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentRoomViewController.m"
-            timestampString = "475503732.925417"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
-            landmarkName = "-onClickSecondRightItem"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentWaterViewController.m"
-            timestampString = "475505882.698972"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
-            landmarkName = "-onClickSecondRightItem"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentWaterViewController.m"
-            timestampString = "475505887.461347"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
-            landmarkName = "-onClickSecondRightItem"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[AddApartmentWaterViewController onClickSecondRightItem]"
-                  moduleName = "ApartmentCloud"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentWaterViewController.m"
-                  timestampString = "477228344.165344"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147"
-                  offsetFromSymbolStart = "559">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__57-[AddApartmentWaterViewController onClickSecondRightItem]_block_invoke"
-                  moduleName = "ApartmentCloud"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentWaterViewController.m"
-                  timestampString = "477228344.165938"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "147"
-                  endingLineNumber = "147"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
             timestampString = "475507407.095546"
             startingColumnNumber = "9223372036854775807"
@@ -113,38 +33,6 @@
             endingLineNumber = "144"
             landmarkName = "-onClickSecondRightItem"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[AddApartmentGasViewController onClickSecondRightItem]"
-                  moduleName = "ApartmentCloud"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
-                  timestampString = "477228344.186582"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
-                  offsetFromSymbolStart = "537">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__55-[AddApartmentGasViewController onClickSecondRightItem]_block_invoke"
-                  moduleName = "ApartmentCloud"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
-                  timestampString = "477228344.186937"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

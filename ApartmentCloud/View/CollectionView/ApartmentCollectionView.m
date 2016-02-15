@@ -88,6 +88,10 @@
         }
         
         [self reloadData];
+        
+        if ([self.apartmentCollectionViewDelegate respondsToSelector:@selector(ACVD_requestFinishWithTag:)]) {
+            [self.apartmentCollectionViewDelegate ACVD_requestFinishWithTag:MyApartmentCollectionViewTag];
+        }
     }
 
 }

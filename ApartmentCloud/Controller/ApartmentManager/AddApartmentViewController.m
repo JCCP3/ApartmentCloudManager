@@ -283,27 +283,86 @@ typedef enum
 - (void)addApartmentToServer
 {
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
-    [paramDic setObject:addApartment.apartmentName forKey:@"apartmentName"];
-    [paramDic setObject:addApartment.category forKey:@"category"];
-    [paramDic setObject:addApartment.managerPhone forKey:@"managerPhone"];
-    [paramDic setObject:@"123" forKey:@"cityId"];
-    [paramDic setObject:addApartment.communityName forKey:@"communityName"];
-    [paramDic setObject:addApartment.roadName forKey:@"roadName"];
-    [paramDic setObject:addApartment.waterPrice forKey:@"waterPrice"];
-    [paramDic setObject:addApartment.electricityPrice forKey:@"electricityPrice"];
-    [paramDic setObject:addApartment.gasPrice forKey:@"gasPrice"];
+    if (![CustomStringUtils isBlankString:addApartment.apartmentName]) {
+        [paramDic setObject:addApartment.apartmentName forKey:@"apartmentName"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入公寓名称"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:addApartment.category]) {
+        [paramDic setObject:addApartment.category forKey:@"category"];
+    } else {
+        [self showAlertViewWithMsg:@"请选择公寓类型"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:addApartment.managerPhone]) {
+        [paramDic setObject:addApartment.managerPhone forKey:@"managerPhone"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入管理电话"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:@"123"]) {
+        [paramDic setObject:@"123" forKey:@"cityId"];
+    } else {
+        [self showAlertViewWithMsg:@"请选择公寓区域"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:addApartment.communityName]) {
+        [paramDic setObject:addApartment.communityName forKey:@"communityName"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入道路名称"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:addApartment.roadName]) {
+        [paramDic setObject:addApartment.roadName forKey:@"roadName"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入小区名称"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:addApartment.waterPrice]) {
+        [paramDic setObject:addApartment.waterPrice forKey:@"waterPrice"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入水的单价"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:addApartment.electricityPrice]) {
+        [paramDic setObject:addApartment.electricityPrice forKey:@"electricityPrice"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入电的单价"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:addApartment.gasPrice]) {
+        [paramDic setObject:addApartment.gasPrice forKey:@"gasPrice"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入气的单价"];
+        return;
+    }
+
     [CustomRequestUtils createNewPostRequest:@"/apartment/add.json" params:paramDic success:^(id responseObject) {
         NSDictionary *jsonDic = responseObject;
-        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-            if ([self.delegate respondsToSelector:@selector(AAVCD_passApartment:)]) {
-                [self.delegate AAVCD_passApartment:addApartment];
+        if ([[jsonDic objectForKey:@"failCode"] intValue] == 502) {
+            //未登录
+
+        } else {
+            if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                if ([self.delegate respondsToSelector:@selector(AAVCD_passApartment:)]) {
+                    [self.delegate AAVCD_passApartment:addApartment];
+                }
+                //添加公寓成功
+                [self.navigationController popViewControllerAnimated:YES];
             }
-            //添加公寓成功
-            [self.navigationController popViewControllerAnimated:YES];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
+}
+
+- (void)showAlertViewWithMsg:(NSString *)msg
+{
+    if (![CustomStringUtils isBlankString:msg]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+        [alertView show];
+    }
 }
 
 #pragma mark - UIGestureRecognize delegate

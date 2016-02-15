@@ -424,16 +424,61 @@ typedef enum{
 {
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
     Apartment *currentApartment = apartmentRoom.roomAtApartment;
-    [paramDic setObject:currentApartment.apartmentId forKey:@"apartmentId"];
-    [paramDic setObject:apartmentRoom.homeName forKey:@"homeName"];
-    [paramDic setObject:apartmentRoom.status forKey:@"status"];
-    [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)apartmentRoom.monthlyRent] forKey:@"monthlyRent"];
-    [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)apartmentRoom.deposit] forKey:@"deposit"];
-    [paramDic setObject:apartmentRoom.expDate forKey:@"expDate"];
-    [paramDic setObject:apartmentRoom.deliverCategory forKey:@"deliverCategory"];
-    [paramDic setObject:[NSString stringWithFormat:@"%ld", apartmentRoom.tanantNumber] forKey:@"tanantNumber"];
-    [paramDic setObject:apartmentRoom.rentCategory forKey:@"rentCategory"];
-    [paramDic setObject:apartmentRoom.mark forKey:@"mark"];
+    if (![CustomStringUtils isBlankString:currentApartment.apartmentId]) {
+        [paramDic setObject:currentApartment.apartmentId forKey:@"apartmentId"];
+    }
+    if (![CustomStringUtils isBlankString:apartmentRoom.homeName]) {
+        [paramDic setObject:apartmentRoom.homeName forKey:@"homeName"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入房间名称"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:apartmentRoom.status]) {
+        [paramDic setObject:apartmentRoom.status forKey:@"status"];
+    } else {
+        [self showAlertViewWithMsg:@"请选择租住状态"];
+        return;
+    }
+    if (apartmentRoom.monthlyRent > 0) {
+        [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)apartmentRoom.monthlyRent] forKey:@"monthlyRent"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入月租金"];
+        return;
+    }
+    if (apartmentRoom.deposit > 0) {
+        [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)apartmentRoom.deposit] forKey:@"deposit"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入押金"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:apartmentRoom.expDate]) {
+        [paramDic setObject:apartmentRoom.expDate forKey:@"expDate"];
+    } else {
+        [self showAlertViewWithMsg:@"请选择租蘋时间"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:apartmentRoom.deliverCategory]) {
+        [paramDic setObject:apartmentRoom.deliverCategory forKey:@"deliverCategory"];
+    } else {
+        [self showAlertViewWithMsg:@"请选择交租方式"];
+        return;
+    }
+    if (apartmentRoom.tanantNumber > 0) {
+        [paramDic setObject:[NSString stringWithFormat:@"%ld", apartmentRoom.tanantNumber] forKey:@"tanantNumber"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入居住人数"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:apartmentRoom.rentCategory]) {
+        [paramDic setObject:apartmentRoom.rentCategory forKey:@"rentCategory"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入出租类型"];
+        return;
+    }
+    if (![CustomStringUtils isBlankString:apartmentRoom.mark]) {
+        [paramDic setObject:apartmentRoom.mark forKey:@"mark"];
+        return;
+    }
     
     NSString *tmpUserIds = @"";
     for (ApartmentUser *user in apartmentRoom.aryApartmentUser) {
@@ -444,18 +489,27 @@ typedef enum{
         tmpUserIds = [tmpUserIds stringByAppendingString:tmpString];
     }
     
-    [paramDic setObject:tmpUserIds forKey:@"userIds"];
-    
+    if (![CustomStringUtils isBlankString:tmpUserIds]) {
+        [paramDic setObject:tmpUserIds forKey:@"userIds"];
+    }
+
     [CustomRequestUtils createNewRequest:@"/apartment/home/add.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
         if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-            
             
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
 
+}
+
+- (void)showAlertViewWithMsg:(NSString *)msg
+{
+    if (![CustomStringUtils isBlankString:msg]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:msg delegate:nil cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+        [alertView show];
+    }
 }
 
 #pragma mark - NormalInputTextFieldCellDelegate
@@ -468,7 +522,7 @@ typedef enum{
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == 111) {
-        if (buttonIndex < [aryStatusItem count]) {
+        if (buttonIndex < [actionSheet numberOfButtons]) {
             apartmentRoom.status = [aryStatusItem objectAtIndex:buttonIndex];
             [addRoomTableView reloadData];
         }
@@ -478,8 +532,8 @@ typedef enum{
              [addRoomTableView reloadData];
          }
     } else if (actionSheet.tag == 113) {
-        if (buttonIndex < [aryRentItem count]) {
-            apartmentRoom.rentCategory = [aryRentItem objectAtIndex:buttonIndex];
+        if (buttonIndex < [actionSheet numberOfButtons]) {
+            apartmentRoom.rentCategory = [actionSheet buttonTitleAtIndex:buttonIndex];
             [addRoomTableView reloadData];
         }
     }
