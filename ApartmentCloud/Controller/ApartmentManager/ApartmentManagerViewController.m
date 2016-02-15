@@ -85,6 +85,7 @@
         [scrollView addSubview:expiredApartmentCollectionView];
     }
     
+    scrollView.pagingEnabled = YES;
     [scrollView setContentSize:CGSizeMake(MainScreenWidth * 4, MainScreenHeight - 64 - 45)];
 }
 
@@ -151,6 +152,7 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
 }
 
 #pragma mark - BaseAction
