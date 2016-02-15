@@ -8,6 +8,15 @@
 
 #import "BaseViewController.h"
 
+@protocol ApartmentElecListDelegate <NSObject>
+
+@optional
+- (void)AELD_passApartmentElecArray:(NSMutableArray *)elecArray;
+
+@end
+
 @interface ApartmentElecListViewController : BaseViewController
+
+@property (nonatomic, assign) id <ApartmentElecListDelegate> delegate;
 
 @end

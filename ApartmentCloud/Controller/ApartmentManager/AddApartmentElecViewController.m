@@ -143,4 +143,43 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)onClickSecondRightItem
+{
+    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:0 inSection:0 ]];
+    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+    
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:self.currentElec.mark forKey:@"mark"];
+    [paramDic setObject:self.currentElec.currentNumber forKey:@"currentNumber"];
+    [paramDic setObject:@"COMMON" forKey:@"category"];
+    
+    [CustomRequestUtils createNewPostRequest:@"/device/ammeter/add.json" params:paramDic success:^(id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        
+        if (jsonDic) {
+            
+        }
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+- (void)setWaterByAddWaterIndexPath:(NSIndexPath *)indexPath
+{
+    NormalInputTextFieldCell *cell = [addElecTableView cellForRowAtIndexPath:indexPath];
+    
+    UIView *tmpView = [cell.contentView viewWithTag:10086];
+    for (UIView *tmpSubView in tmpView.subviews) {
+        if ([tmpSubView isKindOfClass:[UITextField class]]) {
+            UITextField *textField = (UITextField *)tmpSubView;
+            if (indexPath.row == 0) {
+                self.currentElec.mark = textField.text;
+            } else {
+                self.currentElec.currentNumber = textField.text;
+            }
+        }
+    }
+}
+
 @end

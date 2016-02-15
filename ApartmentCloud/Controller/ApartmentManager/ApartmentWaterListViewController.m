@@ -8,6 +8,7 @@
 
 #import "ApartmentWaterListViewController.h"
 #import "NormalInputTextFieldCell.h"
+#import "AddApartmentWaterViewController.h"
 
 @interface ApartmentWaterListViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -25,12 +26,18 @@
     
     aryData = [[NSMutableArray alloc] init];
     
-    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"电表列表" segmentArray:nil];
+    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"水表列表" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    [self adaptSecondRightItemWithTitle:@"添加"];
     
     [self createWaterListTableView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
-    [self loadWaterList];
+    [self loadWaterList:YES];
 }
 
 - (void)createWaterListTableView
@@ -41,13 +48,28 @@
     waterListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     waterListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:waterListTableView];
+    
+    
 }
 
-- (void)loadWaterList
+- (void)loadWaterList:(BOOL)refresh
 {
-    [CustomRequestUtils createNewRequest:@"/tenants/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *tmpUrl = @"/device/waterside/list.json";
+    
+    if (refresh) {
+        tmpUrl = [tmpUrl stringByAppendingString:@"?currPage=0&pageSize=10"];
+    } else {
+        tmpUrl = [tmpUrl stringByAppendingString:[NSString stringWithFormat:@"?currPage=%ld&pageSize=10",(long)[aryData count]/10]];
+    }
+    
+    tmpUrl = [tmpUrl stringByAppendingString:@"&bind=N"];
+    
+    [CustomRequestUtils createNewRequest:tmpUrl
+                                 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
         NSDictionary *jsonDic = responseObject;
         [self parseJsonDic:jsonDic];
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
@@ -60,6 +82,7 @@
         NSMutableArray *tmpArray = [dic objectForKey:@"datas"];
         for (NSDictionary *tmpDic in tmpArray) {
         }
+        
         
         aryData = currentTmpArray;
         [waterListTableView reloadData];
@@ -143,5 +166,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)onClickSecondRightItem
+{
+    AddApartmentWaterViewController *view = [[AddApartmentWaterViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
+}
 
 @end

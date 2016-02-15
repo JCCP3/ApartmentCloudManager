@@ -8,6 +8,15 @@
 
 #import "BaseViewController.h"
 
+@protocol ApartmentWaterListDelegate <NSObject>
+
+@optional
+- (void)AWLD_passApartmentWaterArray:(NSMutableArray *)aryApartmentWater;
+
+@end
+
 @interface ApartmentWaterListViewController : BaseViewController
+
+@property (nonatomic, assign) id<ApartmentWaterListDelegate> delegate;
 
 @end

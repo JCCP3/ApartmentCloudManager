@@ -10,6 +10,11 @@
 
 @interface Elec : NSObject
 
+@property (nonatomic, strong) NSString *waterId;
+@property (nonatomic, strong) NSString *mark;
+@property (nonatomic, strong) NSString *category;
+@property (nonatomic, strong) NSString *currentNumber;
+@property (nonatomic, strong) NSString *homeId;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 

@@ -13,6 +13,9 @@
 #import "NormalTextViewCell.h"
 #import "DateFormatUtils.h"
 #import "ApartmentUserListViewController.h"
+#import "ApartmentGasListViewController.h"
+#import "ApartmentWaterListViewController.h"
+#import "ApartmentElecListViewController.h"
 
 typedef enum{
     
@@ -23,7 +26,7 @@ typedef enum{
 }ApartmentStatus;
 
 
-@interface AddApartmentRoomViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, ApartmentUserListDelegate, AddApartmentUserDelegate>
+@interface AddApartmentRoomViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIGestureRecognizerDelegate, UIActionSheetDelegate, ApartmentUserListDelegate, AddApartmentUserDelegate, ApartmentElecListDelegate, ApartmentGasListDelegate, ApartmentWaterListDelegate>
 {
     UITableView *addRoomTableView;
     
@@ -84,7 +87,7 @@ typedef enum{
     addRoomTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64) style:UITableViewStyleGrouped];
     addRoomTableView.delegate = self;
     addRoomTableView.dataSource = self;
-    addRoomTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    addRoomTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 20)];
     addRoomTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:addRoomTableView];
 }
@@ -338,7 +341,7 @@ typedef enum{
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            ApartmentWaterListViewController *view = [[ApartmentWaterListViewController alloc] init];
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }];
@@ -353,7 +356,7 @@ typedef enum{
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            ApartmentElecListViewController *view = [[ApartmentElecListViewController alloc] init];
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }];
@@ -368,7 +371,7 @@ typedef enum{
         btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
         [btn setTitleColor:AppThemeColor forState:UIControlStateNormal];
         [[btn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-            AddApartmentUserViewController *view = [[AddApartmentUserViewController alloc] init];
+            ApartmentGasListViewController *view = [[ApartmentGasListViewController alloc] init];
             view.delegate = self;
             [self.navigationController pushViewController:view animated:YES];
         }];

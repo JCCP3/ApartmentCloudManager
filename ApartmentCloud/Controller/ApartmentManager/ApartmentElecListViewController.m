@@ -46,7 +46,7 @@
 
 - (void)loadElecList
 {
-    [CustomRequestUtils createNewRequest:@"/tenants/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CustomRequestUtils createNewRequest:@"/device/ammeter/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
         [self parseJsonDic:jsonDic];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

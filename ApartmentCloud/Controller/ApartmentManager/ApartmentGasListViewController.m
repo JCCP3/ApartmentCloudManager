@@ -8,6 +8,7 @@
 
 #import "ApartmentGasListViewController.h"
 #import "NormalInputTextFieldCell.h"
+#import "AddApartmentGasViewController.h"
 
 @interface ApartmentGasListViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -27,6 +28,7 @@
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"气表列表" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    [self adaptSecondRightItemWithTitle:@"添加"];
     
     [self createGasListTableView];
     
@@ -45,7 +47,7 @@
 
 - (void)loadGasList
 {
-    [CustomRequestUtils createNewRequest:@"/tenants/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [CustomRequestUtils createNewRequest:@"/device/gasmeter/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
         [self parseJsonDic:jsonDic];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -142,5 +144,10 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)onClickSecondRightItem
+{
+    AddApartmentGasViewController *view = [[AddApartmentGasViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
+}
 
 @end

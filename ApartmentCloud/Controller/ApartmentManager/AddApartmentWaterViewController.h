@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "Water.h"
 
 @interface AddApartmentWaterViewController : BaseViewController
+
+@property (nonatomic, strong) Water *currentWater;
 
 @end

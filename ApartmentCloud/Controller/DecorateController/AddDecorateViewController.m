@@ -24,6 +24,8 @@
     NSMutableArray *apartmentRoomArray;
     Apartment *selectedApartment;
     ApartmentRoom *selectedApartmentRoom;
+    
+    NSString *currentDateStr;
 }
 
 @end
@@ -52,6 +54,7 @@
     NSString *title = self.isAddDecorate ? @"添加装修事件" : @"添加维修事件";
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:title segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    [self adaptSecondRightItemWithTitle:@"添加"];
     
     [self createTableView];
     
@@ -187,6 +190,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)onClickSecondRightItem
+{
+    
+}
+
 #pragma mark - datePickerViewFunction
 - (void)initDatePickerView
 {
@@ -203,7 +211,7 @@
 - (void)onClickChangePickerViewValue:(UIDatePicker *)picker
 {
     NSString *dateString = [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:picker.date];
-    
+    currentDateStr = dateString;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
     [self sendMsgToCellTextFieldWithIndexPath:indexPath dateString:dateString];
 }

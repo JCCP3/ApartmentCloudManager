@@ -7,7 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "Gas.h"
 
 @interface AddApartmentGasViewController : BaseViewController
+
+@property (nonatomic, strong) Gas *currentGas;
 
 @end
