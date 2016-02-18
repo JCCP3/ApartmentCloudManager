@@ -11,17 +11,17 @@
 @interface Apartment : NSObject
 
 @property (nonatomic, strong) NSString *apartmentId;
-@property (nonatomic, strong) NSString *title;
-@property (nonatomic, strong) NSString *phone;
-@property (nonatomic, strong) NSString *type;
-@property (nonatomic, strong) NSString *region;
+@property (nonatomic, strong) NSString *apartmentName;
+@property (nonatomic, strong) NSString *managerPhone;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSString *category;
+@property (nonatomic, strong) NSString *cityId;
 @property (nonatomic, strong) NSString *roadName;
-@property (nonatomic, strong) NSString *parcelTitle;
-@property (nonatomic, strong) NSString *waterPay;
-@property (nonatomic, strong) NSString *elecPay;
-@property (nonatomic, strong) NSString *gasPay;
-
-
+@property (nonatomic, strong) NSString *communityName; //小区名称
+@property (nonatomic, strong) NSString *waterPrice;
+@property (nonatomic, strong) NSString *electricityPrice;
+@property (nonatomic, strong) NSString *gasPrice;
+@property (nonatomic, strong) NSArray *roomArray;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 

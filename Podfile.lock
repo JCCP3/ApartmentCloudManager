@@ -20,11 +20,9 @@ PODS:
   - AFNetworking/UIKit (2.6.3):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - FMDB (2.5):
-    - FMDB/standard (= 2.5)
-  - FMDB/common (2.5)
-  - FMDB/standard (2.5):
-    - FMDB/common
+  - FMDB (2.6):
+    - FMDB/standard (= 2.6)
+  - FMDB/standard (2.6)
   - MJRefresh (3.1.0)
   - pop (1.0.8)
   - PPHelpMe (1.0.2)
@@ -50,7 +48,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
-  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  FMDB: c1968bab3ab0aed38f66cb778ae1e7fa9a652b6e
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
   PPHelpMe: 243c40d2fad33ebdcc6b158c0db54893e0cc2d14

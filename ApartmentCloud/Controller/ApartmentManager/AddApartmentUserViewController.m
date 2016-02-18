@@ -9,7 +9,7 @@
 #import "AddApartmentUserViewController.h"
 #import "NormalInputTextFieldCell.h"
 
-@interface AddApartmentUserViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AddApartmentUserViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate, UIActionSheetDelegate>
 {
     UITableView *addApartmentUserTableView;
     
@@ -33,9 +33,13 @@
     aryTitleData = @[@"住户姓名", @"住户性别", @"手机号码", @"身份证号"];
     aryPlaceHolderData = @[@"请输入住户姓名", @"请选择住户性别", @"请输入手机号码", @"请输入身份证号"];
     
-    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"房间详情" segmentArray:nil];
+    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加住户" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     [self adaptSecondRightItemWithTitle:@"确认添加"];
+    
+    if (!self.currentApartmentUser) {
+        self.currentApartmentUser = [[ApartmentUser alloc] init];
+    }
     
     [self createTableView];
 }
@@ -66,7 +70,6 @@
 */
 
 #pragma mark - UITableViewDelegate & dataSource
-#pragma mark - UITableViewDelegate & dataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -92,10 +95,14 @@
         cell.isTextFiledEnable = YES;
     }
     
+    cell.delegate = self;
+    cell.cellType = AddApartmentUserLogic;
+    cell.apartmentUser = self.currentApartmentUser;
+    
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
     
-    [cell loadNormalInputTextFieldCellData];
+    [cell loadAddUserCellWithIndexPath:indexPath];
     
     return cell;
 }
@@ -105,11 +112,99 @@
     return 50;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self onClickResign];
+    
+    if (indexPath.row == 1) {
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
+        actionSheet.tag = 111;
+        [actionSheet showInView:self.view];
+    }
+}
+
+- (void)onClickResign
+{
+    int i = 0 ;
+    while (i < 1) {
+        
+        int maxNum = 4;
+        
+        for (int j = 0 ; j < maxNum ; j++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+            NormalInputTextFieldCell *cell = (NormalInputTextFieldCell *)[addApartmentUserTableView cellForRowAtIndexPath:indexPath];
+            for (UIView *subView in cell.subviews) {
+                UIView *wrapperView = (UIView *)[subView viewWithTag:10086];
+                for (UIView *tmpSubView in wrapperView.subviews) {
+                    if ([tmpSubView isKindOfClass:[UITextField class]]) {
+                        UITextField *textField = (UITextField *)tmpSubView;
+                        [textField resignFirstResponder];
+                    }
+                }
+            }
+        }
+        
+        i ++;
+    }
+}
+
+
 #pragma mark - BaseAction
 - (void)onClickLeftItem
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)onClickSecondRightItem
+{
+    [self onClickResign];
+    
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    
+    NSString *requestUrl = @"";
+    if (self.currentApartmentUser.apartmentUserId) {
+        [paramDic setValue:self.currentApartmentUser.apartmentUserId forKey:@"id"];
+        requestUrl = @"/tenants/update.json";
+    } else {
+        requestUrl = @"/tenants/add.json";
+    }
+    [paramDic setObject:self.currentApartmentUser.name forKey:@"name"];
+    [paramDic setObject:self.currentApartmentUser.numberId forKey:@"numberId"];
+    [paramDic setObject:self.currentApartmentUser.phone
+                 forKey:@"phone"];
+    [paramDic setObject:self.currentApartmentUser.userSex forKey:@"sex"];
+    
+    [CustomRequestUtils createNewPostRequest:requestUrl params:paramDic success:^(id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+            //添加用户成功
+            if ([self.delegate respondsToSelector:@selector(AAUD_passApartmentUser:)]) {
+                [self.delegate AAUD_passApartmentUser:self.currentApartmentUser];
+            }
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+
+#pragma mark - NormalInputTextFieldCellDelegate
+- (void)NITFC_addApartmentUser:(ApartmentUser *)apartmentUser
+{
+    self.currentApartmentUser = apartmentUser;
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex < 2) {
+        NSString *sex = [actionSheet buttonTitleAtIndex:buttonIndex];
+        self.currentApartmentUser.userSex = sex;
+        
+        [addApartmentUserTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
 
 @end

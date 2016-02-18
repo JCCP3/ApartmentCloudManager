@@ -23,8 +23,8 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    if ([key isEqualToString:@""]) {
-        
+    if ([key isEqualToString:@"apartmentHomes"]) {
+        self.roomArray = value;
     }
 }
 

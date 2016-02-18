@@ -10,10 +10,14 @@
 
 @interface ApartmentUser : NSObject
 
-@property (nonatomic, strong) NSString *userName;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *userSex;
-@property (nonatomic, strong) NSString *userPhone;
-@property (nonatomic, strong) NSString *userCardId;
+@property (nonatomic, strong) NSString *phone;
+@property (nonatomic, strong) NSString *numberId;
+@property (nonatomic, strong) NSString *createTime;
+@property (nonatomic, strong) NSNumber *apartmentUserId;
+@property (nonatomic, strong) NSString *merchantId;
+@property (nonatomic, assign) BOOL isSelect;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 

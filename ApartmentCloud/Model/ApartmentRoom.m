@@ -14,17 +14,19 @@
 {
     self = [super init];
     if (self) {
+        self.aryApartmentUser = [[NSMutableArray alloc] init];
         if ([dic isKindOfClass:[NSDictionary class]]) {
             [self setValuesForKeysWithDictionary:dic];
         }
     }
-    
     return self;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
-    
+    if ([key isEqualToString:@"id"]) {
+        self.roomId = value;
+    }
 }
 
 @end

@@ -24,7 +24,17 @@
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
+    if ([key isEqualToString:@"sex"]) {
+        if ([value isEqualToString:@"M"]) {
+            self.userSex = @"男";
+        } else {
+            self.userSex = @"女";
+        }
+    }
     
+    if ([key isEqualToString:@"id"]) {
+        self.apartmentUserId = value;
+    }
 }
 
 @end

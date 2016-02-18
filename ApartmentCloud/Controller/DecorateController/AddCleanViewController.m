@@ -30,11 +30,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    aryTitleData = @[@"公寓名称", @"保洁楼层", @"保洁房间", @"保洁日期"];
-    aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您的保洁楼层", @"请选择您要保洁的房间名称", @"请选择您保洁日期"];
+    aryTitleData = @[@"公寓名称", @"保洁房间", @"保洁日期"];
+    aryPlaceHolderData = @[@"请选择您的公寓名称", @"请选择您要保洁的房间名称", @"请选择您保洁日期"];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加保洁事件" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    [self adaptSecondRightItemWithTitle:@"添加"];
     
     [self createTableView];
 
@@ -75,11 +76,7 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    if (indexPath.row == 2) {
-        cell.isTextFiledEnable = YES;
-    } else {
-        cell.isTextFiledEnable = NO;
-    }
+    cell.isTextFiledEnable = NO;
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
@@ -100,6 +97,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (void)onClickSecondRightItem
+{
+    
+}
 
 /*
 #pragma mark - Navigation
