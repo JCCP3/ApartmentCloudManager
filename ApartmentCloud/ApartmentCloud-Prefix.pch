@@ -61,6 +61,9 @@
 #define AppThemeColor [CustomColorUtils colorWithHexString:@"#fb5d6b"]
 #define APPDELEGATE (AppDelegate *)[UIApplication sharedApplication].delegate
 
+#define UserAccount @"UserAccount"
+#define UserPwd @"UserPwd"
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 

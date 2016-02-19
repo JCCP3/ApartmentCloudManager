@@ -9,6 +9,7 @@
 #import "ApartmentGasListViewController.h"
 #import "NormalInputTextFieldCell.h"
 #import "AddApartmentGasViewController.h"
+#import "LeftSideViewController.h"
 
 @interface ApartmentGasListViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -27,9 +28,14 @@
     aryData = [[NSMutableArray alloc] init];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"气表列表" segmentArray:nil];
-    [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
-    [self adaptSecondRightItemWithTitle:@"添加"];
     
+    if (self.fromLeftSide) {
+        [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+    } else {
+        [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    }
+    
+    [self adaptSecondRightItemWithTitle:@"添加"];
     [self createGasListTableView];
     
     [self loadGasList];
@@ -141,7 +147,12 @@
 #pragma mark - BaseAction
 - (void)onClickLeftItem
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.fromLeftSide) {
+        LeftSideViewController *leftSideViewController = [[LeftSideViewController alloc] init];
+        [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)onClickSecondRightItem

@@ -17,6 +17,7 @@
 
 @interface ApartmentElecListViewController : BaseViewController
 
+@property (nonatomic, assign) BOOL fromLeftSide;
 @property (nonatomic, assign) id <ApartmentElecListDelegate> delegate;
 
 @end

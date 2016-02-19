@@ -8,6 +8,7 @@
 
 #import "ApartmentElecListViewController.h"
 #import "NormalInputTextFieldCell.h"
+#import "LeftSideViewController.h"
 
 @interface ApartmentElecListViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -26,8 +27,13 @@
     aryData = [[NSMutableArray alloc] init];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"电表列表" segmentArray:nil];
-    [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     
+    if (self.fromLeftSide) {
+        [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+    } else {
+        [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    }
+    [self adaptSecondRightItemWithTitle:@"添加"];
     [self createElecListTableView];
     
     [self loadElecList];
@@ -130,7 +136,12 @@
 #pragma mark - BaseAction
 - (void)onClickLeftItem
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.fromLeftSide) {
+        LeftSideViewController *leftSideViewController = [[LeftSideViewController alloc] init];
+        [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

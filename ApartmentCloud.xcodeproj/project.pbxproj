@@ -21,6 +21,12 @@
 		3626C63A1C56599500C85F11 /* Water.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6391C56599500C85F11 /* Water.m */; };
 		3626C63D1C56599D00C85F11 /* Elec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C63C1C56599D00C85F11 /* Elec.m */; };
 		36719A7C1C77607400CB3573 /* ApartmentCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A7B1C77607400CB3573 /* ApartmentCountCell.m */; };
+		36719A821C777E2100CB3573 /* AppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A811C777E2100CB3573 /* AppWebViewController.m */; };
+		36719A851C7780E200CB3573 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A841C7780E200CB3573 /* SettingViewController.m */; };
+		36719A881C77827800CB3573 /* ExpendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A871C77827800CB3573 /* ExpendViewController.m */; };
+		36719A8B1C77832100CB3573 /* ExpendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A8A1C77832100CB3573 /* ExpendCell.m */; };
+		36719A8E1C77845F00CB3573 /* ExpendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A8D1C77845F00CB3573 /* ExpendInfo.m */; };
+		36719A911C77864000CB3573 /* ExpendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A901C77864000CB3573 /* ExpendDetailViewController.m */; };
 		367A16291C3E8644001D711D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16281C3E8644001D711D /* LoginViewController.m */; };
 		367A162F1C3E8A9E001D711D /* loginAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162C1C3E8A9E001D711D /* loginAccount@2x.png */; };
 		367A16311C3E8A9E001D711D /* loginPwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162E1C3E8A9E001D711D /* loginPwd@2x.png */; };
@@ -158,6 +164,18 @@
 		3626C63C1C56599D00C85F11 /* Elec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Elec.m; sourceTree = "<group>"; };
 		36719A7A1C77607400CB3573 /* ApartmentCountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentCountCell.h; sourceTree = "<group>"; };
 		36719A7B1C77607400CB3573 /* ApartmentCountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentCountCell.m; sourceTree = "<group>"; };
+		36719A801C777E2100CB3573 /* AppWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppWebViewController.h; sourceTree = "<group>"; };
+		36719A811C777E2100CB3573 /* AppWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppWebViewController.m; sourceTree = "<group>"; };
+		36719A831C7780E200CB3573 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		36719A841C7780E200CB3573 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
+		36719A861C77827800CB3573 /* ExpendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendViewController.h; sourceTree = "<group>"; };
+		36719A871C77827800CB3573 /* ExpendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendViewController.m; sourceTree = "<group>"; };
+		36719A891C77832100CB3573 /* ExpendCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendCell.h; sourceTree = "<group>"; };
+		36719A8A1C77832100CB3573 /* ExpendCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendCell.m; sourceTree = "<group>"; };
+		36719A8C1C77845F00CB3573 /* ExpendInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendInfo.h; sourceTree = "<group>"; };
+		36719A8D1C77845F00CB3573 /* ExpendInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendInfo.m; sourceTree = "<group>"; };
+		36719A8F1C77864000CB3573 /* ExpendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendDetailViewController.h; sourceTree = "<group>"; };
+		36719A901C77864000CB3573 /* ExpendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendDetailViewController.m; sourceTree = "<group>"; };
 		367A16271C3E8644001D711D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		367A16281C3E8644001D711D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		367A162C1C3E8A9E001D711D /* loginAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginAccount@2x.png"; sourceTree = "<group>"; };
@@ -506,6 +524,10 @@
 				36B3D9F81C43DC20006D968C /* CleanRecordViewController.m */,
 				36B3D9FA1C43DD8C006D968C /* DecorateFollowViewController.h */,
 				36B3D9FB1C43DD8C006D968C /* DecorateFollowViewController.m */,
+				36719A861C77827800CB3573 /* ExpendViewController.h */,
+				36719A871C77827800CB3573 /* ExpendViewController.m */,
+				36719A8F1C77864000CB3573 /* ExpendDetailViewController.h */,
+				36719A901C77864000CB3573 /* ExpendDetailViewController.m */,
 			);
 			path = DecorateController;
 			sourceTree = "<group>";
@@ -536,6 +558,10 @@
 				36B3DA101C452AAA006D968C /* FeedBackViewController.m */,
 				36B3DA121C452DBA006D968C /* TenantViewController.h */,
 				36B3DA131C452DBA006D968C /* TenantViewController.m */,
+				36719A801C777E2100CB3573 /* AppWebViewController.h */,
+				36719A811C777E2100CB3573 /* AppWebViewController.m */,
+				36719A831C7780E200CB3573 /* SettingViewController.h */,
+				36719A841C7780E200CB3573 /* SettingViewController.m */,
 			);
 			path = OtherController;
 			sourceTree = "<group>";
@@ -547,6 +573,8 @@
 				36B3D9EF1C429F61006D968C /* NormalInputTextFieldCell.m */,
 				36B3DA091C451E40006D968C /* NormalTextViewCell.h */,
 				36B3DA0A1C451E40006D968C /* NormalTextViewCell.m */,
+				36719A891C77832100CB3573 /* ExpendCell.h */,
+				36719A8A1C77832100CB3573 /* ExpendCell.m */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -568,6 +596,8 @@
 				3626C6391C56599500C85F11 /* Water.m */,
 				3626C63B1C56599D00C85F11 /* Elec.h */,
 				3626C63C1C56599D00C85F11 /* Elec.m */,
+				36719A8C1C77845F00CB3573 /* ExpendInfo.h */,
+				36719A8D1C77845F00CB3573 /* ExpendInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1086,14 +1116,17 @@
 			files = (
 				FEB557421C3E553F00FCFA43 /* CustomSizeUtils.m in Sources */,
 				FEB557541C3E56C800FCFA43 /* DateFormatUtils.m in Sources */,
+				36719A881C77827800CB3573 /* ExpendViewController.m in Sources */,
 				FEB557501C3E563700FCFA43 /* BaseViewController.m in Sources */,
 				36B3DA051C451C7D006D968C /* AddSaleViewController.m in Sources */,
+				36719A911C77864000CB3573 /* ExpendDetailViewController.m in Sources */,
 				36B3DA2D1C4D2F67006D968C /* ApartmentUser.m in Sources */,
 				FEB557441C3E553F00FCFA43 /* CustomTimeUtils.m in Sources */,
 				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
 				36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */,
 				36B3DA271C4D2645006D968C /* AddApartmentRoomViewController.m in Sources */,
 				3626C6341C56579000C85F11 /* AddApartmentGasViewController.m in Sources */,
+				36719A8B1C77832100CB3573 /* ExpendCell.m in Sources */,
 				FEB557701C3E5B1A00FCFA43 /* CrashManager.m in Sources */,
 				36B3DA0B1C451E40006D968C /* NormalTextViewCell.m in Sources */,
 				36B3D9E91C426320006D968C /* OtherViewController.m in Sources */,
@@ -1116,6 +1149,7 @@
 				36B3D9F91C43DC20006D968C /* CleanRecordViewController.m in Sources */,
 				FEBDF8371C472B4E009C9271 /* SqliteUtils.m in Sources */,
 				36B3DA171C452F50006D968C /* LocalUserUtils.m in Sources */,
+				36719A8E1C77845F00CB3573 /* ExpendInfo.m in Sources */,
 				FEB557471C3E553F00FCFA43 /* MJRefreshDIYFooter.m in Sources */,
 				36B3DA141C452DBA006D968C /* TenantViewController.m in Sources */,
 				367A16291C3E8644001D711D /* LoginViewController.m in Sources */,
@@ -1125,6 +1159,7 @@
 				3626C61C1C54EA1F00C85F11 /* CustomDatePickerView.m in Sources */,
 				FEB5575B1C3E596A00FCFA43 /* GlobalUtils.m in Sources */,
 				36719A7C1C77607400CB3573 /* ApartmentCountCell.m in Sources */,
+				36719A851C7780E200CB3573 /* SettingViewController.m in Sources */,
 				36B3D9EC1C426902006D968C /* AddDecorateViewController.m in Sources */,
 				3626C6251C56571E00C85F11 /* ApartmentElecListViewController.m in Sources */,
 				FEB5573E1C3E553F00FCFA43 /* CustomAlertView.m in Sources */,
@@ -1154,6 +1189,7 @@
 				36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */,
 				36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */,
 				3626C62B1C56574600C85F11 /* ApartmentWaterListViewController.m in Sources */,
+				36719A821C777E2100CB3573 /* AppWebViewController.m in Sources */,
 				36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */,
 				FEB557751C3E5B1A00FCFA43 /* EGORefreshTableHeaderView.m in Sources */,
 				36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */,

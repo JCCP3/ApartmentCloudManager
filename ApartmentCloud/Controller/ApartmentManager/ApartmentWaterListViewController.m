@@ -10,6 +10,7 @@
 #import "NormalInputTextFieldCell.h"
 #import "AddApartmentWaterViewController.h"
 #import "MJRefreshDIYHeader.h"
+#import "LeftSideViewController.h"
 
 @interface ApartmentWaterListViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -28,7 +29,12 @@
     aryData = [[NSMutableArray alloc] init];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"水表列表" segmentArray:nil];
-    [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    if (self.fromLeftSide) {
+        [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+    } else {
+        [self adaptSecondRightItemWithTitle:@"返回"];
+    }
+    
     [self adaptSecondRightItemWithTitle:@"添加"];
     
     [self createWaterListTableView];
@@ -49,16 +55,14 @@
     waterListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     waterListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:waterListTableView];
-    
-    
 }
 
 - (void)loadWaterList:(BOOL)refresh
 {
-    NSString *tmpUrl = @"/device/waterside/list.json";
+    NSString *tmpUrl = [NSString stringWithFormat:@"/device/waterside/list.json"];
     
     if (refresh) {
-        tmpUrl = [tmpUrl stringByAppendingString:@"?currPage=0&pageSize=10"];
+        tmpUrl = [tmpUrl stringByAppendingString:@"&currPage=0&pageSize=10"];
     } else {
         tmpUrl = [tmpUrl stringByAppendingString:[NSString stringWithFormat:@"?currPage=%ld&pageSize=10",(long)[aryData count]/10]];
     }
@@ -164,7 +168,12 @@
 #pragma mark - BaseAction
 - (void)onClickLeftItem
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    if (self.fromLeftSide) {
+        LeftSideViewController *leftSideViewController = [[LeftSideViewController alloc] init];
+        [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)onClickSecondRightItem

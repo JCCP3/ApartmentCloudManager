@@ -425,6 +425,13 @@
     [self decorateTitleWithDesc];
 }
 
+- (void)loadAddExpendCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    currentIndexPath = indexPath;
+    
+    [self decorateTitleWithDesc];
+}
+
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {

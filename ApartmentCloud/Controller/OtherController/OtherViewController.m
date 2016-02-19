@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    aryData = @[@"账户", @"二维码", @"住户列表", @"押金列表", @"营业报表", @"历史租客列表", @"用户反馈"];
+    aryData = @[@"账户", @"二维码", @"住户列表", @"押金列表", @"历史租客列表", @"用户反馈"];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"其他" segmentArray:nil];
     [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
@@ -68,7 +68,7 @@
     if (section == 0) {
         return 2;
     } else if (section == 1) {
-        return 4;
+        return 3;
     } else {
         return 1;
     }
@@ -89,7 +89,7 @@
     } else if (indexPath.section == 1) {
         title = [aryData objectAtIndex:indexPath.row + 2];
     } else {
-        title = [aryData objectAtIndex:indexPath.row + 6];
+        title = [aryData objectAtIndex:indexPath.row + 5];
     }
     
     cell.textLabel.text = title;
@@ -114,9 +114,6 @@
             }
             [self.navigationController pushViewController:view animated:YES];
         } else if (indexPath.row == 2) {
-            OperateStatementViewController *view = [[OperateStatementViewController alloc] init];
-            [self.navigationController pushViewController:view animated:YES];
-        } else {
             TenantViewController *view = [[TenantViewController alloc] init];
             [self.navigationController pushViewController:view animated:YES];
         }

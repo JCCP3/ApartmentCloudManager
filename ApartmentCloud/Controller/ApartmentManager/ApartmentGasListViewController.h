@@ -17,6 +17,7 @@
 
 @interface ApartmentGasListViewController : BaseViewController
 
+@property (nonatomic, assign) BOOL fromLeftSide;
 @property (nonatomic, assign) id<ApartmentGasListDelegate> delegate;
 
 @end

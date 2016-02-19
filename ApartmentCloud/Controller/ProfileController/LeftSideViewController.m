@@ -12,6 +12,11 @@
 #import "SaleViewController.h"
 #import "OtherViewController.h"
 #import "LoginViewController.h"
+#import "ApartmentWaterListViewController.h"
+#import "ApartmentElecListViewController.h"
+#import "ApartmentGasListViewController.h"
+#import "AppWebViewController.h"
+#import "SettingViewController.h"
 
 @interface LeftSideViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -33,8 +38,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    aryImageData = @[@"left_accounts.png", @"left_horseManager.png", @"left_decoration.png", @"left_sell.png", @"left_other.png"];
-    aryTitleData = @[@"账户", @"房屋管理", @"装修后勤", @"营销销售", @"其他"];
+    aryImageData = @[@"left_accounts.png", @"left_horseManager.png", @"left_decoration.png", @"left_decoration.png", @"left_decoration.png", @"left_decoration.png",  @"left_sell.png", @"left_other.png"];
+    aryTitleData = @[@"账户", @"房屋管理", @"支出列表", @"水表列表", @"电表列表", @"燃气列表", @"统计分析", @"其他"];
     
     [self createTableView];
     
@@ -58,28 +63,28 @@
 
 - (void)createFooterView
 {
-    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, MainScreenHeight - 124, MainScreenWidth, 124)];
+    UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, MainScreenHeight - 84, MainScreenWidth, 84)];
     footerView.backgroundColor = [CustomColorUtils colorWithHexString:@"#dc505d"];
     [self.view addSubview:footerView];
     
-    UIImageView *apartmentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 30, 17, 17)];
-    [apartmentImageView setImage:ImageNamed(@"left_apartment.png")];
-    [footerView addSubview:apartmentImageView];
+//    UIImageView *apartmentImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 30, 17, 17)];
+//    [apartmentImageView setImage:ImageNamed(@"left_apartment.png")];
+//    [footerView addSubview:apartmentImageView];
     
-    UILabel *apartmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(apartmentImageView.frame) + 20, 30, MainScreenWidth - (CGRectGetMaxX(apartmentImageView.frame) + 20), 15.f)];
-    apartmentLabel.textColor = [UIColor whiteColor];
-    apartmentLabel.font = [UIFont systemFontOfSize:15.f];
-    apartmentLabel.text = @"查看分散式公寓";
-    [footerView addSubview:apartmentLabel];
+//    UILabel *apartmentLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(apartmentImageView.frame) + 20, 30, MainScreenWidth - (CGRectGetMaxX(apartmentImageView.frame) + 20), 15.f)];
+//    apartmentLabel.textColor = [UIColor whiteColor];
+//    apartmentLabel.font = [UIFont systemFontOfSize:15.f];
+//    apartmentLabel.text = @"查看分散式公寓";
+//    [footerView addSubview:apartmentLabel];
     
-    UIButton *apartmentBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, MainScreenWidth, 47)];
-    [[apartmentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
-    }];
-    [footerView addSubview:apartmentBtn];
+//    UIButton *apartmentBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 15, MainScreenWidth, 47)];
+//    [[apartmentBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+//        
+//    }];
+//    [footerView addSubview:apartmentBtn];
     
     
-    UIImageView *settingImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, CGRectGetMaxY(apartmentImageView.frame) + 30, 17, 17)];
+    UIImageView *settingImageView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 33.5, 17, 17)];
     [settingImageView setImage:ImageNamed(@"left_setting.png")];
     [footerView addSubview:settingImageView];
     
@@ -89,9 +94,11 @@
     settingLabel.text = @"设置";
     [footerView addSubview:settingLabel];
     
-    UIButton *settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(apartmentImageView.frame) + 15, MainScreenWidth, 47)];
+    UIButton *settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 37 + 15, MainScreenWidth, 47)];
     [[settingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
-        
+        SettingViewController *viewController = [[SettingViewController alloc] init];
+        BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
+        [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
     }];
     [footerView addSubview:settingBtn];
 }
@@ -155,24 +162,38 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        
         LoginViewController *viewController = [[LoginViewController alloc] init];
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
-        
     } else if (indexPath.row == 1) {
         ApartmentManagerViewController *viewController = [[ApartmentManagerViewController alloc] init];
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
     } else if (indexPath.row == 2) {
+        //支出列表
         DecorateViewController *viewController = [[DecorateViewController alloc] init];
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
-    } else if (indexPath.row == 3) {
-        SaleViewController *viewController = [[SaleViewController alloc] init];
+    } else if (indexPath.row == 3){
+        ApartmentWaterListViewController *viewController = [[ApartmentWaterListViewController alloc] init];
+        viewController.fromLeftSide = YES;
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
-    } else if (indexPath.row == 4){
+    } else if (indexPath.row == 4) {
+        ApartmentElecListViewController *viewController = [[ApartmentElecListViewController alloc] init];
+        viewController.fromLeftSide = YES;
+        BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
+        [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
+    } else if (indexPath.row == 5) {
+        ApartmentGasListViewController *viewController = [[ApartmentGasListViewController alloc] init];
+        viewController.fromLeftSide = YES;
+        BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
+        [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
+    } else if (indexPath.row == 6){
+        AppWebViewController *viewController = [[AppWebViewController alloc] init];
+        BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
+        [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
+    } else {
         OtherViewController *viewController = [[OtherViewController alloc] init];
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];

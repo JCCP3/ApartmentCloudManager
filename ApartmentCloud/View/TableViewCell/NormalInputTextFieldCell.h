@@ -72,4 +72,7 @@ typedef enum
 //添加装修后勤
 - (void)loadAddDecorateCellWithIndexPath:(NSIndexPath *)indexPath;
 
+//添加支出信息
+- (void)loadAddExpendCellWithIndexPath:(NSIndexPath *)indexPath;
+
 @end

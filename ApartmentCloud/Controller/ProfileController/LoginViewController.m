@@ -128,7 +128,8 @@
                 NSDictionary *jsonDic = responseObject;
                 if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
                     [LocalUserUtils setLocalUserInfo:jsonDic];
-                    
+                    [UserDefaults setObject:accountTextField.text forKey:UserAccount];
+                    [UserDefaults setObject:pwdTextField.text forKey:UserPwd];
                     ApartmentManagerViewController *viewController = [[ApartmentManagerViewController alloc] init];
                     BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
                     [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
