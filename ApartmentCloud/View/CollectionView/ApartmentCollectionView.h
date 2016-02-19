@@ -25,6 +25,8 @@ typedef enum
 - (void)ACVD_goToRoom:(ApartmentRoom *)room;
 - (void)ACVD_requestFinishWithTag:(ApartmentCollectionViewTag)tag;
 
+- (void)ACVD_showApartmentDetailInfo:(Apartment *)apartment;
+
 @end
 
 @interface ApartmentCollectionView : UICollectionView <UICollectionViewDelegate, UICollectionViewDataSource>
@@ -32,5 +34,8 @@ typedef enum
 @property (nonatomic, assign) id <ApartmentCollectionViewDelegate> apartmentCollectionViewDelegate;
 
 - (void)loadApartmentCollectionViewData;
+- (void)loadDueApartmentCollectionViewData;
+- (void)loadExpireApartmentCollectionViewData;
+- (void)loadApartmentRoomCountCollectionViewData;
 
 @end

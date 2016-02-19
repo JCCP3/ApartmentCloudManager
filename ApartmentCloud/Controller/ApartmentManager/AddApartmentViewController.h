@@ -19,6 +19,7 @@
 @interface AddApartmentViewController : BaseViewController
 
 @property (nonatomic, strong) Apartment *addApartment;
+@property (nonatomic, assign) BOOL canEdit;
 @property (nonatomic, assign) id<AddApartmentViewControllerDelegate> delegate;
 
 @end

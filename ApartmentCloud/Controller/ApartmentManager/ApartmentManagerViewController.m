@@ -12,7 +12,7 @@
 #import "AddApartmentViewController.h"
 #import "AddApartmentRoomViewController.h"
 
-#define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"入住房间"]
+#define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"房间统计"]
 
 @interface ApartmentManagerViewController () <AddApartmentViewControllerDelegate, ApartmentCollectionViewDelegate, UIScrollViewDelegate>
 {
@@ -27,6 +27,7 @@
     ApartmentCollectionView *myApartmentCollectionView;
     ApartmentCollectionView *payApartmentCollectionView;
     ApartmentCollectionView *expiredApartmentCollectionView;
+    ApartmentCollectionView *roomCountCollectionView;
     
     BOOL myApartmentRequestFinish;
     BOOL payApartmentRequestFinish;
@@ -71,6 +72,7 @@
     if (!myApartmentCollectionView) {
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         myApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        myApartmentCollectionView.tag = 100;
         myApartmentCollectionView.apartmentCollectionViewDelegate = self;
         [myApartmentCollectionView loadApartmentCollectionViewData];
         [showMyApartmentScrollView addSubview:myApartmentCollectionView];
@@ -80,6 +82,8 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         payApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         payApartmentCollectionView.apartmentCollectionViewDelegate = self;
+        payApartmentCollectionView.tag = 101;
+//        [payApartmentCollectionView loadDueApartmentCollectionViewData]; //即将到期
         [showMyApartmentScrollView addSubview:payApartmentCollectionView];
     }
     
@@ -87,7 +91,18 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         expiredApartmentCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth * 2, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
         expiredApartmentCollectionView.apartmentCollectionViewDelegate = self;
+        expiredApartmentCollectionView.tag = 102;
+//        [expiredApartmentCollectionView loadExpireApartmentCollectionViewData];
         [showMyApartmentScrollView addSubview:expiredApartmentCollectionView];
+    }
+    
+    if (!roomCountCollectionView) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        roomCountCollectionView = [[ApartmentCollectionView alloc] initWithFrame:CGRectMake(MainScreenWidth * 3, 0, MainScreenWidth, MainScreenHeight - 64 - 45) collectionViewLayout:flowLayout];
+        roomCountCollectionView.apartmentCollectionViewDelegate = self;
+        roomCountCollectionView.tag = 103;
+        //        [expiredApartmentCollectionView loadExpireApartmentCollectionViewData];
+        [showMyApartmentScrollView addSubview:roomCountCollectionView];
     }
     
     showMyApartmentScrollView.pagingEnabled = YES;
@@ -152,14 +167,21 @@
 - (void)requestPayApartmentInfo
 {
     if (payApartmentCollectionView) {
-        [payApartmentCollectionView loadApartmentCollectionViewData];
+        [payApartmentCollectionView loadDueApartmentCollectionViewData];
     }
 }
 
 - (void)requestExpiredApartmentInfo
 {
     if (expiredApartmentCollectionView) {
-        [expiredApartmentCollectionView loadApartmentCollectionViewData];
+        [expiredApartmentCollectionView loadExpireApartmentCollectionViewData];
+    }
+}
+
+- (void)requestRoomCountInfo
+{
+    if (roomCountCollectionView) {
+        [roomCountCollectionView loadApartmentRoomCountCollectionViewData];
     }
 }
 
@@ -181,7 +203,8 @@
         } else if (currentPage == 2) {
             [self requestExpiredApartmentInfo];
         } else {
-            //入住房间
+            //房间统计
+            [self requestRoomCountInfo];
         }
         
         [SECOND_NAV_ARR enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -209,6 +232,7 @@
 {
     AddApartmentViewController *view = [[AddApartmentViewController alloc] init];
     view.delegate = self;
+    view.canEdit = YES;
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -232,6 +256,13 @@
     [self.navigationController pushViewController:view animated:YES];
 }
 
+- (void)ACVD_showApartmentDetailInfo:(Apartment *)apartment
+{
+    AddApartmentViewController *view = [[AddApartmentViewController alloc] init];
+    view.delegate = self;
+    view.addApartment = apartment;
+    [self.navigationController pushViewController:view animated:YES];
+}
 
 /*
 #pragma mark - Navigation

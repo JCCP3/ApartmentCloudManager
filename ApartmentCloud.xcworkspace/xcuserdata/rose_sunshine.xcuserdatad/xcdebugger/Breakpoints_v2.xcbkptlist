@@ -33,6 +33,38 @@
             endingLineNumber = "144"
             landmarkName = "-onClickSecondRightItem"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AddApartmentGasViewController onClickSecondRightItem]"
+                  moduleName = "ApartmentCloud"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
+                  timestampString = "477589912.616392"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "652">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__55-[AddApartmentGasViewController onClickSecondRightItem]_block_invoke"
+                  moduleName = "ApartmentCloud"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
+                  timestampString = "477589912.617237"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

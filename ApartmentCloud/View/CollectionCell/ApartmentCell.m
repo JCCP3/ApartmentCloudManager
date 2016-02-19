@@ -39,23 +39,29 @@
         [self.contentView addSubview:addRoomImageView];
         
         self.layer.borderWidth = 1;
-        self.layer.borderColor = AppThemeColor.CGColor;
     }
     return self;
 }
 
-- (void)loadApartmentRoomCellData:(ApartmentRoom *)room
+- (void)loadApartmentRoomCellData:(ApartmentRoom *)room showPay:(BOOL)showPay
 {
     if (!room) {
         roomNumLabel.hidden = YES;
         roomImageView.hidden = YES;
         addRoomImageView.hidden = NO;
         self.backgroundColor = [UIColor whiteColor];
+        self.layer.borderColor = AppThemeColor.CGColor;
     } else {
         roomNumLabel.hidden = NO;
         roomImageView.hidden = NO;
         addRoomImageView.hidden = YES;
-        self.backgroundColor = AppThemeColor;
+        if (showPay) {
+            self.backgroundColor = [UIColor grayColor];
+            self.layer.borderColor = [UIColor grayColor].CGColor;
+        } else {
+            self.backgroundColor = AppThemeColor;
+            self.layer.borderColor = AppThemeColor.CGColor;
+        }
     }
     
     if (![CustomStringUtils isBlankString:room.homeName]) {

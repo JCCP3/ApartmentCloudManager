@@ -18,10 +18,13 @@
 @property (nonatomic, strong) NSString *cityId;
 @property (nonatomic, strong) NSString *roadName;
 @property (nonatomic, strong) NSString *communityName; //小区名称
-@property (nonatomic, strong) NSString *waterPrice;
-@property (nonatomic, strong) NSString *electricityPrice;
-@property (nonatomic, strong) NSString *gasPrice;
+@property (nonatomic, assign) CGFloat waterPrice;
+@property (nonatomic, assign) CGFloat electricityPrice;
+@property (nonatomic, assign) CGFloat gasPrice;
 @property (nonatomic, strong) NSArray *roomArray;
+
+@property (nonatomic, assign) NSInteger idleCount;
+@property (nonatomic, assign) NSInteger rentCount;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 

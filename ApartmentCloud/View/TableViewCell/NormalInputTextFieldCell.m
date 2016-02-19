@@ -372,12 +372,12 @@
             case 0:
             {
                 if (type == ShowCellData) {
-                    if (![CustomStringUtils isBlankString:self.apartment.waterPrice]) {
-                        descTextField.text = self.apartment.waterPrice;
+                    if (self.apartment.waterPrice > 0) {
+                        descTextField.text = [NSString stringWithFormat:@"%.2f", self.apartment.waterPrice];
                     }
                 } else {
                     if (![CustomStringUtils isBlankString:apartmentParam]) {
-                        self.apartment.waterPrice = apartmentParam;
+                        self.apartment.waterPrice = [apartmentParam floatValue];
                     }
                 }
             }
@@ -385,12 +385,12 @@
             case 1:
             {
                 if (type == ShowCellData) {
-                    if (![CustomStringUtils isBlankString:self.apartment.electricityPrice]) {
-                        descTextField.text = self.apartment.electricityPrice;
+                    if (self.apartment.electricityPrice > 0) {
+                        descTextField.text = [NSString stringWithFormat:@"%.2f", self.apartment.electricityPrice];
                     }
                 } else {
                     if (![CustomStringUtils isBlankString:apartmentParam]) {
-                        self.apartment.electricityPrice = apartmentParam;
+                        self.apartment.electricityPrice = [apartmentParam floatValue];
                     }
                 }
                 
@@ -400,12 +400,12 @@
             case 2:
             {
                 if (type == ShowCellData) {
-                    if (![CustomStringUtils isBlankString:self.apartment.gasPrice]) {
-                        descTextField.text = self.apartment.gasPrice;
+                    if (self.apartment.gasPrice > 0) {
+                        descTextField.text = [NSString stringWithFormat:@"%.2f",self.apartment.gasPrice];
                     }
                 } else {
                     if (![CustomStringUtils isBlankString:apartmentParam]) {
-                        self.apartment.gasPrice = apartmentParam;
+                        self.apartment.gasPrice = [apartmentParam floatValue];
                     }
                 }
             }

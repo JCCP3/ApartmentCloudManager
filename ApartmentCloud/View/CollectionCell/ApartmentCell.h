@@ -11,6 +11,6 @@
 
 @interface ApartmentCell : UICollectionViewCell
 
-- (void)loadApartmentRoomCellData:(ApartmentRoom *)room;
+- (void)loadApartmentRoomCellData:(ApartmentRoom *)room showPay:(BOOL)showPay;
 
 @end

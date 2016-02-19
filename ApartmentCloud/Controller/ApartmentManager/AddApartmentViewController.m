@@ -56,7 +56,9 @@ typedef enum
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加公寓" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
-    [self adaptSecondRightItemWithTitle:@"下一步"];
+    if (self.canEdit) {
+        [self adaptSecondRightItemWithTitle:@"下一步"];
+    }
     
     [self createTableView];
     
@@ -319,20 +321,20 @@ typedef enum
         [self showAlertViewWithMsg:@"请输入小区名称"];
         return;
     }
-    if (![CustomStringUtils isBlankString:addApartment.waterPrice]) {
-        [paramDic setObject:addApartment.waterPrice forKey:@"waterPrice"];
+    if (addApartment.waterPrice > 0) {
+        [paramDic setObject:[NSString stringWithFormat:@"%.2f", addApartment.waterPrice] forKey:@"waterPrice"];
     } else {
         [self showAlertViewWithMsg:@"请输入水的单价"];
         return;
     }
-    if (![CustomStringUtils isBlankString:addApartment.electricityPrice]) {
-        [paramDic setObject:addApartment.electricityPrice forKey:@"electricityPrice"];
+    if (addApartment.electricityPrice > 0) {
+        [paramDic setObject:[NSString stringWithFormat:@"%.2f", addApartment.electricityPrice] forKey:@"electricityPrice"];
     } else {
         [self showAlertViewWithMsg:@"请输入电的单价"];
         return;
     }
-    if (![CustomStringUtils isBlankString:addApartment.gasPrice]) {
-        [paramDic setObject:addApartment.gasPrice forKey:@"gasPrice"];
+    if (addApartment.gasPrice > 0) {
+        [paramDic setObject:[NSString stringWithFormat:@"%.2f",addApartment.gasPrice] forKey:@"gasPrice"];
     } else {
         [self showAlertViewWithMsg:@"请输入气的单价"];
         return;
