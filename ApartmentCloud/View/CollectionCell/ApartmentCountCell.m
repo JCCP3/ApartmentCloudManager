@@ -24,7 +24,7 @@
     
     if (self) {
         
-        self.contentView.backgroundColor = [UIColor blueColor];
+        self.contentView.backgroundColor = [CustomColorUtils colorWithHexString:@"#39c2bd"];
         
         titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 16)];
         titleLabel.font = [UIFont systemFontOfSize:16.f];

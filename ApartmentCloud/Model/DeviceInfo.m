@@ -1,14 +1,14 @@
 //
-//  Elec.m
+//  DeviceInfo.m
 //  ApartmentCloud
 //
-//  Created by Rose on 16/1/25.
+//  Created by Rose on 16/2/21.
 //  Copyright © 2016年 JC_CP3. All rights reserved.
 //
 
-#import "Elec.h"
+#import "DeviceInfo.h"
 
-@implementation Elec
+@implementation DeviceInfo
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic
 {
@@ -24,7 +24,15 @@
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key
 {
     if ([key isEqualToString:@"id"]) {
-        self.elecId = value;
+        self.deviceId = value;
+    }
+    
+    if ([key isEqualToString:@"isHomeowners"]) {
+        if ([value isEqualToString:@"Y"]) {
+            self.isHomeOwner = YES;
+        } else {
+            self.isHomeOwner = NO;
+        }
     }
 }
 

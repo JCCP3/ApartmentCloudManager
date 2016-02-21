@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    aryData = @[@"账户", @"二维码", @"住户列表", @"押金列表", @"历史租客列表", @"用户反馈"];
+    aryData = @[@"账户", @"二维码", @"住户列表", @"房租列表", @"用户反馈"];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"其他" segmentArray:nil];
     [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
@@ -68,7 +68,7 @@
     if (section == 0) {
         return 2;
     } else if (section == 1) {
-        return 3;
+        return 2;
     } else {
         return 1;
     }
@@ -89,10 +89,15 @@
     } else if (indexPath.section == 1) {
         title = [aryData objectAtIndex:indexPath.row + 2];
     } else {
-        title = [aryData objectAtIndex:indexPath.row + 5];
+        title = [aryData objectAtIndex:indexPath.row + 4];
     }
     
     cell.textLabel.text = title;
+    
+    if (indexPath.section == 0 && indexPath.row == 0) {
+        cell.detailTextLabel.text = [UserDefaults objectForKey:UserAccount];
+        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    }
     
     return cell;
 }
@@ -105,16 +110,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
+        if (indexPath.row == 1) {
+            //生成二维码
+        }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0 ||indexPath.row == 1) {
             HouseHolderListViewController *view = [[HouseHolderListViewController alloc] init];
             if (indexPath.row == 0) {
                 view.isHouseHolderList = YES;
             }
-            [self.navigationController pushViewController:view animated:YES];
-        } else if (indexPath.row == 2) {
-            TenantViewController *view = [[TenantViewController alloc] init];
             [self.navigationController pushViewController:view animated:YES];
         }
     } else {

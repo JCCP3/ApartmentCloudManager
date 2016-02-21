@@ -26,6 +26,7 @@ typedef enum
 - (void)ACVD_requestFinishWithTag:(ApartmentCollectionViewTag)tag;
 
 - (void)ACVD_showApartmentDetailInfo:(Apartment *)apartment;
+- (void)ACVD_showTitleViewArray:(NSMutableArray *)aryApartment;
 
 @end
 
@@ -37,5 +38,7 @@ typedef enum
 - (void)loadDueApartmentCollectionViewData;
 - (void)loadExpireApartmentCollectionViewData;
 - (void)loadApartmentRoomCountCollectionViewData;
+
+- (void)showDataWithApartment:(Apartment *)apartment;
 
 @end

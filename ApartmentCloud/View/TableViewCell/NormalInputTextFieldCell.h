@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ApartmentRoom.h"
 #import "ApartmentUser.h"
+#import "ExpendInfo.h"
+#import "Water.h"
+#import "Gas.h"
+#import "Elec.h"
+#import "HomeOwner.h"
+#import "DeviceInfo.h"
 
 typedef enum
 {
@@ -16,7 +22,13 @@ typedef enum
     AddSaleLogic = 2,
     AddDecorateLogic = 3,
     AddApartmentUserLogic = 4,
-    AddRoomLogic = 5
+    AddRoomLogic = 5,
+    AddExpendLogic = 6,
+    AddWaterLogic = 7,
+    AddElecLogic = 8,
+    AddGasLogic = 9,
+    AddHourseHolderLogic = 10,
+    AddDeviceInfoLogic = 11
     
 } NormalInputTextFieldCellType;
 
@@ -54,7 +66,14 @@ typedef enum
 @property (nonatomic, strong) Apartment *apartment;
 @property (nonatomic, strong) ApartmentRoom *room;
 @property (nonatomic, strong) ApartmentUser *apartmentUser;
+@property (nonatomic, strong) ExpendInfo *expendInfo;
 
+@property (nonatomic, strong) Water *water;
+@property (nonatomic, strong) Elec *elec;
+@property (nonatomic, strong) Gas *gas;
+
+@property (nonatomic, strong) HomeOwner *owner;
+@property (nonatomic, strong) DeviceInfo *deviceInfo;
 
 @property (nonatomic, assign) BOOL isTextFiledEnable;
 @property (nonatomic, strong) NSString *title;
@@ -74,5 +93,16 @@ typedef enum
 
 //添加支出信息
 - (void)loadAddExpendCellWithIndexPath:(NSIndexPath *)indexPath;
+
+//添加水电气
+- (void)loadAddWaterCellWithIndexPath:(NSIndexPath *)indexPath;
+- (void)loadAddGasCellWithIndexPath:(NSIndexPath *)indexPath;
+- (void)loadAddElecCellWithIndexPath:(NSIndexPath *)indexPath;
+
+//房主信息
+- (void)loadAddHourseHolderWithIndexPath:(NSIndexPath *)indexPath;
+
+//添加设备
+- (void)loadAddDeviceWithIndexPath:(NSIndexPath *)indexPath;
 
 @end

@@ -7,11 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "Water.h"
 
 @protocol ApartmentWaterListDelegate <NSObject>
 
 @optional
-- (void)AWLD_passApartmentWaterArray:(NSMutableArray *)aryApartmentWater;
+- (void)AWLD_passApartmentWater:(Water *)water;
 
 @end
 

@@ -1,14 +1,14 @@
 //
-//  Elec.m
+//  HomeOwner.m
 //  ApartmentCloud
 //
-//  Created by Rose on 16/1/25.
+//  Created by Rose on 16/2/21.
 //  Copyright © 2016年 JC_CP3. All rights reserved.
 //
 
-#import "Elec.h"
+#import "HomeOwner.h"
 
-@implementation Elec
+@implementation HomeOwner
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic
 {
@@ -19,13 +19,6 @@
     }
     
     return self;
-}
-
-- (void)setValue:(id)value forUndefinedKey:(NSString *)key
-{
-    if ([key isEqualToString:@"id"]) {
-        self.elecId = value;
-    }
 }
 
 @end

@@ -47,6 +47,7 @@ typedef enum
     
     if (!addApartment) {
         addApartment = [[Apartment alloc] init];
+        addApartment.cityId = @"123";
     }
     
     aryTitleData = @[@"公寓名称", @"公寓类型", @"管理电话", @"公寓区域", @"道路名称", @"小区名称", @"水(元/吨)", @"电(元/度)", @"气(元/m)"];
@@ -245,6 +246,8 @@ typedef enum
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self onClickResign];
+    
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"集中式",@"分散式",@"酒店", nil];
@@ -275,7 +278,6 @@ typedef enum
 {
     if (actionSheet.tag == 12590) {
         if (buttonIndex < aryApartmentStyle.count) {
-//            NSString *apartmentStyle = [aryApartmentStyle objectAtIndex:buttonIndex];
             addApartment.category = [aryApartmentStypeId objectAtIndex:buttonIndex];
             [addApartmentTableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }
@@ -303,6 +305,7 @@ typedef enum
         [self showAlertViewWithMsg:@"请输入管理电话"];
         return;
     }
+    addApartment.cityId = @"123";
     if (![CustomStringUtils isBlankString:@"123"]) {
         [paramDic setObject:@"123" forKey:@"cityId"];
     } else {

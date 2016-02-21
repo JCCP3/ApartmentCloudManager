@@ -31,7 +31,7 @@
     
     aryData = [[NSMutableArray alloc] init];
     
-    NSString *title = self.isHouseHolderList ? @"住户列表" : @"押金列表";
+    NSString *title = self.isHouseHolderList ? @"住户列表" : @"续交列表";
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:title segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     
@@ -59,7 +59,12 @@
     searchBar.translucent = YES;
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-    searchBar.placeholder = [GlobalUtils translateStr:@"输入租客姓名"];
+    if (self.isHouseHolderList) {
+        searchBar.placeholder = [GlobalUtils translateStr:@"输入租客姓名"];
+    } else {
+        searchBar.placeholder = [GlobalUtils translateStr:@"输入房间名称"];
+    }
+    
     searchBar.keyboardType =  UIKeyboardTypeDefault;
     
     return searchBar;
@@ -74,19 +79,27 @@
     }
     
     if (self.isHouseHolderList) {
-        [self loadHourseHolderListByName];
+        [self loadHourseHolderListByName:text];
     } else {
-        [self loadDepositListByName];
+        [self loadDepositListByName:text];
     }
     
 }
 
-- (void)loadHourseHolderListByName
+- (void)loadHourseHolderListByName:(NSString *)name
 {
-    
+    NSString *requestUrl = [NSString stringWithFormat:@"/tenants/list.json?isCount=false&search=%@", name];
+    [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if (jsonDic) {
+            
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@", error);
+    }];
 }
 
-- (void)loadDepositListByName
+- (void)loadDepositListByName:(NSString *)name
 {
     
 }

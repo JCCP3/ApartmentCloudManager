@@ -7,11 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "Elec.h"
 
 @protocol ApartmentElecListDelegate <NSObject>
 
 @optional
-- (void)AELD_passApartmentElecArray:(NSMutableArray *)elecArray;
+- (void)AELD_passApartmentElec:(Elec *)elec;
 
 @end
 

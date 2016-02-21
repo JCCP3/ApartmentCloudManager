@@ -29,7 +29,15 @@
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加水表" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
-    [self adaptSecondRightItemWithTitle:@"确认添加"];
+    
+    NSString *rightString;
+    if (self.currentWater) {
+        rightString = @"修改";
+    } else {
+        rightString = @"添加";
+    }
+    
+    [self adaptSecondRightItemWithTitle:rightString];
     
     if (!self.currentWater) {
         self.currentWater = [[Water alloc] init];
@@ -90,8 +98,10 @@
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
+    cell.cellType = AddWaterLogic;
+    cell.water = self.currentWater;
     
-    [cell loadNormalInputTextFieldCellData];
+    [cell loadAddWaterCellWithIndexPath:indexPath];
     
     return cell;
 }
@@ -136,41 +146,39 @@
 
 - (void)onClickSecondRightItem
 {
-    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:0 inSection:0 ]];
-    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    
+    if (self.currentWater.waterId) {
+        [paramDic setObject:self.currentWater.waterId forKey:@"id"];
+    }
+    
     [paramDic setObject:self.currentWater.mark forKey:@"mark"];
-    [paramDic setObject:self.currentWater.currentNumber forKey:@"currentNumber"];
+    [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)self.currentWater.currentNumber] forKey:@"currentNumber"];
     [paramDic setObject:@"COMMON" forKey:@"category"];
     
-    [CustomRequestUtils createNewPostRequest:@"/device/waterside/add.json" params:paramDic success:^(id responseObject) {
-        NSDictionary *jsonDic = responseObject;
-        
-        if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
-}
-
-
-- (void)setWaterByAddWaterIndexPath:(NSIndexPath *)indexPath
-{
-    NormalInputTextFieldCell *cell = [addWaterTableView cellForRowAtIndexPath:indexPath];
-    
-    UIView *tmpView = [cell.contentView viewWithTag:10086];
-    for (UIView *tmpSubView in tmpView.subviews) {
-        if ([tmpSubView isKindOfClass:[UITextField class]]) {
-            UITextField *textField = (UITextField *)tmpSubView;
-            if (indexPath.row == 0) {
-                self.currentWater.mark = textField.text;
-            } else {
-                self.currentWater.currentNumber = textField.text;
+    if (self.currentWater.waterId) {
+        [CustomRequestUtils createNewPostRequest:@"/device/waterside/update.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            
+            if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                [self.navigationController popViewControllerAnimated:YES];
             }
-        }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        
+    } else {
+        [CustomRequestUtils createNewPostRequest:@"/device/waterside/add.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            
+            if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
     }
 }
 

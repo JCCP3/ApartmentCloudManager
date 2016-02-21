@@ -1,3 +1,4 @@
+
 //
 //  ApartmentGasListViewController.m
 //  ApartmentCloud
@@ -10,6 +11,7 @@
 #import "NormalInputTextFieldCell.h"
 #import "AddApartmentGasViewController.h"
 #import "LeftSideViewController.h"
+#import "Gas.h"
 
 @interface ApartmentGasListViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -38,7 +40,7 @@
     [self adaptSecondRightItemWithTitle:@"添加"];
     [self createGasListTableView];
     
-    [self loadGasList];
+    [self loadGasList:YES];
 }
 
 - (void)createGasListTableView
@@ -47,13 +49,18 @@
     gasTableView.delegate = self;
     gasTableView.dataSource = self;
     gasTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    gasTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:gasTableView];
 }
 
-- (void)loadGasList
+- (void)loadGasList:(BOOL)refresh
 {
-    [CustomRequestUtils createNewRequest:@"/device/gasmeter/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *requestUrl;
+    if (refresh) {
+        requestUrl = @"/device/gasmeter/list.json?currPage=1&pageSize=10";
+    } else {
+        
+    }
+    [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
         [self parseJsonDic:jsonDic];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -67,6 +74,8 @@
     if ([dic objectForKey:@"datas"] && [[dic objectForKey:@"datas"] count] > 0) {
         NSMutableArray *tmpArray = [dic objectForKey:@"datas"];
         for (NSDictionary *tmpDic in tmpArray) {
+            Gas *gas = [[Gas alloc] initWithDictionary:tmpDic];
+            [currentTmpArray addObject:gas];
         }
         
         aryData = currentTmpArray;
@@ -102,25 +111,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        static NSString *cellIdentifier = @"Cell";
-        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        cell.isTextFiledEnable = NO;
-        
-        
-        cell.backgroundColor = [UIColor clearColor];
-        
-        [cell loadNormalInputTextFieldCellData];
-        
-        return cell;
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    return nil;
+    cell.backgroundColor = [UIColor clearColor];
+    
+    Gas *gas = [aryData objectAtIndex:indexPath.row];
+    cell.textLabel.text = gas.mark;
+    cell.textLabel.textColor = [UIColor blackColor];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"当前读数:%ld", (long)gas.currentNumber];
+    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -140,9 +148,52 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.fromLeftSide) {
+        AddApartmentGasViewController *view = [[AddApartmentGasViewController alloc] init];
+        view.currentGas = [aryData objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:view animated:YES];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(AGLD_passApartmentGas:)]) {
+            [self.delegate AGLD_passApartmentGas:[aryData objectAtIndex:indexPath.row]];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Gas *gas = [aryData objectAtIndex:indexPath.row];
+        [aryData removeObject:gas];
+        
+        [self deleteGasInfo:gas];
+    }
+}
+
+- (void)deleteGasInfo:(Gas *)gas
+{
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:gas.gasId forKey:@"id"];
+    
+    [CustomRequestUtils createNewPostRequest:@"/device/gasmeter/del.json" params:paramDic success:^(id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if (jsonDic) {
+            
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
 
 #pragma mark - BaseAction
 - (void)onClickLeftItem

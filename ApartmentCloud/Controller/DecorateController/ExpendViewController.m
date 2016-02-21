@@ -8,6 +8,10 @@
 
 #import "ExpendViewController.h"
 #import "ExpendCell.h"
+#import "LeftSideViewController.h"
+#import "ExpendDetailViewController.h"
+#import "MJRefreshDIYHeader.h"
+#import "MJRefreshDIYFooter.h"
 
 @interface ExpendViewController () <UITableViewDelegate, UITableViewDataSource>
 {
@@ -23,13 +27,19 @@
     [super viewDidLoad];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"支出列表" segmentArray:nil];
-    [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    if (self.isFromLeftSide) {
+        [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+    } else {
+        [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
+    }
+    
+    [self adaptSecondRightItemWithTitle:@"添加"];
     
     aryData = [[NSMutableArray alloc] init];
     
     [self createTableView];
     
-    [self loadExpendData];
+    [self loadExpendData:YES];
 }
 
 - (void)createTableView
@@ -38,20 +48,40 @@
     expendTableView.delegate = self;
     expendTableView.dataSource = self;
     expendTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    expendTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:expendTableView];
 }
 
-- (void)loadExpendData
+- (void)loadExpendData:(BOOL)refresh
 {
-    [CustomRequestUtils createNewRequest:@"" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *requestUrl;
+    if (refresh) {
+        requestUrl = [NSString stringWithFormat:@"/apartment/home/maintain/list.json?currPage=1&pageSize=10"];
+    } else {
+        
+    }
+    [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
         if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-            
+            [self parseJsonDic:jsonDic];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
+}
+
+- (void)parseJsonDic:(NSDictionary *)jsonDic
+{
+    if ([jsonDic objectForKey:@"datas"] && [[jsonDic objectForKey:@"datas"] count] > 0) {
+        NSMutableArray *currentTmpArray = [[NSMutableArray alloc] init];
+        NSMutableArray *tmpArray = [jsonDic objectForKey:@"datas"];
+        for (NSDictionary *dic in tmpArray) {
+            ExpendInfo *info = [[ExpendInfo alloc] initWithDictionary:dic];
+            [currentTmpArray addObject:info];
+        }
+        
+        aryData = currentTmpArray;
+        [expendTableView reloadData];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -93,7 +123,61 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    ExpendDetailViewController *view = [[ExpendDetailViewController alloc] init];
+    ExpendInfo *expendInfo = [aryData objectAtIndex:indexPath.row];
+    view.expendInfo = expendInfo;
+    [self.navigationController pushViewController:view animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ExpendInfo *expendInfo = [aryData objectAtIndex:indexPath.row];
+        [self deleteExpendInfo:expendInfo];
+        
+        [aryData removeObject:expendInfo];
+    }
+}
+
+- (void)deleteExpendInfo:(ExpendInfo *)expendInfo
+{
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:expendInfo.expendInfoId forKey:@"id"];
+    [CustomRequestUtils createNewPostRequest:@"/apartment/home/maintain/del.json" params:paramDic success:^(id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+            
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
+
+#pragma mark - BaseAction
+- (void)onClickLeftItem
+{
+    if (self.isFromLeftSide) {
+        LeftSideViewController *leftSideViewController = [[LeftSideViewController alloc] init];
+        [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)onClickSecondRightItem
+{
+    ExpendDetailViewController *view = [[ExpendDetailViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 /*

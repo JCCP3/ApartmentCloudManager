@@ -7,11 +7,12 @@
 //
 
 #import "BaseViewController.h"
+#import "Gas.h"
 
 @protocol ApartmentGasListDelegate <NSObject>
 
 @optional
-- (void)AWLD_passApartmentGasArray:(NSMutableArray *)aryApartmentGas;
+- (void)AGLD_passApartmentGas:(Gas *)gas;
 
 @end
 

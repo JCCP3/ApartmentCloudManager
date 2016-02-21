@@ -8,12 +8,20 @@
 
 #import "ExpendDetailViewController.h"
 #import "NormalInputTextFieldCell.h"
+#import "DateFormatUtils.h"
+#import "CustomTimeUtils.h"
 
-@interface ExpendDetailViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ExpendDetailViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
 {
     UITableView *expendDetailTableView;
     
     NSMutableArray *aryData;
+    
+    NSArray *aryPlaceHolder;
+    NSArray *aryTitleData;
+    
+    UIDatePicker *datePicker;
+    BOOL datePickerShowed;
 }
 
 @end
@@ -22,12 +30,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"支出列表" segmentArray:nil];
+    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"支出信息" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     
+    NSString *rightString;
+    if (self.expendInfo) {
+        rightString = @"更新";
+    } else {
+        self.expendInfo = [[ExpendInfo alloc] init];
+        rightString = @"添加";
+    }
+    [self adaptSecondRightItemWithTitle:rightString];
+    
     aryData = [[NSMutableArray alloc] init];
+    aryTitleData = @[@"事件类型", @"事件状态", @"花费金额", @"选择时间", @"备注信息"];
+    aryPlaceHolder = @[@"请选择事件类型", @"请选择事件状态", @"请输入花费金额", @"请选择时间", @"请输入备注信息"];
     
     [self createTableView];
+    
+    [self addTableViewGesture];
+    
+    [self initDatePickerView];
 }
 
 - (void)createTableView
@@ -40,9 +63,45 @@
     [self.view addSubview:expendDetailTableView];
 }
 
+- (void)addTableViewGesture
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickResign)];
+    tap.delegate = self;
+    [expendDetailTableView addGestureRecognizer:tap];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)onClickResign
+{
+    int i = 0 ;
+    while (i < 1) {
+        
+        int maxNum = 5;
+        
+        for (int j = 0 ; j < maxNum ; j++) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
+            NormalInputTextFieldCell *cell = (NormalInputTextFieldCell *)[expendDetailTableView cellForRowAtIndexPath:indexPath];
+            for (UIView *subView in cell.subviews) {
+                UIView *wrapperView = (UIView *)[subView viewWithTag:10086];
+                for (UIView *tmpSubView in wrapperView.subviews) {
+                    if ([tmpSubView isKindOfClass:[UITextField class]]) {
+                        UITextField *textField = (UITextField *)tmpSubView;
+                        [textField resignFirstResponder];
+                    }
+                }
+            }
+        }
+        
+        i ++;
+    }
+    
+    if (datePickerShowed) {
+        [self hideDatePickerView];
+    }
 }
 
 
@@ -54,7 +113,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [aryTitleData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -73,10 +132,172 @@
         cell.isTextFiledEnable = NO;
     }
     
+    cell.title = [aryTitleData objectAtIndex:indexPath.row];
+    cell.cellType = AddExpendLogic;
+    cell.expendInfo = self.expendInfo;
+    cell.placeHolderTitle = [aryPlaceHolder objectAtIndex:indexPath.row];
+    
+    [cell loadAddExpendCellWithIndexPath:indexPath];
+    
     return cell;
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self onClickResign];
+    
+    if (indexPath.row == 0) {
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"维修", @"装修", nil];
+        actionSheet.tag = 10086;
+        [actionSheet showInView:self.view];
+        
+    } else if (indexPath.row == 1) {
+        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"进行中", @"已完成", nil];
+        actionSheet.tag = 10010;
+        [actionSheet showInView:self.view];
+        
+    } else if (indexPath.row == 3) {
+        [self showDatePickerView];
+    }
+}
+
+
+#pragma mark - datePickerViewFunction
+- (void)initDatePickerView
+{
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
+    datePicker.backgroundColor = [UIColor whiteColor];
+    [datePicker setDatePickerMode:UIDatePickerModeDate];
+    [datePicker addTarget:self action:@selector(onClickChangePickerViewValue:) forControlEvents:UIControlEventValueChanged];
+    [datePicker setDate:[NSDate date]];
+    [self.view addSubview:datePicker];
+    
+    [self hideDatePickerView];
+}
+
+- (void)onClickChangePickerViewValue:(UIDatePicker *)picker
+{
+    NSString *dateString = [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:picker.date];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
+    [self sendMsgToCellTextFieldWithIndexPath:indexPath dateString:dateString];
+}
+
+- (void)sendMsgToCellTextFieldWithIndexPath:(NSIndexPath *)indexPath dateString:(NSString *)dateString
+{
+    NormalInputTextFieldCell *cell = (NormalInputTextFieldCell *)[expendDetailTableView cellForRowAtIndexPath:indexPath];
+    for (UIView *subView in cell.subviews) {
+        UIView *wrapperView = (UIView *)[subView viewWithTag:10086];
+        for (UIView *tmpSubView in wrapperView.subviews) {
+            if ([tmpSubView isKindOfClass:[UITextField class]]) {
+                UITextField *textField = (UITextField *)tmpSubView;
+                textField.text = dateString;
+                
+                NSString *interval = [CustomTimeUtils changeDateToInterval:dateString];
+                self.expendInfo.createTime = interval;
+            }
+        }
+    }
+}
+
+- (void)showDatePickerView
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [datePicker setFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
+        [self.view bringSubviewToFront:datePicker];
+        datePickerShowed = YES;
+        [expendDetailTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 216 - 64)];
+    }];
+}
+
+- (void)hideDatePickerView
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [datePicker setFrame:CGRectMake(0, MainScreenHeight, MainScreenWidth, 216)];
+        datePickerShowed = NO;
+        [expendDetailTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
+    }];
+}
+
+#pragma mark - BaseAction
+- (void)onClickLeftItem
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)onClickSecondRightItem
+{
+    [self onClickResign];
+    
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    if (self.expendInfo.expendInfoId) {
+        [paramDic setObject:self.expendInfo.expendInfoId forKey:@"id"];
+    } else {
+        [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)self.expendInfo.homeId] forKey:@"homeId"];
+    }
+    [paramDic setObject:self.expendInfo.mark forKey:@"mark"];
+    [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)self.expendInfo.amount] forKey:@"amount"];
+    [paramDic setObject:self.expendInfo.status forKey:@"status"];
+    [paramDic setObject:self.expendInfo.category forKey:@"category"];
+    [paramDic setObject:[CustomTimeUtils changeIntervalToDate:self.expendInfo.successDate] forKey:@"successDate"];
+    
+    if (self.expendInfo.expendInfoId) {
+        [CustomRequestUtils createNewPostRequest:@"/apartment/home/maintain/update.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    } else {
+        [CustomRequestUtils createNewPostRequest:@"/apartment/home/maintain/add.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    }
+}
+
+#pragma mark - UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 10086) {
+        
+        if (buttonIndex == 0) {
+            self.expendInfo.category = @"MAINTAIN";
+        } else if (buttonIndex == 1) {
+            self.expendInfo.category = @"DECO";
+        }
+        
+        [expendDetailTableView reloadData];
+        
+    } else if (actionSheet.tag == 10010) {
+        if (buttonIndex == 0) {
+            self.expendInfo.status = @"ING";
+        } else if (buttonIndex == 1) {
+            self.expendInfo.status = @"COMPLETE";
+        }
+        
+        [expendDetailTableView reloadData];
+    }
+}
+
+#pragma mark -
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([NSStringFromClass([touch.view.superview class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    
+    return YES;
+}
 /*
 #pragma mark - Navigation
 

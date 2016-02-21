@@ -16,6 +16,11 @@
 #import "ApartmentGasListViewController.h"
 #import "ApartmentWaterListViewController.h"
 #import "ApartmentElecListViewController.h"
+#import "CustomTimeUtils.h"
+#import "HouseHolderInfoViewController.h"
+#import "ExpendViewController.h"
+#import "DeviceListViewController.h"
+#import "HouseHolderListViewController.h"
 
 typedef enum{
     
@@ -35,6 +40,7 @@ typedef enum{
 
     NSArray *aryStatusItem;
     NSArray *aryRentItem;
+    NSArray *aryTanantItem;
     
     UIDatePicker *datePicker;
     
@@ -63,13 +69,24 @@ typedef enum{
     
     aryStatusItem = @[@"RENT_ING", @"IDLE_ING", @"NO_CLEAN"];
     aryRentItem = @[@"ALL", @"ROOMMATE"];
+    aryTanantItem = @[@"1人", @"2人", @"3人", @"3人以上"];
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"房间详情" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
-    [self adaptSecondRightItemWithTitle:@"确认添加"];
+    
+    
+    
+    if ([apartmentRoom.roomId integerValue] > 0) {
+        [self adaptSecondRightItemWithTitle:@"更多"];
+        [self adaptFirstRightItemWithTitle:@"更新"];
+    } else {
+        [self adaptSecondRightItemWithTitle:@"添加"];
+    }
+
     
     if (!apartmentRoom) {
         apartmentRoom = [[ApartmentRoom alloc] init];
+        apartmentRoom.deliverCategory = @"M_2_1";
         apartmentRoom.aryApartmentUser = [[NSMutableArray alloc] init];
     }
     
@@ -132,6 +149,9 @@ typedef enum{
                 if ([tmpSubView isKindOfClass:[UITextView class]]) {
                     UITextView *textView = (UITextView *)tmpSubView;
                     [textView resignFirstResponder];
+                    if (![CustomStringUtils isBlankString:textView.text]) {
+                        apartmentRoom.mark = textView.text;
+                    }
                 }
             }
         }
@@ -190,15 +210,27 @@ typedef enum{
             break;
             
         case 3:
-            return 0;
+            if (apartmentRoom.water) {
+                return 1;
+            } else {
+                return 0;
+            }
             break;
             
         case 4:
-            return 0;
+            if (apartmentRoom.elec) {
+                return 1;
+            } else {
+                return 0;
+            }
             break;
             
         case 5:
-            return 0;
+            if (apartmentRoom.gas) {
+                return 1;
+            } else {
+                return 0;
+            }
             break;
             
         default:
@@ -273,8 +305,61 @@ typedef enum{
         
         return cell;
         
-    } else if (indexPath.section == 3 || indexPath.section == 4 || indexPath.section == 5) {
+    } else if (indexPath.section == 3) {
         
+        static NSString *cellIdentifier = @"WaterCell";
+        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.isTextFiledEnable = NO;
+        cell.title = @"水表名称";
+        cell.descTextField.text = apartmentRoom.water.mark;
+        
+        cell.backgroundColor = [UIColor clearColor];
+        
+        [cell loadNormalInputTextFieldCellData];
+        
+        return cell;
+    } else if (indexPath.section == 4) {
+        
+        static NSString *cellIdentifier = @"ElecCell";
+        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.isTextFiledEnable = NO;
+        cell.title = @"电表名称";
+        cell.descTextField.text = apartmentRoom.elec.mark;
+        
+        cell.backgroundColor = [UIColor clearColor];
+        
+        [cell loadNormalInputTextFieldCellData];
+        
+        return cell;
+        
+    } else if (indexPath.section == 5) {
+        
+        static NSString *cellIdentifier = @"GasCell";
+        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (cell == nil) {
+            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.isTextFiledEnable = NO;
+        cell.title = @"气表名称";
+        cell.descTextField.text = apartmentRoom.gas.mark;
+        
+        cell.backgroundColor = [UIColor clearColor];
+        
+        [cell loadNormalInputTextFieldCellData];
+        
+        return cell;
     }
     
     return nil;
@@ -402,7 +487,7 @@ typedef enum{
             actionSheet.tag = 112;
             [actionSheet showInView:self.view];
         } else if (indexPath.row == 7) {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"出租中",@"闲置中",@"未打扫", nil];
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"整租",@"合租", nil];
             actionSheet.tag = 113;
             [actionSheet showInView:self.view];
         }
@@ -411,6 +496,18 @@ typedef enum{
         view.delegate = self;
         view.currentApartmentUser = [apartmentRoom.aryApartmentUser objectAtIndex:indexPath.row];
         [self.navigationController pushViewController:view animated:YES];
+    } else if (indexPath.section == 3) {
+        ApartmentWaterListViewController *viewController = [[ApartmentWaterListViewController alloc] init];
+        viewController.delegate = self;
+        [self.navigationController pushViewController:viewController animated:YES];
+    } else if (indexPath.section == 4) {
+        ApartmentElecListViewController *viewController = [[ApartmentElecListViewController alloc] init];
+        viewController.delegate = self;
+        [self.navigationController pushViewController:viewController animated:YES];
+    } else if (indexPath.section == 5) {
+        ApartmentGasListViewController *viewController = [[ApartmentGasListViewController alloc] init];
+        viewController.delegate = self;
+        [self.navigationController pushViewController:viewController animated:YES];
     }
 }
 
@@ -420,13 +517,12 @@ typedef enum{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)onClickSecondRightItem
+- (void)onClickFirstRightItem
 {
+    [self onClickResign];
+    
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
-    Apartment *currentApartment = apartmentRoom.roomAtApartment;
-    if (![CustomStringUtils isBlankString:currentApartment.apartmentId]) {
-        [paramDic setObject:currentApartment.apartmentId forKey:@"apartmentId"];
-    }
+    
     if (![CustomStringUtils isBlankString:apartmentRoom.homeName]) {
         [paramDic setObject:apartmentRoom.homeName forKey:@"homeName"];
     } else {
@@ -451,12 +547,14 @@ typedef enum{
         [self showAlertViewWithMsg:@"请输入押金"];
         return;
     }
-    if (![CustomStringUtils isBlankString:apartmentRoom.expDate]) {
-        [paramDic setObject:apartmentRoom.expDate forKey:@"expDate"];
+    if ([apartmentRoom.expDate integerValue] > 0) {
+        [paramDic setObject:[CustomTimeUtils changeIntervalToDate:self.apartmentRoom.expDate] forKey:@"expDate"];
     } else {
         [self showAlertViewWithMsg:@"请选择租蘋时间"];
         return;
     }
+    
+    apartmentRoom.deliverCategory = @"M_2_1";
     if (![CustomStringUtils isBlankString:apartmentRoom.deliverCategory]) {
         [paramDic setObject:apartmentRoom.deliverCategory forKey:@"deliverCategory"];
     } else {
@@ -477,6 +575,8 @@ typedef enum{
     }
     if (![CustomStringUtils isBlankString:apartmentRoom.mark]) {
         [paramDic setObject:apartmentRoom.mark forKey:@"mark"];
+    } else {
+        [self showAlertViewWithMsg:@"请输入备注"];
         return;
     }
     
@@ -492,16 +592,54 @@ typedef enum{
     if (![CustomStringUtils isBlankString:tmpUserIds]) {
         [paramDic setObject:tmpUserIds forKey:@"userIds"];
     }
-
-    [CustomRequestUtils createNewRequest:@"/apartment/home/add.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSDictionary *jsonDic = responseObject;
-        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-            
+    
+    if (apartmentRoom.water.waterId) {
+        [paramDic setObject:apartmentRoom.water.waterId forKey:@"watersideId"];
+    }
+    
+    if (apartmentRoom.gas.gasId) {
+        [paramDic setObject:apartmentRoom.gas.gasId forKey:@"gasmeterId"];
+    }
+    
+    if (apartmentRoom.elec.elecId) {
+        [paramDic setObject:apartmentRoom.elec.elecId forKey:@"ammeterId"];
+    }
+    
+    if ([apartmentRoom.roomId integerValue] > 0) {
+        //更新
+        [paramDic setObject:apartmentRoom.roomId forKey:@"id"];
+        
+        [CustomRequestUtils createNewPostRequest:@"/apartment/home/update.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+        
+    } else {
+        //添加
+        if ([self.apartmentId integerValue] > 0) {
+            [paramDic setObject:(NSString *)self.apartmentId forKey:@"apartmentId"];
         }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@", error);
-    }];
+        
+        [CustomRequestUtils createNewPostRequest:@"/apartment/home/add.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    }
+}
 
+- (void)onClickSecondRightItem
+{
+    UIActionSheet *actioSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"房主信息", @"支出列表", @"设备列表", @"续交房租", nil];
+    actioSheet.tag = 118;
+    [actioSheet showInView:self.view];
 }
 
 - (void)showAlertViewWithMsg:(NSString *)msg
@@ -522,19 +660,36 @@ typedef enum{
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == 111) {
-        if (buttonIndex < [actionSheet numberOfButtons]) {
+        if (buttonIndex == 0 || buttonIndex == 1 || buttonIndex == 2) {
             apartmentRoom.status = [aryStatusItem objectAtIndex:buttonIndex];
             [addRoomTableView reloadData];
         }
      } else if (actionSheet.tag == 112) {
-         if (buttonIndex < [actionSheet numberOfButtons]) {
-             apartmentRoom.tanantNumber = [[actionSheet buttonTitleAtIndex:buttonIndex] integerValue];
+         if (buttonIndex == 0 || buttonIndex == 1 || buttonIndex == 2 || buttonIndex == 3) {
+             apartmentRoom.tanantNumber = buttonIndex + 1;
              [addRoomTableView reloadData];
          }
     } else if (actionSheet.tag == 113) {
-        if (buttonIndex < [actionSheet numberOfButtons]) {
-            apartmentRoom.rentCategory = [actionSheet buttonTitleAtIndex:buttonIndex];
+        if (buttonIndex == 0 || buttonIndex == 1) {
+            apartmentRoom.rentCategory = [aryRentItem objectAtIndex:buttonIndex];
             [addRoomTableView reloadData];
+        }
+    } else if (actionSheet.tag == 118) {
+        if (buttonIndex == 0) {
+            //房主信息
+            HouseHolderInfoViewController *view = [[HouseHolderInfoViewController alloc] init];
+            view.apartmentRoom = self.apartmentRoom;
+            [self.navigationController pushViewController:view animated:YES];
+        } else if (buttonIndex == 1) {
+            ExpendViewController *view = [[ExpendViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
+        } else if (buttonIndex == 2) {
+            DeviceListViewController *view = [[DeviceListViewController alloc] init];
+            view.apartmentRoom = self.apartmentRoom;
+            [self.navigationController pushViewController:view animated:YES];
+        } else if (buttonIndex == 3){
+            HouseHolderListViewController *view = [[HouseHolderListViewController alloc] init];
+            [self.navigationController pushViewController:view animated:YES];
         }
     }
 }
@@ -580,6 +735,7 @@ typedef enum{
             if ([tmpSubView isKindOfClass:[UITextField class]]) {
                 UITextField *textField = (UITextField *)tmpSubView;
                 textField.text = dateString;
+                self.apartmentRoom.expDate = dateString;
             }
         }
     }
@@ -625,6 +781,30 @@ typedef enum{
             [apartmentRoom.aryApartmentUser replaceObjectAtIndex:i withObject:apartmentUser];
         }
     }
+    
+    [addRoomTableView reloadData];
+}
+
+#pragma mark - ApartmentWaterList
+- (void)AWLD_passApartmentWater:(Water *)water
+{
+    apartmentRoom.water = water;
+    
+    [addRoomTableView reloadData];
+}
+
+#pragma mark - ApartmentElecList
+- (void)AELD_passApartmentElec:(Elec *)elec
+{
+    apartmentRoom.elec = elec;
+    
+    [addRoomTableView reloadData];
+}
+
+#pragma mark - ApartmentGasList
+- (void)AGLD_passApartmentGas:(Gas *)gas
+{
+    apartmentRoom.gas = gas;
     
     [addRoomTableView reloadData];
 }

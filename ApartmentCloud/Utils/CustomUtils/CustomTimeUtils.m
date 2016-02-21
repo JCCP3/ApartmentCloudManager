@@ -154,5 +154,18 @@
     
 }
 
++ (NSString *)changeIntervalToDate:(NSString *)interval
+{
+    NSDate *detaildate=[NSDate dateWithTimeIntervalSince1970:[interval doubleValue] / 1000];
+    return [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:detaildate];
+}
+
++ (NSString *)changeDateToInterval:(NSString *)date
+{
+    NSDate *dateNow = [[DateFormatUtils sharedInstance].thirdDateFormatter dateFromString:date];
+    NSString *timeSp = [NSString stringWithFormat:@"%ld", (long)[dateNow timeIntervalSince1970] * 1000];
+    return timeSp;
+}
+
 
 @end

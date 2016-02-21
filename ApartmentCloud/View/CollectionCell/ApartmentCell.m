@@ -56,8 +56,8 @@
         roomImageView.hidden = NO;
         addRoomImageView.hidden = YES;
         if (showPay) {
-            self.backgroundColor = [UIColor grayColor];
-            self.layer.borderColor = [UIColor grayColor].CGColor;
+            self.backgroundColor = [CustomColorUtils colorWithHexString:@"#fcb621"];
+            self.layer.borderColor = [CustomColorUtils colorWithHexString:@"#fcb621"].CGColor;
         } else {
             self.backgroundColor = AppThemeColor;
             self.layer.borderColor = AppThemeColor.CGColor;

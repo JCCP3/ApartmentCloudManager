@@ -33,7 +33,7 @@
     aryTitleData = @[@"电表名", @"电表度数",];
     aryPlaceHolderData = @[@"请输入电表名", @"请输入电表度数"];
     
-    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加住户" segmentArray:nil];
+    [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"添加电表" segmentArray:nil];
     [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     [self adaptSecondRightItemWithTitle:@"确认添加"];
     
@@ -96,11 +96,13 @@
         cell.isTextFiledEnable = YES;
     }
     
-    cell.delegate = self;
-    cell.cellType = AddApartmentUserLogic;
+    cell.cellType = AddElecLogic;
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
+    cell.elec = self.currentElec;
+    
+    [cell loadAddElecCellWithIndexPath:indexPath];
     
     return cell;
 }
@@ -145,41 +147,40 @@
 
 - (void)onClickSecondRightItem
 {
-    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:0 inSection:0 ]];
-    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    
+    if (self.currentElec.elecId) {
+        [paramDic setObject:self.currentElec.elecId forKey:@"id"];
+    }
+    
     [paramDic setObject:self.currentElec.mark forKey:@"mark"];
-    [paramDic setObject:self.currentElec.currentNumber forKey:@"currentNumber"];
+    [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)self.currentElec.currentNumber] forKey:@"currentNumber"];
     [paramDic setObject:@"COMMON" forKey:@"category"];
     
-    [CustomRequestUtils createNewPostRequest:@"/device/ammeter/add.json" params:paramDic success:^(id responseObject) {
-        NSDictionary *jsonDic = responseObject;
-        
-        if (jsonDic) {
+    if (self.currentElec.elecId) {
+        [CustomRequestUtils createNewPostRequest:@"/device/ammeter/update.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
             
-        }
-        
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
-}
-
-- (void)setWaterByAddWaterIndexPath:(NSIndexPath *)indexPath
-{
-    NormalInputTextFieldCell *cell = [addElecTableView cellForRowAtIndexPath:indexPath];
-    
-    UIView *tmpView = [cell.contentView viewWithTag:10086];
-    for (UIView *tmpSubView in tmpView.subviews) {
-        if ([tmpSubView isKindOfClass:[UITextField class]]) {
-            UITextField *textField = (UITextField *)tmpSubView;
-            if (indexPath.row == 0) {
-                self.currentElec.mark = textField.text;
-            } else {
-                self.currentElec.currentNumber = textField.text;
+            if (jsonDic) {
+                
             }
-        }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    } else {
+        [CustomRequestUtils createNewPostRequest:@"/device/ammeter/add.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            
+            if (jsonDic) {
+                
+            }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
     }
 }
+
 
 @end

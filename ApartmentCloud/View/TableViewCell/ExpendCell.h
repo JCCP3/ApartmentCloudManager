@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ExpendInfo.h"
+#import "DeviceInfo.h"
 
 @interface ExpendCell : UITableViewCell
 
 - (void)loadExpendCellData:(ExpendInfo *)expendInfo;
+
+- (void)loadDeviceCellData:(DeviceInfo *)deviceInfo;
 
 @end

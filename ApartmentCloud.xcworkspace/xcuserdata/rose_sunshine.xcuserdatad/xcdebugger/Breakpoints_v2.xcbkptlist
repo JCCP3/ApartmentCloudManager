@@ -6,15 +6,29 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ApartmentCloud/Model/Apartment.m"
+            timestampString = "477672894.829428"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1"
+            endingLineNumber = "1">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
-            timestampString = "475507407.095546"
+            filePath = "ApartmentCloud/Controller/ApartmentManager/AddDeviceInfoViewController.m"
+            timestampString = "477712638.413971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-onClickSecondRightItem"
             landmarkType = "5">
          </BreakpointContent>
@@ -25,46 +39,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
-            timestampString = "475507489.00478"
+            filePath = "ApartmentCloud/Controller/ApartmentManager/HouseHolderInfoViewController.m"
+            timestampString = "477714259.55701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
-            landmarkName = "-onClickSecondRightItem"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[AddApartmentGasViewController onClickSecondRightItem]"
-                  moduleName = "ApartmentCloud"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
-                  timestampString = "477593768.303927"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
-                  offsetFromSymbolStart = "652">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__55-[AddApartmentGasViewController onClickSecondRightItem]_block_invoke"
-                  moduleName = "ApartmentCloud"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/rose_sunshine/Desktop/iOS-ApartmentCloud/ApartmentCloudManager/ApartmentCloud/Controller/ApartmentManager/AddApartmentGasViewController.m"
-                  timestampString = "477593768.304594"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
-                  offsetFromSymbolStart = "40">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ApartmentCloud/Controller/ApartmentManager/HouseHolderInfoViewController.m"
+            timestampString = "477714278.691082"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

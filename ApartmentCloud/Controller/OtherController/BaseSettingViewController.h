@@ -1,5 +1,5 @@
 //
-//  ExpendViewController.h
+//  BaseSettingViewController.h
 //  ApartmentCloud
 //
 //  Created by Rose on 16/2/20.
@@ -8,8 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ExpendViewController : BaseViewController
-
-@property (nonatomic, assign) BOOL isFromLeftSide;
+@interface BaseSettingViewController : BaseViewController
 
 @end

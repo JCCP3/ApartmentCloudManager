@@ -24,5 +24,9 @@
 
 + (int)compareOneDay:(NSString *)oneDayStr withAnotherDay:(NSString *)anotherDayStr;
 
+//时间戳相互转换
++ (NSString *)changeIntervalToDate:(NSString *)interval;
+
++ (NSString *)changeDateToInterval:(NSString *)date;
 
 @end

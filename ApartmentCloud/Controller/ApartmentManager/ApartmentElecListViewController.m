@@ -9,6 +9,7 @@
 #import "ApartmentElecListViewController.h"
 #import "NormalInputTextFieldCell.h"
 #import "LeftSideViewController.h"
+#import "AddApartmentElecViewController.h"
 
 @interface ApartmentElecListViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -36,7 +37,7 @@
     [self adaptSecondRightItemWithTitle:@"添加"];
     [self createElecListTableView];
     
-    [self loadElecList];
+    [self loadElecList:YES];
     
 }
 
@@ -46,13 +47,18 @@
     elecListTableView.delegate = self;
     elecListTableView.dataSource = self;
     elecListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    elecListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:elecListTableView];
 }
 
-- (void)loadElecList
+- (void)loadElecList:(BOOL)refresh
 {
-    [CustomRequestUtils createNewRequest:@"/device/ammeter/list.json" success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSString *requestUrl;
+    if (refresh) {
+        requestUrl = @"/device/ammeter/list.json?currPage=1&pageSize=10";
+    } else {
+        
+    }
+    [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
         [self parseJsonDic:jsonDic];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -66,6 +72,8 @@
     if ([dic objectForKey:@"datas"] && [[dic objectForKey:@"datas"] count] > 0) {
         NSMutableArray *tmpArray = [dic objectForKey:@"datas"];
         for (NSDictionary *tmpDic in tmpArray) {
+            Elec *elec = [[Elec alloc] initWithDictionary:tmpDic];
+            [currentTmpArray addObject:elec];
         }
         
         aryData = currentTmpArray;
@@ -91,25 +99,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        static NSString *cellIdentifier = @"Cell";
-        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        cell.isTextFiledEnable = NO;
-        
-        
-        cell.backgroundColor = [UIColor clearColor];
-        
-        [cell loadNormalInputTextFieldCellData];
-        
-        return cell;
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    return nil;
+    cell.backgroundColor = [UIColor clearColor];
+    
+    Elec *elec = [aryData objectAtIndex:indexPath.row];
+    cell.textLabel.text = elec.mark;
+    cell.textLabel.textColor = [UIColor blackColor];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"当前读数:%ld", (long)elec.currentNumber];
+    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,9 +136,52 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    if (self.fromLeftSide) {
+        AddApartmentElecViewController *view = [[AddApartmentElecViewController alloc] init];
+        view.currentElec = [aryData objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:view animated:YES];
+    } else {
+        if ([self.delegate respondsToSelector:@selector(AELD_passApartmentElec:)]) {
+            [self.delegate AELD_passApartmentElec:[aryData objectAtIndex:indexPath.row]];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Elec *elec = [aryData objectAtIndex:indexPath.row];
+        [aryData removeObject:elec];
+        
+        [self deleteElecInfo:elec];
+    }
+}
+
+- (void)deleteElecInfo:(Elec *)elec
+{
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:elec.elecId forKey:@"id"];
+    
+    [CustomRequestUtils createNewPostRequest:@"/device/ammeter/del.json" params:paramDic success:^(id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if (jsonDic) {
+            
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
 
 #pragma mark - BaseAction
 - (void)onClickLeftItem
@@ -142,6 +192,12 @@
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (void)onClickSecondRightItem
+{
+    AddApartmentElecViewController *view = [[AddApartmentElecViewController alloc] init];
+    [self.navigationController pushViewController:view animated:YES];
 }
 
 @end

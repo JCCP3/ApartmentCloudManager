@@ -32,7 +32,7 @@
     if (self.fromLeftSide) {
         [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
     } else {
-        [self adaptSecondRightItemWithTitle:@"返回"];
+        [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     }
     
     [self adaptSecondRightItemWithTitle:@"添加"];
@@ -53,7 +53,6 @@
     waterListTableView.delegate = self;
     waterListTableView.dataSource = self;
     waterListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    waterListTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:waterListTableView];
 }
 
@@ -62,9 +61,9 @@
     NSString *tmpUrl = [NSString stringWithFormat:@"/device/waterside/list.json"];
     
     if (refresh) {
-        tmpUrl = [tmpUrl stringByAppendingString:@"&currPage=0&pageSize=10"];
+        tmpUrl = [tmpUrl stringByAppendingString:@"?currPage=1&pageSize=10"];
     } else {
-        tmpUrl = [tmpUrl stringByAppendingString:[NSString stringWithFormat:@"?currPage=%ld&pageSize=10",(long)[aryData count]/10]];
+        tmpUrl = [tmpUrl stringByAppendingString:[NSString stringWithFormat:@"?currPage=%ld&pageSize=10",(long)[aryData count]/10 + 1]];
     }
     
 //    tmpUrl = [tmpUrl stringByAppendingString:@"&noBinding=N"];
@@ -86,8 +85,9 @@
     if ([dic objectForKey:@"datas"] && [[dic objectForKey:@"datas"] count] > 0) {
         NSMutableArray *tmpArray = [dic objectForKey:@"datas"];
         for (NSDictionary *tmpDic in tmpArray) {
+            Water *water = [[Water alloc] initWithDictionary:tmpDic];
+            [currentTmpArray addObject:water];
         }
-        
         
         aryData = currentTmpArray;
         [waterListTableView reloadData];
@@ -123,25 +123,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        static NSString *cellIdentifier = @"Cell";
-        NormalInputTextFieldCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        
-        cell.isTextFiledEnable = NO;
-        
-        
-        cell.backgroundColor = [UIColor clearColor];
-        
-        [cell loadNormalInputTextFieldCellData];
-        
-        return cell;
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    return nil;
+    cell.backgroundColor = [UIColor clearColor];
+    
+    Water *water = [aryData objectAtIndex:indexPath.row];
+    cell.textLabel.text = water.mark;
+    cell.textLabel.textColor = [UIColor blackColor];
+    
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"当前读数:%ld", (long)water.currentNumber];
+    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    
+    return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -161,9 +160,53 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (!self.fromLeftSide) {
+        if ([self.delegate respondsToSelector:@selector(AWLD_passApartmentWater:)]) {
+            [self.delegate AWLD_passApartmentWater:[aryData objectAtIndex:indexPath.row]];
+        }
+        [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        AddApartmentWaterViewController *view = [[AddApartmentWaterViewController alloc] init];
+        view.currentWater = [aryData objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:view animated:YES];
+    }
 }
 
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        Water *water = [aryData objectAtIndex:indexPath.row];
+        [aryData removeObject:water];
+        
+        [self deleteWaterInfo:water];
+    }
+}
+
+- (void)deleteWaterInfo:(Water *)water
+{
+    NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
+    [paramDic setObject:water.waterId forKey:@"id"];
+    
+    [CustomRequestUtils createNewPostRequest:@"/device/waterside/del.json" params:paramDic success:^(id responseObject) {
+        NSDictionary *jsonDic = responseObject;
+        if (jsonDic) {
+            
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@", error);
+    }];
+}
 
 #pragma mark - BaseAction
 - (void)onClickLeftItem

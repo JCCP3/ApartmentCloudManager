@@ -87,8 +87,10 @@
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
+    cell.gas = self.currentGas;
+    cell.cellType = AddGasLogic;
     
-    [cell loadNormalInputTextFieldCellData];
+    [cell loadAddGasCellWithIndexPath:indexPath];
     
     return cell;
 }
@@ -133,43 +135,43 @@
 
 - (void)onClickSecondRightItem
 {
-    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:0 inSection:0 ]];
-    [self setWaterByAddWaterIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-    
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
-    [paramDic setObject:self.currentGas.mark forKey:@"mark"];
-    [paramDic setObject:self.currentGas.currentNumber forKey:@"currentNumber"];
+    if (![CustomStringUtils isBlankString:self.currentGas.mark]) {
+        [paramDic setObject:self.currentGas.mark forKey:@"mark"];
+    }
+    if (self.currentGas.currentNumber > 0) {
+        [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)self.currentGas.currentNumber] forKey:@"currentNumber"];
+    }
+    
     [paramDic setObject:@"COMMON" forKey:@"category"];
     
-    [CustomRequestUtils createNewPostRequest:@"/device/waterside/add.json" params:paramDic success:^(id responseObject) {
-        NSDictionary *jsonDic = responseObject;
+    if (self.currentGas.gasId) {
+        [paramDic setObject:self.currentGas.gasId forKey:@"id"];
         
-        if (jsonDic) {
+        [CustomRequestUtils createNewPostRequest:@"/device/gasmeter/update.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
             
-        }
-        
-    } failure:^(NSError *error) {
-        NSLog(@"%@", error);
-    }];
-}
-
-
-- (void)setWaterByAddWaterIndexPath:(NSIndexPath *)indexPath
-{
-    NormalInputTextFieldCell *cell = [addGasTableView cellForRowAtIndexPath:indexPath];
-    
-    UIView *tmpView = [cell.contentView viewWithTag:10086];
-    for (UIView *tmpSubView in tmpView.subviews) {
-        if ([tmpSubView isKindOfClass:[UITextField class]]) {
-            UITextField *textField = (UITextField *)tmpSubView;
-            if (indexPath.row == 0) {
-                self.currentGas.mark = textField.text;
-            } else {
-                self.currentGas.currentNumber = textField.text;
+            if (jsonDic) {
+                [self.navigationController popViewControllerAnimated:YES];
             }
-        }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
+    } else {
+        [CustomRequestUtils createNewPostRequest:@"/device/gasmeter/add.json" params:paramDic success:^(id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            
+            if (jsonDic) {
+                
+            }
+            
+        } failure:^(NSError *error) {
+            NSLog(@"%@", error);
+        }];
     }
+    
+    
 }
-
 
 @end

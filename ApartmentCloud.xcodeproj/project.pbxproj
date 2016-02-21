@@ -27,6 +27,7 @@
 		36719A8B1C77832100CB3573 /* ExpendCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A8A1C77832100CB3573 /* ExpendCell.m */; };
 		36719A8E1C77845F00CB3573 /* ExpendInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A8D1C77845F00CB3573 /* ExpendInfo.m */; };
 		36719A911C77864000CB3573 /* ExpendDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A901C77864000CB3573 /* ExpendDetailViewController.m */; };
+		36719A941C78C09D00CB3573 /* BaseSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A931C78C09D00CB3573 /* BaseSettingViewController.m */; };
 		367A16291C3E8644001D711D /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 367A16281C3E8644001D711D /* LoginViewController.m */; };
 		367A162F1C3E8A9E001D711D /* loginAccount@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162C1C3E8A9E001D711D /* loginAccount@2x.png */; };
 		367A16311C3E8A9E001D711D /* loginPwd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 367A162E1C3E8A9E001D711D /* loginPwd@2x.png */; };
@@ -80,6 +81,13 @@
 		36B3DA2D1C4D2F67006D968C /* ApartmentUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA2C1C4D2F67006D968C /* ApartmentUser.m */; };
 		36B3DA2F1C4D3C37006D968C /* apartment_addRoom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */; };
 		36B3DA321C4D3C84006D968C /* ApartmentRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 36B3DA311C4D3C84006D968C /* ApartmentRoom.m */; };
+		36BE6D581C78E0470044C861 /* c_arrow_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE6D561C78E0470044C861 /* c_arrow_down@2x.png */; };
+		36BE6D591C78E0470044C861 /* c_arrow_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36BE6D571C78E0470044C861 /* c_arrow_down@3x.png */; };
+		36BE6D5C1C78E8A10044C861 /* HouseHolderInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE6D5B1C78E8A10044C861 /* HouseHolderInfoViewController.m */; };
+		36BE6D5F1C78E8B40044C861 /* DeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE6D5E1C78E8B40044C861 /* DeviceListViewController.m */; };
+		36BE6D621C78F00E0044C861 /* HomeOwner.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE6D611C78F00E0044C861 /* HomeOwner.m */; };
+		36BE6D651C78F5F40044C861 /* DeviceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE6D641C78F5F40044C861 /* DeviceInfo.m */; };
+		36BE6D681C7947300044C861 /* AddDeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36BE6D671C7947300044C861 /* AddDeviceInfoViewController.m */; };
 		ABB6875629579397F9209BA6 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E22CCFA7811654A775F916F /* libPods.a */; };
 		FEB556EE1C3E505600FCFA43 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556ED1C3E505600FCFA43 /* main.m */; };
 		FEB556F11C3E505600FCFA43 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FEB556F01C3E505600FCFA43 /* AppDelegate.m */; };
@@ -176,6 +184,8 @@
 		36719A8D1C77845F00CB3573 /* ExpendInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendInfo.m; sourceTree = "<group>"; };
 		36719A8F1C77864000CB3573 /* ExpendDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendDetailViewController.h; sourceTree = "<group>"; };
 		36719A901C77864000CB3573 /* ExpendDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendDetailViewController.m; sourceTree = "<group>"; };
+		36719A921C78C09D00CB3573 /* BaseSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseSettingViewController.h; sourceTree = "<group>"; };
+		36719A931C78C09D00CB3573 /* BaseSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseSettingViewController.m; sourceTree = "<group>"; };
 		367A16271C3E8644001D711D /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		367A16281C3E8644001D711D /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		367A162C1C3E8A9E001D711D /* loginAccount@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loginAccount@2x.png"; sourceTree = "<group>"; };
@@ -260,6 +270,18 @@
 		36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apartment_addRoom@2x.png"; sourceTree = "<group>"; };
 		36B3DA301C4D3C84006D968C /* ApartmentRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentRoom.h; sourceTree = "<group>"; };
 		36B3DA311C4D3C84006D968C /* ApartmentRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentRoom.m; sourceTree = "<group>"; };
+		36BE6D561C78E0470044C861 /* c_arrow_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c_arrow_down@2x.png"; sourceTree = "<group>"; };
+		36BE6D571C78E0470044C861 /* c_arrow_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "c_arrow_down@3x.png"; sourceTree = "<group>"; };
+		36BE6D5A1C78E8A10044C861 /* HouseHolderInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HouseHolderInfoViewController.h; sourceTree = "<group>"; };
+		36BE6D5B1C78E8A10044C861 /* HouseHolderInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HouseHolderInfoViewController.m; sourceTree = "<group>"; };
+		36BE6D5D1C78E8B40044C861 /* DeviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListViewController.h; sourceTree = "<group>"; };
+		36BE6D5E1C78E8B40044C861 /* DeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListViewController.m; sourceTree = "<group>"; };
+		36BE6D601C78F00E0044C861 /* HomeOwner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeOwner.h; sourceTree = "<group>"; };
+		36BE6D611C78F00E0044C861 /* HomeOwner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeOwner.m; sourceTree = "<group>"; };
+		36BE6D631C78F5F40044C861 /* DeviceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceInfo.h; sourceTree = "<group>"; };
+		36BE6D641C78F5F40044C861 /* DeviceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceInfo.m; sourceTree = "<group>"; };
+		36BE6D661C7947300044C861 /* AddDeviceInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddDeviceInfoViewController.h; sourceTree = "<group>"; };
+		36BE6D671C7947300044C861 /* AddDeviceInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddDeviceInfoViewController.m; sourceTree = "<group>"; };
 		7E22CCFA7811654A775F916F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A41F761C482EF0B164551491 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		EFC7294F68F5187FB4DC0C83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -439,6 +461,12 @@
 				3626C6301C56578500C85F11 /* ApartmentGasListViewController.m */,
 				3626C6321C56579000C85F11 /* AddApartmentGasViewController.h */,
 				3626C6331C56579000C85F11 /* AddApartmentGasViewController.m */,
+				36BE6D5A1C78E8A10044C861 /* HouseHolderInfoViewController.h */,
+				36BE6D5B1C78E8A10044C861 /* HouseHolderInfoViewController.m */,
+				36BE6D5D1C78E8B40044C861 /* DeviceListViewController.h */,
+				36BE6D5E1C78E8B40044C861 /* DeviceListViewController.m */,
+				36BE6D661C7947300044C861 /* AddDeviceInfoViewController.h */,
+				36BE6D671C7947300044C861 /* AddDeviceInfoViewController.m */,
 			);
 			path = ApartmentManager;
 			sourceTree = "<group>";
@@ -485,6 +513,8 @@
 		36B3D9B71C422D6E006D968C /* ApartmentImages */ = {
 			isa = PBXGroup;
 			children = (
+				36BE6D561C78E0470044C861 /* c_arrow_down@2x.png */,
+				36BE6D571C78E0470044C861 /* c_arrow_down@3x.png */,
 				36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */,
 				36B3D9B81C422D6E006D968C /* apartment_person@2x.png */,
 				36B3D9B91C422D6E006D968C /* apartment_ThreePerson@2x.png */,
@@ -562,6 +592,8 @@
 				36719A811C777E2100CB3573 /* AppWebViewController.m */,
 				36719A831C7780E200CB3573 /* SettingViewController.h */,
 				36719A841C7780E200CB3573 /* SettingViewController.m */,
+				36719A921C78C09D00CB3573 /* BaseSettingViewController.h */,
+				36719A931C78C09D00CB3573 /* BaseSettingViewController.m */,
 			);
 			path = OtherController;
 			sourceTree = "<group>";
@@ -598,6 +630,10 @@
 				3626C63C1C56599D00C85F11 /* Elec.m */,
 				36719A8C1C77845F00CB3573 /* ExpendInfo.h */,
 				36719A8D1C77845F00CB3573 /* ExpendInfo.m */,
+				36BE6D601C78F00E0044C861 /* HomeOwner.h */,
+				36BE6D611C78F00E0044C861 /* HomeOwner.m */,
+				36BE6D631C78F5F40044C861 /* DeviceInfo.h */,
+				36BE6D641C78F5F40044C861 /* DeviceInfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1019,6 +1055,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				367A16311C3E8A9E001D711D /* loginPwd@2x.png in Resources */,
+				36BE6D581C78E0470044C861 /* c_arrow_down@2x.png in Resources */,
 				36B3D9C71C423042006D968C /* new_nav_hilighted@3x.png in Resources */,
 				36B3D9BC1C422D6E006D968C /* apartment_ThreePerson@2x.png in Resources */,
 				36B3D9D91C423EE5006D968C /* left_decoration@2x.png in Resources */,
@@ -1042,6 +1079,7 @@
 				36B3D9DD1C423EE5006D968C /* left_setting@2x.png in Resources */,
 				36B3DA2F1C4D3C37006D968C /* apartment_addRoom@2x.png in Resources */,
 				36B3D9C51C423042006D968C /* nav_menu@2x.png in Resources */,
+				36BE6D591C78E0470044C861 /* c_arrow_down@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1159,7 @@
 				36B3DA051C451C7D006D968C /* AddSaleViewController.m in Sources */,
 				36719A911C77864000CB3573 /* ExpendDetailViewController.m in Sources */,
 				36B3DA2D1C4D2F67006D968C /* ApartmentUser.m in Sources */,
+				36BE6D5C1C78E8A10044C861 /* HouseHolderInfoViewController.m in Sources */,
 				FEB557441C3E553F00FCFA43 /* CustomTimeUtils.m in Sources */,
 				FEB557431C3E553F00FCFA43 /* CustomStringUtils.m in Sources */,
 				36B3DA081C451C94006D968C /* HistorySaleViewController.m in Sources */,
@@ -1155,13 +1194,17 @@
 				367A16291C3E8644001D711D /* LoginViewController.m in Sources */,
 				3626C6191C54C1BD00C85F11 /* ApartmentUserListViewController.m in Sources */,
 				36B3DA211C4673A4006D968C /* Apartment.m in Sources */,
+				36BE6D651C78F5F40044C861 /* DeviceInfo.m in Sources */,
 				FEB557481C3E553F00FCFA43 /* MJRefreshDIYHeader.m in Sources */,
+				36719A941C78C09D00CB3573 /* BaseSettingViewController.m in Sources */,
 				3626C61C1C54EA1F00C85F11 /* CustomDatePickerView.m in Sources */,
 				FEB5575B1C3E596A00FCFA43 /* GlobalUtils.m in Sources */,
 				36719A7C1C77607400CB3573 /* ApartmentCountCell.m in Sources */,
 				36719A851C7780E200CB3573 /* SettingViewController.m in Sources */,
 				36B3D9EC1C426902006D968C /* AddDecorateViewController.m in Sources */,
+				36BE6D5F1C78E8B40044C861 /* DeviceListViewController.m in Sources */,
 				3626C6251C56571E00C85F11 /* ApartmentElecListViewController.m in Sources */,
+				36BE6D681C7947300044C861 /* AddDeviceInfoViewController.m in Sources */,
 				FEB5573E1C3E553F00FCFA43 /* CustomAlertView.m in Sources */,
 				36B3DA321C4D3C84006D968C /* ApartmentRoom.m in Sources */,
 				367A16341C3E8ED5001D711D /* CustomColorUtils.m in Sources */,
@@ -1173,6 +1216,7 @@
 				FEB557411C3E553F00FCFA43 /* CustomRequestUtils.m in Sources */,
 				368F7E771C3FCEA700010EC2 /* RegisterViewController.m in Sources */,
 				FEB557801C3E5FAB00FCFA43 /* SvGifView.m in Sources */,
+				36BE6D621C78F00E0044C861 /* HomeOwner.m in Sources */,
 				FEB557451C3E553F00FCFA43 /* CustomUrlUtils.m in Sources */,
 				3626C6311C56578500C85F11 /* ApartmentGasListViewController.m in Sources */,
 				3626C61F1C563F1E00C85F11 /* ApartmentListViewController.m in Sources */,
@@ -1248,7 +1292,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: huan tang (83RME6ET7A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: huan tang (83RME6ET7A)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1270,6 +1315,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3b8a78d3-2159-4045-b9ac-0fbca7cc21ef";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1291,7 +1337,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: huan tang (C2HRDJE464)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: huan tang (C2HRDJE464)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1306,6 +1353,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "d6dfc738-6380-4ae3-8363-61132ff42ceb";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1317,12 +1365,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer: huan tang (83RME6ET7A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: huan tang (83RME6ET7A)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ApartmentCloud/ApartmentCloud-Prefix.pch";
 				INFOPLIST_FILE = ApartmentCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ifmoc.ZhuiShuShenQi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "3b8a78d3-2159-4045-b9ac-0fbca7cc21ef";
 			};
 			name = Debug;
 		};
@@ -1332,12 +1383,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: huan tang (C2HRDJE464)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: huan tang (C2HRDJE464)";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/ApartmentCloud/ApartmentCloud-Prefix.pch";
 				INFOPLIST_FILE = ApartmentCloud/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ifmoc.ZhuiShuShenQi;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "d6dfc738-6380-4ae3-8363-61132ff42ceb";
 			};
 			name = Release;
 		};

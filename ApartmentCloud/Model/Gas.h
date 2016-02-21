@@ -14,7 +14,10 @@
 @property (nonatomic, strong) NSString *mark;
 @property (nonatomic, strong) NSString *homeId;
 @property (nonatomic, strong) NSString *category;
-@property (nonatomic, strong) NSString *currentNumber;
+@property (nonatomic, assign) NSInteger currentNumber;
+@property (nonatomic, strong) NSString *homeName;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, assign) NSInteger uperNumber;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dic;
 

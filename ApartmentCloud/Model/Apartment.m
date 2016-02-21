@@ -26,6 +26,10 @@
     if ([key isEqualToString:@"apartmentHomes"]) {
         self.roomArray = value;
     }
+    
+    if ([key isEqualToString:@"id"]) {
+        self.apartmentId = value;
+    }
 }
 
 @end

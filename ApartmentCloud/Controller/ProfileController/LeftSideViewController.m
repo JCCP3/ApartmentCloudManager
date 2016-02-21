@@ -17,6 +17,7 @@
 #import "ApartmentGasListViewController.h"
 #import "AppWebViewController.h"
 #import "SettingViewController.h"
+#import "ExpendViewController.h"
 
 @interface LeftSideViewController () <UITableViewDataSource, UITableViewDelegate>
 {
@@ -94,7 +95,7 @@
     settingLabel.text = @"设置";
     [footerView addSubview:settingLabel];
     
-    UIButton *settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 37 + 15, MainScreenWidth, 47)];
+    UIButton *settingBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 84)];
     [[settingBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         SettingViewController *viewController = [[SettingViewController alloc] init];
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
@@ -171,7 +172,8 @@
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
     } else if (indexPath.row == 2) {
         //支出列表
-        DecorateViewController *viewController = [[DecorateViewController alloc] init];
+        ExpendViewController *viewController = [[ExpendViewController alloc] init];
+        viewController.isFromLeftSide = YES;
         BaseNavController *nav = [[BaseNavController alloc] initWithRootViewController:viewController];
         [[APPDELEGATE ppRevealSideViewController] popViewControllerWithNewCenterController:nav animated:YES];
     } else if (indexPath.row == 3){

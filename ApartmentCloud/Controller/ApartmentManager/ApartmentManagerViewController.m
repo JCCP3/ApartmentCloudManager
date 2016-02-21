@@ -11,10 +11,11 @@
 #import "LeftSideViewController.h"
 #import "AddApartmentViewController.h"
 #import "AddApartmentRoomViewController.h"
+#import "LocalUserUtils.h"
 
 #define SECOND_NAV_ARR @[@"我的公寓", @"交租查询", @"到期查询", @"房间统计"]
 
-@interface ApartmentManagerViewController () <AddApartmentViewControllerDelegate, ApartmentCollectionViewDelegate, UIScrollViewDelegate>
+@interface ApartmentManagerViewController () <AddApartmentViewControllerDelegate, ApartmentCollectionViewDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 {
     NSMutableArray *aryData;
     
@@ -32,6 +33,20 @@
     BOOL myApartmentRequestFinish;
     BOOL payApartmentRequestFinish;
     BOOL expiredApartmentRequestFinish;
+    
+    UIView *tmpTitleView;
+    UIButton *titleBtn;
+    
+    UIImageView *arrowDownImage;
+    
+    UIView *showPullDownView;
+    BOOL pullDownViewShowed;
+    UITableView *pullDownTableView;
+    
+    UIView *shadowView;
+    
+    NSArray *aryApartmentData;
+    NSString *currentSelectedType;
 }
 
 @end
@@ -53,8 +68,204 @@
     
     [self createSecondNavView]; //创建二级菜单
     
-    [self setUpCollectionViews];
+    if ([UserDefaults objectForKey:UserAccount]) {
+        
+        NSString *requestUrl = [NSString stringWithFormat:@"/user/logon.json?account=%@&logonPassword=%@",[UserDefaults objectForKey:UserAccount], [UserDefaults objectForKey:UserPwd]];
+        [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSDictionary *jsonDic = responseObject;
+            if ([[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+                [LocalUserUtils setLocalUserInfo:jsonDic];
+                [self setUpCollectionViews];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"%@",error);
+        }];
+    }
+    
+    
 }
+
+- (UIView *)createTitleViewWithStr:(NSString *)titleStr
+{
+    if (!tmpTitleView) {
+        tmpTitleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth - 200, 44)];
+        tmpTitleView.backgroundColor = [UIColor clearColor];
+    }
+    
+    if (!titleBtn) {
+        titleBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tmpTitleView.frame), 44)];
+        [tmpTitleView addSubview:titleBtn];
+        
+        titleBtn.center = CGPointMake(CGRectGetWidth(tmpTitleView.frame) / 2, 20);
+        titleBtn.backgroundColor = [UIColor clearColor];
+        [titleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [titleBtn addTarget:self action:@selector(onClickChooseApartment:) forControlEvents:UIControlEventTouchUpInside];
+        [titleBtn.titleLabel setFont:[UIFont boldSystemFontOfSize:17]];
+    }
+    
+    [titleBtn setTitle:titleStr forState:UIControlStateNormal];
+    
+    if (!arrowDownImage) {
+        arrowDownImage = [[UIImageView alloc] init];
+        arrowDownImage.image = ImageNamed(@"c_arrow_down.png");
+        [titleBtn addSubview:arrowDownImage];
+    }
+    
+    CGSize titleSize = [CustomSizeUtils simpleSizeWithStr:titleStr font:titleBtn.titleLabel.font];
+    CGFloat imageStartX = (CGRectGetWidth(tmpTitleView.frame) / 2) + (titleSize.width / 2);
+    [arrowDownImage setFrame:CGRectMake(imageStartX + 5, 19, 12, 6)];
+    
+    return tmpTitleView;
+}
+
+- (void)onClickChooseApartment:(UIButton *)btn
+{
+    if (showMyApartmentScrollView.contentOffset.x < MainScreenWidth) {
+        btn.selected = !btn.selected;
+        if (btn.selected) {
+            [self showPullDownView];
+        } else {
+            [self hidePullDownView];
+        }
+    }
+}
+
+- (void)createPullDownView
+{
+    showPullDownView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
+    showPullDownView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:showPullDownView];
+    [self.view bringSubviewToFront:showPullDownView];
+    showPullDownView.hidden = YES;
+    
+    pullDownTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, - (44 * 3), MainScreenWidth, 44 * 3)];
+    [showPullDownView addSubview:pullDownTableView];
+    pullDownTableView.backgroundColor = [UIColor whiteColor];
+    pullDownTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    pullDownTableView.delegate = self;
+    pullDownTableView.dataSource = self;
+    [showPullDownView addSubview:pullDownTableView];
+    
+    UIView *tmpView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 44)];
+    tmpView.backgroundColor = [UIColor whiteColor];
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 44)];
+    [btn setTitle:@"所有公寓" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [tmpView addSubview:btn];
+    
+    [btn addTarget:self action:@selector(onClickShowAll) forControlEvents:UIControlEventTouchUpInside];
+    pullDownTableView.tableHeaderView = tmpView;
+    
+    shadowView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, CGRectGetHeight(showPullDownView.bounds))];
+    [showPullDownView addSubview:shadowView];
+    shadowView.backgroundColor = [UIColor blackColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickHidePullDownView)];
+    [shadowView addGestureRecognizer:tap];
+}
+
+- (void)onClickShowAll
+{
+    [self hidePullDownView];
+    [myApartmentCollectionView showDataWithApartment:nil];
+}
+
+- (void)onClickHidePullDownView
+{
+    titleBtn.selected = !titleBtn.selected;
+    [self hidePullDownView];
+}
+
+- (void)showPullDownView
+{
+    [pullDownTableView reloadData];
+    showPullDownView.clipsToBounds = YES;
+    showPullDownView.hidden = NO;
+    shadowView.alpha = 0.3;
+    [self.view bringSubviewToFront:showPullDownView];
+    [showPullDownView bringSubviewToFront:pullDownTableView];
+    
+    [UIView animateWithDuration:.3 animations:^{
+        [pullDownTableView setFrame:CGRectMake(0, 0, CGRectGetWidth(pullDownTableView.bounds), CGRectGetHeight(pullDownTableView.bounds))];
+    }];
+}
+
+- (void)hidePullDownView
+{
+    [UIView animateWithDuration:.2 animations:^{
+        shadowView.alpha = 0;
+        [pullDownTableView setFrame:CGRectMake(0, - CGRectGetHeight(pullDownTableView.bounds), MainScreenWidth, CGRectGetHeight(pullDownTableView.bounds))];
+    } completion:^(BOOL finished) {
+        showPullDownView.hidden = YES;
+    }];
+}
+
+#pragma mark - UITableView dataSource&delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return aryApartmentData.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 5, MainScreenWidth - 55, 21)];
+        titleLabel.tag = 1000;
+        [cell.contentView addSubview:titleLabel];
+        
+        UIImageView *markImageView = [[UIImageView alloc] initWithFrame:CGRectMake(MainScreenWidth - 40, 16, 15, 12)];
+        markImageView.image = [UIImage imageNamed:@"c_check"];
+        markImageView.tag = 2000;
+        [cell.contentView addSubview:markImageView];
+        
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];
+    }
+    
+    UILabel *currentTitleLabel = (UILabel *)[cell.contentView viewWithTag:1000];
+    UIImageView *currentMarkImageView = (UIImageView *)[cell.contentView viewWithTag:2000];
+    
+    Apartment *apartment = [aryApartmentData objectAtIndex:indexPath.row];
+    currentTitleLabel.text = apartment.apartmentName;
+    [currentTitleLabel setFrame:CGRectMake(25, 15, MainScreenWidth - 65, CGRectGetHeight(currentTitleLabel.bounds))];
+    
+    if ([currentTitleLabel.text isEqualToString:currentSelectedType]) {
+        currentTitleLabel.textColor = RGBACOLOR(185, 50, 33, 1);
+        [currentMarkImageView setHidden:NO];
+    } else {
+        currentTitleLabel.textColor = [UIColor blackColor];
+        [currentMarkImageView setHidden:YES];
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    titleBtn.selected = !titleBtn.selected;
+    [self hidePullDownView];
+    
+    Apartment *apartment = [aryApartmentData objectAtIndex:indexPath.row];
+    if ([currentSelectedType isEqualToString:apartment.apartmentName]) {
+        return;
+    }
+    
+    currentSelectedType = apartment.apartmentName;
+    [titleBtn setTitle:currentSelectedType forState:UIControlStateNormal];
+    
+    //筛选
+    [myApartmentCollectionView showDataWithApartment:apartment];
+}
+
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -188,36 +399,38 @@
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (scrollView.contentOffset.x < 0 || scrollView.contentOffset.x > MainScreenWidth * 4) {
-        scrollView.scrollEnabled = NO;
-        return;
-    } else {
-        int currentPage = scrollView.contentOffset.x / MainScreenWidth;
-        
-        currentSelectedBtnTag = [self getConvertedTag:currentPage];
-        
-        if (currentPage == 0) {
-            [self requestMyApartmentInfo];
-        } else if (currentPage == 1) {
-            [self requestPayApartmentInfo];
-        } else if (currentPage == 2) {
-            [self requestExpiredApartmentInfo];
+    if (showPullDownView.hidden) {
+        if (scrollView.contentOffset.x < 0 || scrollView.contentOffset.x > MainScreenWidth * 4) {
+            scrollView.scrollEnabled = NO;
+            return;
         } else {
-            //房间统计
-            [self requestRoomCountInfo];
-        }
-        
-        [SECOND_NAV_ARR enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIButton *navBtn = (UIButton *)[secondNavView viewWithTag:[self getConvertedTag:idx]];
-            UILabel *navLabel = (UILabel *)[navBtn viewWithTag:99];
-            if (navBtn.tag == currentSelectedBtnTag) {
-                navLabel.textColor = AppThemeColor;
-                navBtn.selected = YES;
+            int currentPage = scrollView.contentOffset.x / MainScreenWidth;
+            
+            currentSelectedBtnTag = [self getConvertedTag:currentPage];
+            
+            if (currentPage == 0) {
+                [self requestMyApartmentInfo];
+            } else if (currentPage == 1) {
+                [self requestPayApartmentInfo];
+            } else if (currentPage == 2) {
+                [self requestExpiredApartmentInfo];
             } else {
-                navLabel.textColor = [CustomColorUtils colorWithHexString:@"#888888"];
-                navBtn.selected = NO;
+                //房间统计
+                [self requestRoomCountInfo];
             }
-        }];
+            
+            [SECOND_NAV_ARR enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                UIButton *navBtn = (UIButton *)[secondNavView viewWithTag:[self getConvertedTag:idx]];
+                UILabel *navLabel = (UILabel *)[navBtn viewWithTag:99];
+                if (navBtn.tag == currentSelectedBtnTag) {
+                    navLabel.textColor = AppThemeColor;
+                    navBtn.selected = YES;
+                } else {
+                    navLabel.textColor = [CustomColorUtils colorWithHexString:@"#888888"];
+                    navBtn.selected = NO;
+                }
+            }];
+        }
     }
 }
 
@@ -246,6 +459,7 @@
 - (void)ACVD_addRoom:(Apartment *)apartment
 {
     AddApartmentRoomViewController *view = [[AddApartmentRoomViewController alloc] init];
+    view.apartmentId = apartment.apartmentId;
     [self.navigationController pushViewController:view animated:YES];
 }
 
@@ -262,6 +476,18 @@
     view.delegate = self;
     view.addApartment = apartment;
     [self.navigationController pushViewController:view animated:YES];
+}
+
+- (void)ACVD_showTitleViewArray:(NSMutableArray *)aryApartment
+{
+    aryApartmentData = aryApartment;
+    
+    UIView *titleView = [self createTitleViewWithStr:[GlobalUtils translateStr:@"所有公寓"]];
+    [self adaptCenterItemWithView:titleView];
+    
+    currentSelectedType = @"所有公寓";
+    
+    [self createPullDownView];
 }
 
 /*
