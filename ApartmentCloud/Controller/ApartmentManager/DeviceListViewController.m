@@ -151,7 +151,12 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         DeviceInfo *deviceInfo = [aryData objectAtIndex:indexPath.row];
-        [aryData removeObject:deviceInfo];
+        
+        if ([aryData containsObject:deviceInfo]) {
+            [aryData removeObject:deviceInfo];
+        }
+        
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         
         [self deleteDeviceInfo:deviceInfo];
     }

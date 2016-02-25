@@ -12,7 +12,7 @@
 #import "CustomTimeUtils.h"
 #import "ExpendChooseRoomViewController.h"
 
-@interface ExpendDetailViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, ExpendChooseRoomViewControllerDelegate>
+@interface ExpendDetailViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, ExpendChooseRoomViewControllerDelegate, NormalInputTextFieldCellDelegate>
 {
     UITableView *expendDetailTableView;
     
@@ -138,6 +138,8 @@
     if (indexPath.row == 3) {
         cell.descTextField.keyboardType = UIKeyboardTypePhonePad;
     }
+    
+    cell.delegate = self;
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.cellType = AddExpendLogic;
@@ -340,6 +342,11 @@
     self.expendInfo.homeName = apartmentRoom.homeName;
     
     [expendDetailTableView reloadData];
+}
+
+- (void)NITFC_addExpend:(ExpendInfo *)expendInfo
+{
+    self.expendInfo = expendInfo;
 }
 
 /*

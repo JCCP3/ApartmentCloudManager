@@ -10,7 +10,7 @@
 #import "NormalInputTextFieldCell.h"
 #import "DateFormatUtils.h"
 
-@interface HouseHolderInfoViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface HouseHolderInfoViewController () <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate, NormalInputTextFieldCellDelegate>
 {
     NSArray *aryTitleData;
     NSArray *aryPlaceHolderData;
@@ -25,6 +25,8 @@
     UIDatePicker *datePicker;
     
     HomeOwner *currentOwner;
+    
+    int dateSelectedNum;
 }
 
 @end
@@ -108,6 +110,16 @@
     [addHourseHolderTableView addGestureRecognizer:tap];
 }
 
+#pragma mark - UIGestureRecognize delegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+    if ([NSStringFromClass([touch.view.superview class]) isEqualToString:@"UITableViewCellContentView"]) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 - (void)onClickResign
 {
     int i = 0 ;
@@ -166,7 +178,7 @@
 #pragma mark - datePickerViewFunction
 - (void)initDatePickerView
 {
-    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, MainScreenHeight, MainScreenWidth, 216)];
     datePicker.backgroundColor = [UIColor whiteColor];
     [datePicker setDatePickerMode:UIDatePickerModeDate];
     [datePicker addTarget:self action:@selector(onClickChangePickerViewValue:) forControlEvents:UIControlEventValueChanged];
@@ -180,7 +192,7 @@
 {
     NSString *dateString = [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:picker.date];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:dateSelectedNum inSection:0];
     [self sendMsgToCellTextFieldWithIndexPath:indexPath dateString:dateString];
 }
 
@@ -193,6 +205,12 @@
             if ([tmpSubView isKindOfClass:[UITextField class]]) {
                 UITextField *textField = (UITextField *)tmpSubView;
                 textField.text = dateString;
+                
+                if (dateSelectedNum == 3) {
+                    currentOwner.contractStart = textField.text;
+                } else if (dateSelectedNum == 4) {
+                    currentOwner.contractMaturity = textField.text;
+                }
             }
         }
     }
@@ -204,8 +222,9 @@
         [datePicker setFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
         [self.view bringSubviewToFront:datePicker];
         datePickerShowed = YES;
-        [addHourseHolderTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 216 - 64)];
     }];
+    
+    [addHourseHolderTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 216 - 64)];
 }
 
 - (void)hideDatePickerView
@@ -213,8 +232,9 @@
     [UIView animateWithDuration:.5 animations:^{
         [datePicker setFrame:CGRectMake(0, MainScreenHeight, MainScreenWidth, 216)];
         datePickerShowed = NO;
-        [addHourseHolderTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
     }];
+    
+    [addHourseHolderTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
 }
 
 #pragma mark - tableView
@@ -243,6 +263,10 @@
         cell.isTextFiledEnable = YES;
     }
     
+    if (indexPath.row == 1 || indexPath.row == 5 || indexPath.row == 6) {
+        cell.keyboardType = KeyboardNumPad;
+    }
+    
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
     
@@ -259,11 +283,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     [self onClickResign];
     
-    if (indexPath.section == 3) {
+    if (indexPath.row == 3) {
+        dateSelectedNum = 3;
         [self showDatePickerView];
-    } else if (indexPath.section == 4) {
+    } else if (indexPath.row == 4) {
+        dateSelectedNum = 4;
         [self showDatePickerView];
     }
 }
@@ -289,13 +317,18 @@
     
     [CustomRequestUtils createNewPostRequest:@"/apartment/home/seterHomeOwnersInfo.json" params:paramDic success:^(id responseObject) {
         NSDictionary *jsonDic = responseObject;
-        if (jsonDic) {
-            
+        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
+            [self.navigationController popViewControllerAnimated:YES];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
     }];
     
+}
+
+- (void)NITFC_addHouseHolder:(HomeOwner *)owner
+{
+    currentOwner = owner;
 }
 
 /*

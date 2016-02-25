@@ -182,4 +182,9 @@
     }
 }
 
+- (void)NITFC_addWater:(Water *)water
+{
+    self.currentWater = water;
+}
+
 @end

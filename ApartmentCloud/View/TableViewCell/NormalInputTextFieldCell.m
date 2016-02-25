@@ -707,6 +707,8 @@
 
 - (void)loadAddWaterCellWithIndexPath:(NSIndexPath *)indexPath
 {
+    currentIndexPath = indexPath;
+    
     [self decorateTitleWithDesc];
     
     [self reloadCellWithAddWater:indexPath loadType:ShowCellData waterParam:nil];
@@ -754,6 +756,7 @@
 
 - (void)loadAddElecCellWithIndexPath:(NSIndexPath *)indexPath
 {
+    currentIndexPath = indexPath;
     [self decorateTitleWithDesc];
     
     [self reloadCellWithAddElec:indexPath loadType:ShowCellData waterParam:nil];
@@ -801,6 +804,7 @@
 
 - (void)loadAddGasCellWithIndexPath:(NSIndexPath *)indexPath
 {
+    currentIndexPath = indexPath;
     [self decorateTitleWithDesc];
     
     [self reloadCellWithAddGas:indexPath loadType:ShowCellData gasParam:nil];
@@ -850,6 +854,7 @@
 
 - (void)loadAddHourseHolderWithIndexPath:(NSIndexPath *)indexPath
 {
+    currentIndexPath = indexPath;
     [self decorateTitleWithDesc];
     
     [self reloadCellWithAddHourseHolder:indexPath loadType:ShowCellData hourseParam:nil];
@@ -991,16 +996,34 @@
         }
     } else if (self.cellType == AddExpendLogic) {
         [self reloadCellWithAddExpend:currentIndexPath loadType:AddCellData expendParam:textField.text];
+        if ([self.delegate respondsToSelector:@selector(NITFC_addExpend:)]) {
+            [self.delegate NITFC_addExpend:self.expendInfo];
+        }
     } else if (self.cellType == AddWaterLogic) {
         [self reloadCellWithAddWater:currentIndexPath loadType:AddCellData waterParam:textField.text];
+        if ([self.delegate respondsToSelector:@selector(NITFC_addWater:)]) {
+            [self.delegate NITFC_addWater:self.water];
+        }
     } else if (self.cellType == AddElecLogic) {
         [self reloadCellWithAddElec:currentIndexPath loadType:AddCellData waterParam:textField.text];
+        if ([self.delegate respondsToSelector:@selector(NITFC_addElec:)]) {
+            [self.delegate NITFC_addElec:self.elec];
+        }
     } else if (self.cellType == AddGasLogic) {
         [self reloadCellWithAddGas:currentIndexPath loadType:AddCellData gasParam:textField.text];
+        if ([self.delegate respondsToSelector:@selector(NITFC_addGas:)]) {
+            [self.delegate NITFC_addGas:self.gas];
+        }
     } else if (self.cellType == AddHourseHolderLogic) {
         [self reloadCellWithAddHourseHolder:currentIndexPath loadType:AddCellData hourseParam:textField.text];
+        if ([self.delegate respondsToSelector:@selector(NITFC_addHouseHolder:)]) {
+            [self.delegate NITFC_addHouseHolder:self.owner];
+        }
     } else if (self.cellType == AddDeviceInfoLogic) {
         [self reloadAddDeviceCellWithIndexPath:currentIndexPath loadType:AddCellData deviceParam:textField.text];
+        if ([self.delegate respondsToSelector:@selector(NITFC_addDeviceInfo:)]) {
+            [self.delegate NITFC_addDeviceInfo:self.deviceInfo];
+        }
     }
 }
 

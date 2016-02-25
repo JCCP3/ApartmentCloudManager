@@ -51,6 +51,12 @@ typedef enum
 - (void)NITFC_addApartmentWithApartment:(Apartment *)apartment;
 - (void)NITFC_addRoomWithRoom:(ApartmentRoom *)room;
 - (void)NITFC_addApartmentUser:(ApartmentUser *)apartmentUser;
+- (void)NITFC_addHouseHolder:(HomeOwner *)owner;
+- (void)NITFC_addDeviceInfo:(DeviceInfo *)device;
+- (void)NITFC_addGas:(Gas *)gas;
+- (void)NITFC_addElec:(Elec *)elec;
+- (void)NITFC_addWater:(Water *)water;
+- (void)NITFC_addExpend:(ExpendInfo *)expendInfo;
 
 @end
 

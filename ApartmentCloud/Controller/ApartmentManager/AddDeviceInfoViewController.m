@@ -10,7 +10,7 @@
 #import "NormalInputTextFieldCell.h"
 #import "DateFormatUtils.h"
 
-@interface AddDeviceInfoViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+@interface AddDeviceInfoViewController () <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, NormalInputTextFieldCellDelegate>
 {
     UITableView *deviceTableView;
     
@@ -132,6 +132,12 @@
     } else {
         cell.isTextFiledEnable = YES;
     }
+    
+    if (indexPath.row == 3) {
+        cell.keyboardType = KeyboardNumPad;
+    }
+    
+    cell.delegate = self;
 
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
@@ -286,7 +292,7 @@
         [CustomRequestUtils createNewPostRequest:@"/device/update.json" params:paramDic success:^(id responseObject) {
             NSDictionary *jsonDic = responseObject;
             
-            if (jsonDic) {
+            if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
                 [self.navigationController popViewControllerAnimated:YES];
             }
             
@@ -297,7 +303,7 @@
         [CustomRequestUtils createNewPostRequest:@"/device/add.json" params:paramDic success:^(id responseObject) {
             NSDictionary *jsonDic = responseObject;
             
-            if (jsonDic) {
+            if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
                 [self.navigationController popViewControllerAnimated:YES];
             }
             
@@ -317,6 +323,11 @@
     }
     
     [deviceTableView reloadData];
+}
+
+- (void)NITFC_addDeviceInfo:(DeviceInfo *)device
+{
+    self.currentDeviceInfo = device;
 }
 
 @end

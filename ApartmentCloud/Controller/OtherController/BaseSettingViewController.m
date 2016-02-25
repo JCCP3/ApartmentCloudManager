@@ -33,7 +33,8 @@
     
     [self adaptNavBarWithBgTag:CustomNavigationBarColorRed navTitle:@"水电气基础设定" segmentArray:nil];
     
-    [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+//    [self adaptLeftItemWithNormalImage:ImageNamed(@"nav_menu.png") highlightedImage:ImageNamed(@"nav_menu.png")];
+    [self adaptLeftItemWithTitle:@"返回" backArrow:YES];
     [self adaptSecondRightItemWithTitle:@"保存"];
     
     aryTitleData = @[@"电费", @"水费", @"燃气"];
@@ -78,6 +79,8 @@
         cell = [[NormalInputTextFieldCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
+    
+    cell.keyboardType = KeyboardNumPad;
 
     cell.backgroundColor = [UIColor clearColor];
     
@@ -92,7 +95,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 10;
+    return 20;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -126,6 +129,21 @@
     }
 }
 
+- (NSString *)getTextFieldInfoByIndexPath:(NSIndexPath *)indexPath
+{
+    NormalInputTextFieldCell *cell = (NormalInputTextFieldCell *)[settingTableView cellForRowAtIndexPath:indexPath];
+    for (UIView *subView in cell.subviews) {
+        UIView *wrapperView = (UIView *)[subView viewWithTag:10086];
+        for (UIView *tmpSubView in wrapperView.subviews) {
+            if ([tmpSubView isKindOfClass:[UITextField class]]) {
+                UITextField *textField = (UITextField *)tmpSubView;
+                return textField.text;
+            }
+        }
+    }
+    
+    return @"";
+}
 
 
 #pragma mark -
@@ -133,27 +151,43 @@
 {
     [self onClickResign];
     
-    LeftSideViewController *leftSideViewController = [[LeftSideViewController alloc] init];
-    [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+//    LeftSideViewController *leftSideViewController = [[LeftSideViewController alloc] init];
+//    [[APPDELEGATE ppRevealSideViewController] pushViewController:leftSideViewController onDirection:PPRevealSideDirectionLeft animated:YES];
 }
 
 - (void)onClickSecondRightItem
 {
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
-    [paramDic setObject:@"" forKey:@"waterPrice"];
-    [paramDic setObject:@"" forKey:@"electricityPrice"];
-    [paramDic setObject:@"" forKey:@"gasPrice"];
+    
+    NSIndexPath *indexPath =  [NSIndexPath indexPathForRow:0 inSection:0];
+    NSString *waterPrice = [self getTextFieldInfoByIndexPath:indexPath];
+    
+    NSIndexPath *indexPath1 =  [NSIndexPath indexPathForRow:1 inSection:0];
+    NSString *elecPrice = [self getTextFieldInfoByIndexPath:indexPath1];
+    
+    NSIndexPath *indexPath2 =  [NSIndexPath indexPathForRow:2 inSection:0];
+    NSString *gasPrice = [self getTextFieldInfoByIndexPath:indexPath2];
+    
+    [paramDic setObject:waterPrice forKey:@"waterPrice"];
+    [paramDic setObject:elecPrice forKey:@"electricityPrice"];
+    [paramDic setObject:gasPrice forKey:@"gasPrice"];
     
     [CustomRequestUtils createNewPostRequest:@"/user/sys/setBasisHome.json" params:paramDic success:^(id responseObject) {
         NSDictionary *jsonDic = responseObject;
-        if (jsonDic) {
+        if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"保存成功" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alertView show];
+            
+            [self.navigationController popViewControllerAnimated:YES];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@", error);
     }];
 }
+
+
 
 /*
 #pragma mark - Navigation

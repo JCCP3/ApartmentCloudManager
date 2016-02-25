@@ -9,7 +9,7 @@
 #import "AddApartmentElecViewController.h"
 #import "NormalInputTextFieldCell.h"
 
-@interface AddApartmentElecViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AddApartmentElecViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate>
 {
     NSArray *aryTitleData;
     NSArray *aryPlaceHolderData;
@@ -97,6 +97,7 @@
     }
     
     cell.cellType = AddElecLogic;
+    cell.delegate = self;
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
@@ -180,6 +181,11 @@
             NSLog(@"%@", error);
         }];
     }
+}
+
+- (void)NITFC_addElec:(Elec *)elec
+{
+    self.currentElec = elec;
 }
 
 

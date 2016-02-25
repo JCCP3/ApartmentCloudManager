@@ -9,7 +9,7 @@
 #import "AddApartmentGasViewController.h"
 #import "NormalInputTextFieldCell.h"
 
-@interface AddApartmentGasViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface AddApartmentGasViewController () <UITableViewDelegate, UITableViewDataSource, NormalInputTextFieldCellDelegate>
 {
     NSArray *aryTitleData;
     NSArray *aryPlaceHolderData;
@@ -84,7 +84,7 @@
     }
     
     cell.isTextFiledEnable = YES;
-    
+    cell.delegate = self;
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
     cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row];
     cell.gas = self.currentGas;
@@ -170,8 +170,11 @@
             NSLog(@"%@", error);
         }];
     }
-    
-    
+}
+
+- (void)NITFC_addGas:(Gas *)gas
+{
+    self.currentGas = gas;
 }
 
 @end
