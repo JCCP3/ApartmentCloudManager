@@ -615,7 +615,18 @@
 - (void)reloadCellWithAddExpend:(NSIndexPath *)indexPath loadType:(LoadDataType)type expendParam:(NSString *)expendParam
 {
     switch (indexPath.row) {
+            
         case 0:
+        {
+            if (![CustomStringUtils isBlankString:self.expendInfo.homeName]) {
+                descTextField.text = self.expendInfo.homeName;
+            } else {
+                descTextField.text = @"";
+            }
+        }
+            break;
+            
+        case 1:
         {
             if (![CustomStringUtils isBlankString:self.expendInfo.category]) {
                 NSString *category;
@@ -630,7 +641,7 @@
             }
         }
             break;
-        case 1:
+        case 2:
         {
             if (![CustomStringUtils isBlankString:self.expendInfo.status]) {
                 NSString *status;
@@ -646,7 +657,7 @@
         }
             break;
             
-        case 2:
+        case 3:
         {
             if (type == ShowCellData) {
                 if (self.expendInfo.amount > 0) {
@@ -662,10 +673,10 @@
         }
             break;
             
-        case 3:
+        case 4:
         {
-            if ([self.expendInfo.successDate integerValue]> 0) {
-                NSString *dateString = [CustomTimeUtils changeIntervalToDate:self.expendInfo.successDate];
+            if ([self.expendInfo.createTime integerValue]> 0) {
+                NSString *dateString = [CustomTimeUtils changeIntervalToDate:self.expendInfo.createTime];
                 descTextField.text = dateString;
             } else {
                 descTextField.text = @"";
@@ -673,7 +684,7 @@
             break;
         }
             
-        case 4:
+        case 5:
         {
             if (type == ShowCellData) {
                 if (![CustomStringUtils isBlankString:self.expendInfo.mark]) {

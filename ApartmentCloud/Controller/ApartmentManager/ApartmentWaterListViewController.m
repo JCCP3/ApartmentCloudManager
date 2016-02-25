@@ -12,6 +12,9 @@
 #import "MJRefreshDIYHeader.h"
 #import "LeftSideViewController.h"
 
+#import "MJRefreshDIYHeader.h"
+#import "MJRefreshDIYFooter.h"
+
 @interface ApartmentWaterListViewController () <UITableViewDelegate, UITableViewDataSource>
 {
     NSMutableArray *aryData;
@@ -43,7 +46,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
     [self loadWaterList:YES];
 }
 
@@ -54,6 +56,14 @@
     waterListTableView.dataSource = self;
     waterListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:waterListTableView];
+    
+    waterListTableView.mj_header = [MJRefreshDIYHeader headerWithRefreshingBlock:^{
+        [self loadWaterList:YES];
+    }];
+    
+    waterListTableView.mj_footer = [MJRefreshDIYFooter footerWithRefreshingBlock:^{
+        [self loadWaterList:NO];
+    }];
 }
 
 - (void)loadWaterList:(BOOL)refresh
@@ -63,23 +73,26 @@
     if (refresh) {
         tmpUrl = [tmpUrl stringByAppendingString:@"?currPage=1&pageSize=10"];
     } else {
-        tmpUrl = [tmpUrl stringByAppendingString:[NSString stringWithFormat:@"?currPage=%ld&pageSize=10",(long)[aryData count]/10 + 1]];
+        tmpUrl = [tmpUrl stringByAppendingString:[NSString stringWithFormat:@"?currPage=%ld&pageSize=10",(long)[aryData count]/10 + 2]];
     }
     
 //    tmpUrl = [tmpUrl stringByAppendingString:@"&noBinding=N"];
     
     [CustomRequestUtils createNewRequest:tmpUrl
                                  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
+                                     [waterListTableView.mj_header endRefreshing];
+                                     [waterListTableView.mj_footer endRefreshing];
         NSDictionary *jsonDic = responseObject;
-        [self parseJsonDic:jsonDic];
+        [self parseJsonDic:jsonDic isRefresh:refresh];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
+        [waterListTableView.mj_header endRefreshing];
+        [waterListTableView.mj_footer endRefreshing];
     }];
 }
 
-- (void)parseJsonDic:(NSDictionary *)dic
+- (void)parseJsonDic:(NSDictionary *)dic isRefresh:(BOOL)isRefresh
 {
     NSMutableArray *currentTmpArray = [[NSMutableArray alloc] init];
     if ([dic objectForKey:@"datas"] && [[dic objectForKey:@"datas"] count] > 0) {
@@ -89,7 +102,17 @@
             [currentTmpArray addObject:water];
         }
         
-        aryData = currentTmpArray;
+        if (isRefresh) {
+            aryData = currentTmpArray;
+            if ([aryData count] < 10) {
+                [waterListTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        } else {
+            [aryData addObjectsFromArray:currentTmpArray];
+            [waterListTableView.mj_header endRefreshing];
+            [waterListTableView.mj_footer endRefreshing];
+        }
+        
         [waterListTableView reloadData];
     }
 }

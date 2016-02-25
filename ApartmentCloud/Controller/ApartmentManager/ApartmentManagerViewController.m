@@ -47,6 +47,7 @@
     
     NSArray *aryApartmentData;
     NSString *currentSelectedType;
+    NSInteger currentSelectedTypeId;
 }
 
 @end
@@ -165,6 +166,10 @@
 
 - (void)onClickShowAll
 {
+    titleBtn.selected = !titleBtn.selected;
+    currentSelectedTypeId = 0;
+    currentSelectedType = @"所有公寓";
+    [titleBtn setTitle:currentSelectedType forState:UIControlStateNormal];
     [self hidePullDownView];
     [myApartmentCollectionView showDataWithApartment:nil];
 }
@@ -187,6 +192,8 @@
     [UIView animateWithDuration:.3 animations:^{
         [pullDownTableView setFrame:CGRectMake(0, 0, CGRectGetWidth(pullDownTableView.bounds), CGRectGetHeight(pullDownTableView.bounds))];
     }];
+    
+    [self transformImage];
 }
 
 - (void)hidePullDownView
@@ -197,6 +204,19 @@
     } completion:^(BOOL finished) {
         showPullDownView.hidden = YES;
     }];
+    
+    [self transformImage];
+}
+
+- (void)transformImage
+{
+    [UIView animateWithDuration:0.3f
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         arrowDownImage.transform = CGAffineTransformRotate(arrowDownImage.transform, M_PI);
+                     }
+                     completion:nil];
 }
 
 #pragma mark - UITableView dataSource&delegate
@@ -237,7 +257,7 @@
     currentTitleLabel.text = apartment.apartmentName;
     [currentTitleLabel setFrame:CGRectMake(25, 15, MainScreenWidth - 65, CGRectGetHeight(currentTitleLabel.bounds))];
     
-    if ([currentTitleLabel.text isEqualToString:currentSelectedType]) {
+    if ([currentTitleLabel.text isEqualToString:currentSelectedType] && currentSelectedTypeId == [apartment.apartmentId integerValue]) {
         currentTitleLabel.textColor = RGBACOLOR(185, 50, 33, 1);
         [currentMarkImageView setHidden:NO];
     } else {
@@ -254,11 +274,12 @@
     [self hidePullDownView];
     
     Apartment *apartment = [aryApartmentData objectAtIndex:indexPath.row];
-    if ([currentSelectedType isEqualToString:apartment.apartmentName]) {
+    if ([currentSelectedType isEqualToString:apartment.apartmentName] && currentSelectedTypeId == [apartment.apartmentId integerValue]) {
         return;
     }
     
     currentSelectedType = apartment.apartmentName;
+    currentSelectedTypeId = [apartment.apartmentId integerValue];
     [titleBtn setTitle:currentSelectedType forState:UIControlStateNormal];
     
     //筛选

@@ -39,6 +39,12 @@
     
     [self createTableView];
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     [self loadExpendData:YES];
 }
 
@@ -49,6 +55,17 @@
     expendTableView.dataSource = self;
     expendTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:expendTableView];
+    
+    @weakify(self);
+    expendTableView.mj_header = [MJRefreshDIYHeader headerWithRefreshingBlock:^{
+        @strongify(self);
+        [self loadExpendData:YES];
+    }];
+    
+    expendTableView.mj_footer = [MJRefreshDIYFooter footerWithRefreshingBlock:^{
+        @strongify(self);
+        [self loadExpendData:NO];
+    }];
 }
 
 - (void)loadExpendData:(BOOL)refresh
@@ -57,19 +74,23 @@
     if (refresh) {
         requestUrl = [NSString stringWithFormat:@"/apartment/home/maintain/list.json?currPage=1&pageSize=10"];
     } else {
-        
+        requestUrl = [NSString stringWithFormat:@"/apartment/home/maintain/list.json?currPage=%ld&pageSize=10",[aryData count]/10 + 2];
     }
     [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
         if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
-            [self parseJsonDic:jsonDic];
+            [expendTableView.mj_header endRefreshing];
+            [expendTableView.mj_footer endRefreshing];
+            [self parseJsonDic:jsonDic isRefresh:refresh];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
+        [expendTableView.mj_header endRefreshing];
+        [expendTableView.mj_footer endRefreshing];
     }];
 }
 
-- (void)parseJsonDic:(NSDictionary *)jsonDic
+- (void)parseJsonDic:(NSDictionary *)jsonDic isRefresh:(BOOL)refresh
 {
     if ([jsonDic objectForKey:@"datas"] && [[jsonDic objectForKey:@"datas"] count] > 0) {
         NSMutableArray *currentTmpArray = [[NSMutableArray alloc] init];
@@ -79,8 +100,23 @@
             [currentTmpArray addObject:info];
         }
         
-        aryData = currentTmpArray;
+        if (refresh) {
+            aryData = currentTmpArray;
+            if ([aryData count] < 10) {
+                [expendTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        } else {
+            if ([currentTmpArray count] < 10) {
+                [expendTableView.mj_footer endRefreshingWithNoMoreData];
+            } else {
+                [expendTableView.mj_footer endRefreshing];
+            }
+            [aryData addObjectsFromArray:currentTmpArray];
+        }
+        ;
         [expendTableView reloadData];
+    } else {
+        [expendTableView.mj_footer endRefreshingWithNoMoreData];
     }
 }
 
@@ -145,7 +181,10 @@
         ExpendInfo *expendInfo = [aryData objectAtIndex:indexPath.row];
         [self deleteExpendInfo:expendInfo];
         
-        [aryData removeObject:expendInfo];
+        if ([aryData containsObject:expendInfo]) {
+            [aryData removeObject:expendInfo];
+        }
+        [tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section]] withRowAnimation:UITableViewRowAnimationFade];
     }
 }
 

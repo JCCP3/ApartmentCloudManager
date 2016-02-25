@@ -13,6 +13,9 @@
 #import "LeftSideViewController.h"
 #import "Gas.h"
 
+#import "MJRefreshDIYHeader.h"
+#import "MJRefreshDIYFooter.h"
+
 @interface ApartmentGasListViewController () <UITableViewDataSource, UITableViewDelegate>
 {
     UITableView *gasTableView;
@@ -50,6 +53,14 @@
     gasTableView.dataSource = self;
     gasTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:gasTableView];
+    
+    gasTableView.mj_header = [MJRefreshDIYHeader headerWithRefreshingBlock:^{
+        [self loadGasList:YES];
+    }];
+    
+    gasTableView.mj_footer = [MJRefreshDIYFooter footerWithRefreshingBlock:^{
+        [self loadGasList:NO];
+    }];
 }
 
 - (void)loadGasList:(BOOL)refresh
@@ -58,17 +69,19 @@
     if (refresh) {
         requestUrl = @"/device/gasmeter/list.json?currPage=1&pageSize=10";
     } else {
-        
+        requestUrl = [NSString stringWithFormat:@"/device/gasmeter/list.json?currPage=%ld&pageSize=10",(long)[aryData count]/10 + 1];
     }
     [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
-        [self parseJsonDic:jsonDic];
+        [gasTableView.mj_header endRefreshing];
+        [gasTableView.mj_footer endRefreshing];
+        [self parseJsonDic:jsonDic refresh:refresh];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
 }
 
-- (void)parseJsonDic:(NSDictionary *)dic
+- (void)parseJsonDic:(NSDictionary *)dic refresh:(BOOL)refresh
 {
     NSMutableArray *currentTmpArray = [[NSMutableArray alloc] init];
     if ([dic objectForKey:@"datas"] && [[dic objectForKey:@"datas"] count] > 0) {
@@ -78,7 +91,22 @@
             [currentTmpArray addObject:gas];
         }
         
-        aryData = currentTmpArray;
+        if (refresh) {
+            aryData = currentTmpArray;
+            if ([aryData count] < 10) {
+                [gasTableView.mj_header endRefreshing];
+                [gasTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        } else {
+            
+            [aryData addObjectsFromArray:currentTmpArray];
+            [gasTableView.mj_header endRefreshing];
+            if ([currentTmpArray count] < 10) {
+                [gasTableView.mj_footer endRefreshingWithNoMoreData];
+            } else {
+                [gasTableView.mj_footer endRefreshing];
+            }
+        }
         [gasTableView reloadData];
     }
 }

@@ -27,6 +27,7 @@ typedef enum
 
 - (void)ACVD_showApartmentDetailInfo:(Apartment *)apartment;
 - (void)ACVD_showTitleViewArray:(NSMutableArray *)aryApartment;
+- (void)ACVD_passRoom:(ApartmentRoom *)room;
 
 @end
 

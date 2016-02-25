@@ -11,6 +11,9 @@
 #import "LeftSideViewController.h"
 #import "AddApartmentElecViewController.h"
 
+#import "MJRefreshDIYHeader.h"
+#import "MJRefreshDIYFooter.h"
+
 @interface ApartmentElecListViewController () <UITableViewDataSource, UITableViewDelegate>
 {
     NSMutableArray *aryData;
@@ -36,9 +39,14 @@
     }
     [self adaptSecondRightItemWithTitle:@"添加"];
     [self createElecListTableView];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
     
     [self loadElecList:YES];
-    
 }
 
 - (void)createElecListTableView
@@ -48,6 +56,14 @@
     elecListTableView.dataSource = self;
     elecListTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     [self.view addSubview:elecListTableView];
+    
+    elecListTableView.mj_header = [MJRefreshDIYHeader headerWithRefreshingBlock:^{
+        [self loadElecList:YES];
+    }];
+    
+    elecListTableView.mj_footer = [MJRefreshDIYFooter footerWithRefreshingBlock:^{
+        [self loadElecList:NO];
+    }];
 }
 
 - (void)loadElecList:(BOOL)refresh
@@ -56,17 +72,21 @@
     if (refresh) {
         requestUrl = @"/device/ammeter/list.json?currPage=1&pageSize=10";
     } else {
-        
+        requestUrl = [NSString stringWithFormat:@"/device/ammeter/list.json?currPage=%ld&pageSize=10", [aryData count] / 10 + 2];
     }
     [CustomRequestUtils createNewRequest:requestUrl success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *jsonDic = responseObject;
-        [self parseJsonDic:jsonDic];
+        
+        [elecListTableView.mj_header endRefreshing];
+        [elecListTableView.mj_footer endRefreshing];
+        
+        [self parseJsonDic:jsonDic refresh:refresh];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@", error);
     }];
 }
 
-- (void)parseJsonDic:(NSDictionary *)dic
+- (void)parseJsonDic:(NSDictionary *)dic refresh:(BOOL)refresh
 {
     NSMutableArray *currentTmpArray = [[NSMutableArray alloc] init];
     if ([dic objectForKey:@"datas"] && [[dic objectForKey:@"datas"] count] > 0) {
@@ -75,8 +95,20 @@
             Elec *elec = [[Elec alloc] initWithDictionary:tmpDic];
             [currentTmpArray addObject:elec];
         }
+        if (refresh) {
+            aryData = currentTmpArray;
+            if ([aryData count] < 10) {
+                [elecListTableView.mj_header endRefreshing];
+                [elecListTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        } else {
+            if ([currentTmpArray count] > 0) {
+                [aryData addObjectsFromArray:currentTmpArray];
+                [elecListTableView.mj_header endRefreshing];
+                [elecListTableView.mj_footer endRefreshingWithNoMoreData];
+            }
+        }
         
-        aryData = currentTmpArray;
         [elecListTableView reloadData];
     }
 }

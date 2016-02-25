@@ -10,8 +10,9 @@
 #import "NormalInputTextFieldCell.h"
 #import "DateFormatUtils.h"
 #import "CustomTimeUtils.h"
+#import "ExpendChooseRoomViewController.h"
 
-@interface ExpendDetailViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate>
+@interface ExpendDetailViewController () <UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate, UIGestureRecognizerDelegate, ExpendChooseRoomViewControllerDelegate>
 {
     UITableView *expendDetailTableView;
     
@@ -20,6 +21,8 @@
     NSArray *aryPlaceHolder;
     NSArray *aryTitleData;
     
+    UIView *datePickerView;
+    UIButton *completionBtn;
     UIDatePicker *datePicker;
     BOOL datePickerShowed;
 }
@@ -43,8 +46,8 @@
     [self adaptSecondRightItemWithTitle:rightString];
     
     aryData = [[NSMutableArray alloc] init];
-    aryTitleData = @[@"事件类型", @"事件状态", @"花费金额", @"选择时间", @"备注信息"];
-    aryPlaceHolder = @[@"请选择事件类型", @"请选择事件状态", @"请输入花费金额", @"请选择时间", @"请输入备注信息"];
+    aryTitleData = @[@"选择房间", @"事件类型", @"事件状态", @"花费金额", @"选择时间", @"备注信息"];
+    aryPlaceHolder = @[@"请选择房间", @"请选择事件类型", @"请选择事件状态", @"请输入花费金额", @"请选择时间", @"请输入备注信息"];
     
     [self createTableView];
     
@@ -80,7 +83,7 @@
     int i = 0 ;
     while (i < 1) {
         
-        int maxNum = 5;
+        int maxNum = 6;
         
         for (int j = 0 ; j < maxNum ; j++) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:j inSection:i];
@@ -126,10 +129,14 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
-    if (indexPath.row == 2 || indexPath.row == 4) {
+    if (indexPath.row == 3 || indexPath.row == 5) {
         cell.isTextFiledEnable = YES;
     } else {
         cell.isTextFiledEnable = NO;
+    }
+    
+    if (indexPath.row == 3) {
+        cell.descTextField.keyboardType = UIKeyboardTypePhonePad;
     }
     
     cell.title = [aryTitleData objectAtIndex:indexPath.row];
@@ -149,17 +156,23 @@
     
     if (indexPath.row == 0) {
         
+        ExpendChooseRoomViewController *view = [[ExpendChooseRoomViewController alloc] init];
+        view.delegate = self;
+        [self.navigationController pushViewController:view animated:YES];
+        
+    } else if (indexPath.row == 1) {
+        
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"维修", @"装修", nil];
         actionSheet.tag = 10086;
         [actionSheet showInView:self.view];
         
-    } else if (indexPath.row == 1) {
+    } else if (indexPath.row == 2) {
         
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"进行中", @"已完成", nil];
         actionSheet.tag = 10010;
         [actionSheet showInView:self.view];
         
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 4) {
         [self showDatePickerView];
     }
 }
@@ -168,12 +181,30 @@
 #pragma mark - datePickerViewFunction
 - (void)initDatePickerView
 {
-    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
+    datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, MainScreenHeight, MainScreenWidth, 216+44)];
+    datePickerView.backgroundColor = [UIColor greenColor];
+    completionBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, MainScreenWidth, 44)];
+    [completionBtn addTarget:self action:@selector(onClickChooseDate) forControlEvents:UIControlEventTouchUpInside];
+    [completionBtn setTitle:@"完成" forState:UIControlStateNormal];
+    [datePickerView addSubview:completionBtn];
+    [self.view addSubview:datePickerView];
+    
+    datePicker = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 44, MainScreenWidth, 216)];
     datePicker.backgroundColor = [UIColor whiteColor];
     [datePicker setDatePickerMode:UIDatePickerModeDate];
     [datePicker addTarget:self action:@selector(onClickChangePickerViewValue:) forControlEvents:UIControlEventValueChanged];
     [datePicker setDate:[NSDate date]];
-    [self.view addSubview:datePicker];
+    [datePickerView addSubview:datePicker];
+    
+    [self hideDatePickerView];
+}
+
+- (void)onClickChooseDate
+{
+    NSString *dateString = [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:datePicker.date];
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
+    [self sendMsgToCellTextFieldWithIndexPath:indexPath dateString:dateString];
     
     [self hideDatePickerView];
 }
@@ -182,7 +213,7 @@
 {
     NSString *dateString = [[DateFormatUtils sharedInstance].thirdDateFormatter stringFromDate:picker.date];
     
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:4 inSection:0];
     [self sendMsgToCellTextFieldWithIndexPath:indexPath dateString:dateString];
 }
 
@@ -206,7 +237,7 @@
 - (void)showDatePickerView
 {
     [UIView animateWithDuration:.5 animations:^{
-        [datePicker setFrame:CGRectMake(0, MainScreenHeight - 216, MainScreenWidth, 216)];
+        [datePickerView setFrame:CGRectMake(0, MainScreenHeight - 216 - 44, MainScreenWidth, 216 + 44)];
         [self.view bringSubviewToFront:datePicker];
         datePickerShowed = YES;
         [expendDetailTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 216 - 64)];
@@ -216,7 +247,7 @@
 - (void)hideDatePickerView
 {
     [UIView animateWithDuration:.5 animations:^{
-        [datePicker setFrame:CGRectMake(0, MainScreenHeight, MainScreenWidth, 216)];
+        [datePickerView setFrame:CGRectMake(0, MainScreenHeight, MainScreenWidth, 216 + 44)];
         datePickerShowed = NO;
         [expendDetailTableView setFrame:CGRectMake(0, 64, MainScreenWidth, MainScreenHeight - 64)];
     }];
@@ -235,14 +266,17 @@
     NSMutableDictionary *paramDic = [[NSMutableDictionary alloc] init];
     if (self.expendInfo.expendInfoId) {
         [paramDic setObject:self.expendInfo.expendInfoId forKey:@"id"];
-    } else {
+    }
+    
+    if (self.expendInfo.homeId) {
         [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)self.expendInfo.homeId] forKey:@"homeId"];
     }
+    
     [paramDic setObject:self.expendInfo.mark forKey:@"mark"];
     [paramDic setObject:[NSString stringWithFormat:@"%ld", (long)self.expendInfo.amount] forKey:@"amount"];
     [paramDic setObject:self.expendInfo.status forKey:@"status"];
     [paramDic setObject:self.expendInfo.category forKey:@"category"];
-    [paramDic setObject:[CustomTimeUtils changeIntervalToDate:self.expendInfo.successDate] forKey:@"successDate"];
+    [paramDic setObject:[CustomTimeUtils changeIntervalToDate:self.expendInfo.createTime] forKey:@"successDate"];
     
     if (self.expendInfo.expendInfoId) {
         [CustomRequestUtils createNewPostRequest:@"/apartment/home/maintain/update.json" params:paramDic success:^(id responseObject) {
@@ -298,6 +332,16 @@
     
     return YES;
 }
+
+#pragma mark - ExpendChooseRoomDelegate
+- (void)ECRVD_passRoomInfo:(ApartmentRoom *)apartmentRoom
+{
+    self.expendInfo.homeId = [apartmentRoom.apartmentId integerValue];
+    self.expendInfo.homeName = apartmentRoom.homeName;
+    
+    [expendDetailTableView reloadData];
+}
+
 /*
 #pragma mark - Navigation
 

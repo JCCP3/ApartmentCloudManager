@@ -189,6 +189,7 @@ typedef enum
             cell.isTextFiledEnable = NO;
         }
     } else {
+        cell.keyboardType = KeyboardNumPad;
         cell.title = [aryTitleData objectAtIndex:indexPath.row + 6];
         cell.placeHolderTitle = [aryPlaceHolderData objectAtIndex:indexPath.row + 6];
         cell.isTextFiledEnable = YES;
@@ -347,7 +348,6 @@ typedef enum
         NSDictionary *jsonDic = responseObject;
         if ([[jsonDic objectForKey:@"failCode"] intValue] == 502) {
             //未登录
-
         } else {
             if (jsonDic && [[jsonDic objectForKey:@"status"] isEqualToString:RequestSuccessful]) {
                 if ([self.delegate respondsToSelector:@selector(AAVCD_passApartment:)]) {

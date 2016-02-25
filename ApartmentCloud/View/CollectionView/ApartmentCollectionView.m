@@ -258,10 +258,13 @@
         return [aryDueApartmentItem count];
     } else if (collectionView.tag == 102) {
         return 0;
-    } else {
+    } else if (collectionView.tag == 103){
         return [aryApartmentCount count];
+    } else if (collectionView.tag == 110) {
+        return [aryApartmentItem count];
     }
     
+    return 0;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
@@ -282,9 +285,15 @@
         return [tmpArray count];
     } else if (collectionView.tag == 102){
         return 0;
-    } else {
+    } else if (collectionView.tag == 103){
         return 2;
+    } else if (collectionView.tag == 110) {
+        NSMutableDictionary *currentDic = [aryApartmentRoomItem objectAtIndex:section];
+        NSMutableArray *tmpArray = [currentDic allValues][0];
+        return [tmpArray count];
     }
+    
+    return 0;
 }
 
 
@@ -343,7 +352,7 @@
         return cell;
     } else if (collectionView.tag == 102){
         return nil;
-    } else {
+    } else if (collectionView.tag == 103){
         ApartmentCountCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ApartmentCountCell" forIndexPath:indexPath];
         
         Apartment *apartment = [aryApartmentCount objectAtIndex:indexPath.section];
@@ -354,7 +363,24 @@
         }
         
         return cell;
+    } else if (collectionView.tag == 110) {
+        ApartmentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CollectionCell" forIndexPath:indexPath];
+        
+        NSMutableDictionary *tmpDic;
+        BOOL showPay;
+        tmpDic = [aryApartmentRoomItem objectAtIndex:indexPath.section];
+        showPay = NO;
+        
+        
+        NSMutableArray *tmpArray = [tmpDic allValues][0];
+        if (tmpArray && [tmpArray count] > 0) {
+            ApartmentRoom *room = [tmpArray objectAtIndex:indexPath.row];
+            [cell loadApartmentRoomCellData:room showPay:showPay];
+        }
+        return cell;
     }
+    
+    return nil;
     
 }
 
@@ -394,8 +420,10 @@
                 sectionTitle.text = [GlobalUtils translateStr:@"即将到期房间"];
             } else if (collectionView.tag == 102) {
                 sectionTitle.text = [GlobalUtils translateStr:@"与房主合同到期房间"];
-            } else {
+            } else if (collectionView.tag == 103){
                 sectionTitle.text = [GlobalUtils translateStr:@"公寓房间统计"];
+            } else if (collectionView.tag == 110) {
+                sectionTitle.text = [GlobalUtils translateStr:@"房间列表"];
             }
             
             [reusableview addSubview:sectionTitle];
@@ -421,8 +449,10 @@
             apartment = [aryDueApartmentItem objectAtIndex:indexPath.section];
         } else if (collectionView.tag == 102) {
             apartment = nil;
-        } else {
+        } else if (collectionView.tag == 103){
             apartment = [aryApartmentCount objectAtIndex:indexPath.section];
+        } else if (collectionView.tag == 110) {
+            apartment = [aryApartmentItem objectAtIndex:indexPath.section];
         }
         
         [[sectionBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
@@ -446,9 +476,12 @@
             apartmentName = [tmpDic allKeys][0];
         } else if (collectionView.tag == 102) {
             
-        } else {
+        } else if (collectionView.tag == 103){
             Apartment *currentApartment = [aryApartmentCount objectAtIndex:indexPath.section];
             apartmentName = currentApartment.apartmentName;
+        } else if (collectionView.tag == 110) {
+            tmpDic = [aryApartmentRoomItem objectAtIndex:indexPath.section];
+            apartmentName = [tmpDic allKeys][0];
         }
         
         sectionLabel.font = [UIFont systemFontOfSize:16.f];
@@ -485,8 +518,16 @@
         }
     } else if (collectionView.tag == 102) {
         
-    } else {
+    } else if (collectionView.tag == 103){
         Apartment *apartment = [aryApartmentCount objectAtIndex:indexPath.row];
+    } else if (collectionView.tag == 110) {
+        NSMutableDictionary *tmpDic = [aryApartmentRoomItem objectAtIndex:indexPath.section];
+        NSArray *roomArray = [tmpDic allValues][0];
+        if (indexPath.row < [roomArray count]) {
+            if ([self.apartmentCollectionViewDelegate respondsToSelector:@selector(ACVD_passRoom:)]) {
+                [self.apartmentCollectionViewDelegate ACVD_passRoom:[roomArray objectAtIndex:indexPath.row]];
+            }
+        }
     }
 }
 

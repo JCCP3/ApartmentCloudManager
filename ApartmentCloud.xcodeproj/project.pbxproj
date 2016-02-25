@@ -20,6 +20,12 @@
 		3626C6371C56598D00C85F11 /* Gas.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6361C56598D00C85F11 /* Gas.m */; };
 		3626C63A1C56599500C85F11 /* Water.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C6391C56599500C85F11 /* Water.m */; };
 		3626C63D1C56599D00C85F11 /* Elec.m in Sources */ = {isa = PBXBuildFile; fileRef = 3626C63C1C56599D00C85F11 /* Elec.m */; };
+		366132671C7C99BF00A61EF7 /* refresh_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 366132641C7C99BF00A61EF7 /* refresh_arrow@2x.png */; };
+		366132681C7C99BF00A61EF7 /* refresh_finish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 366132651C7C99BF00A61EF7 /* refresh_finish@2x.png */; };
+		366132691C7C99BF00A61EF7 /* refresh_loading@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 366132661C7C99BF00A61EF7 /* refresh_loading@2x.gif */; };
+		3661326C1C7CAD8100A61EF7 /* ExpendChooseRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3661326B1C7CAD8100A61EF7 /* ExpendChooseRoomViewController.m */; };
+		3661326E1C7F468F00A61EF7 /* city.json in Resources */ = {isa = PBXBuildFile; fileRef = 3661326D1C7F468F00A61EF7 /* city.json */; };
+		366132711C7F489200A61EF7 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 366132701C7F489200A61EF7 /* City.m */; };
 		36719A7C1C77607400CB3573 /* ApartmentCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A7B1C77607400CB3573 /* ApartmentCountCell.m */; };
 		36719A821C777E2100CB3573 /* AppWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A811C777E2100CB3573 /* AppWebViewController.m */; };
 		36719A851C7780E200CB3573 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36719A841C7780E200CB3573 /* SettingViewController.m */; };
@@ -170,6 +176,14 @@
 		3626C6391C56599500C85F11 /* Water.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Water.m; sourceTree = "<group>"; };
 		3626C63B1C56599D00C85F11 /* Elec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Elec.h; sourceTree = "<group>"; };
 		3626C63C1C56599D00C85F11 /* Elec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Elec.m; sourceTree = "<group>"; };
+		366132641C7C99BF00A61EF7 /* refresh_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh_arrow@2x.png"; sourceTree = "<group>"; };
+		366132651C7C99BF00A61EF7 /* refresh_finish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh_finish@2x.png"; sourceTree = "<group>"; };
+		366132661C7C99BF00A61EF7 /* refresh_loading@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "refresh_loading@2x.gif"; sourceTree = "<group>"; };
+		3661326A1C7CAD8100A61EF7 /* ExpendChooseRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpendChooseRoomViewController.h; sourceTree = "<group>"; };
+		3661326B1C7CAD8100A61EF7 /* ExpendChooseRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExpendChooseRoomViewController.m; sourceTree = "<group>"; };
+		3661326D1C7F468F00A61EF7 /* city.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = city.json; sourceTree = "<group>"; };
+		3661326F1C7F489200A61EF7 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = City.h; sourceTree = "<group>"; };
+		366132701C7F489200A61EF7 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = City.m; sourceTree = "<group>"; };
 		36719A7A1C77607400CB3573 /* ApartmentCountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApartmentCountCell.h; sourceTree = "<group>"; };
 		36719A7B1C77607400CB3573 /* ApartmentCountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApartmentCountCell.m; sourceTree = "<group>"; };
 		36719A801C777E2100CB3573 /* AppWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppWebViewController.h; sourceTree = "<group>"; };
@@ -513,6 +527,9 @@
 		36B3D9B71C422D6E006D968C /* ApartmentImages */ = {
 			isa = PBXGroup;
 			children = (
+				366132641C7C99BF00A61EF7 /* refresh_arrow@2x.png */,
+				366132651C7C99BF00A61EF7 /* refresh_finish@2x.png */,
+				366132661C7C99BF00A61EF7 /* refresh_loading@2x.gif */,
 				36BE6D561C78E0470044C861 /* c_arrow_down@2x.png */,
 				36BE6D571C78E0470044C861 /* c_arrow_down@3x.png */,
 				36B3DA2E1C4D3C37006D968C /* apartment_addRoom@2x.png */,
@@ -558,6 +575,8 @@
 				36719A871C77827800CB3573 /* ExpendViewController.m */,
 				36719A8F1C77864000CB3573 /* ExpendDetailViewController.h */,
 				36719A901C77864000CB3573 /* ExpendDetailViewController.m */,
+				3661326A1C7CAD8100A61EF7 /* ExpendChooseRoomViewController.h */,
+				3661326B1C7CAD8100A61EF7 /* ExpendChooseRoomViewController.m */,
 			);
 			path = DecorateController;
 			sourceTree = "<group>";
@@ -634,6 +653,8 @@
 				36BE6D611C78F00E0044C861 /* HomeOwner.m */,
 				36BE6D631C78F5F40044C861 /* DeviceInfo.h */,
 				36BE6D641C78F5F40044C861 /* DeviceInfo.m */,
+				3661326F1C7F489200A61EF7 /* City.h */,
+				366132701C7F489200A61EF7 /* City.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -680,6 +701,7 @@
 		FEB556EB1C3E505600FCFA43 /* ApartmentCloud */ = {
 			isa = PBXGroup;
 			children = (
+				3661326D1C7F468F00A61EF7 /* city.json */,
 				FEBDF8331C472B1E009C9271 /* Storage */,
 				36B3DA1E1C467397006D968C /* Model */,
 				36B3D9AD1C42263B006D968C /* View */,
@@ -1060,6 +1082,7 @@
 				36B3D9BC1C422D6E006D968C /* apartment_ThreePerson@2x.png in Resources */,
 				36B3D9D91C423EE5006D968C /* left_decoration@2x.png in Resources */,
 				36B3D9D71C423EE5006D968C /* left_accounts@2x.png in Resources */,
+				3661326E1C7F468F00A61EF7 /* city.json in Resources */,
 				36B3D9C91C423042006D968C /* new_nav_normal@3x.png in Resources */,
 				367A162F1C3E8A9E001D711D /* loginAccount@2x.png in Resources */,
 				36B3D9DC1C423EE5006D968C /* left_sell@2x.png in Resources */,
@@ -1071,6 +1094,8 @@
 				368F7E7A1C3FD00E00010EC2 /* nav_back_white@2x.png in Resources */,
 				36B3D9DB1C423EE5006D968C /* left_other@2x.png in Resources */,
 				36B3D9C81C423042006D968C /* new_nav_normal@2x.png in Resources */,
+				366132681C7C99BF00A61EF7 /* refresh_finish@2x.png in Resources */,
+				366132691C7C99BF00A61EF7 /* refresh_loading@2x.gif in Resources */,
 				36B3D9D81C423EE5006D968C /* left_apartment@2x.png in Resources */,
 				36B3D9CB1C423042006D968C /* new_nav_selected@3x.png in Resources */,
 				36B3D9C61C423042006D968C /* new_nav_hilighted@2x.png in Resources */,
@@ -1080,6 +1105,7 @@
 				36B3DA2F1C4D3C37006D968C /* apartment_addRoom@2x.png in Resources */,
 				36B3D9C51C423042006D968C /* nav_menu@2x.png in Resources */,
 				36BE6D591C78E0470044C861 /* c_arrow_down@3x.png in Resources */,
+				366132671C7C99BF00A61EF7 /* refresh_arrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,6 +1258,7 @@
 				3626C63D1C56599D00C85F11 /* Elec.m in Sources */,
 				36B3D9F61C43DAF3006D968C /* AddCleanViewController.m in Sources */,
 				36B3DA021C43EA0D006D968C /* HouseHolderListViewController.m in Sources */,
+				366132711C7F489200A61EF7 /* City.m in Sources */,
 				3626C62B1C56574600C85F11 /* ApartmentWaterListViewController.m in Sources */,
 				36719A821C777E2100CB3573 /* AppWebViewController.m in Sources */,
 				36B3D9E11C425ED1006D968C /* DecorateViewController.m in Sources */,
@@ -1239,6 +1266,7 @@
 				36B3D9FC1C43DD8C006D968C /* DecorateFollowViewController.m in Sources */,
 				3626C62E1C56577600C85F11 /* AddApartmentWaterViewController.m in Sources */,
 				FEBDF8321C4726C8009C9271 /* CustomPickerView.m in Sources */,
+				3661326C1C7CAD8100A61EF7 /* ExpendChooseRoomViewController.m in Sources */,
 				FEB556EE1C3E505600FCFA43 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
